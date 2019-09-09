@@ -27,6 +27,7 @@ public class Arith
   public static boolean validatePrefixOrder(String prefixLiterals[])
   {
     //TODO
+    return false;
   }
 
 
@@ -43,6 +44,7 @@ public class Arith
   public static boolean validatePostfixOrder(String postfixLiterals[])
   {
     //TODO
+    return false;
   }
 
 
@@ -62,6 +64,7 @@ public class Arith
   public static int evaluatePrefixOrder(String prefixLiterals[])
   {
     //TODO
+    return -1;
   }
 
 
@@ -78,6 +81,7 @@ public class Arith
   public static int evaluatePostfixOrder(String postfixLiterals[])
   {
     //TODO
+    return -1;
   }
 
 
@@ -97,13 +101,14 @@ public class Arith
   public static String[] convertPrefixToPostfix(String prefixLiterals[])
   {
     //TODO
+    return null;
   }
 
 
   /**
    * Converts postfix to prefix.
    *
-   * @param prefixLiterals : an array containing the string literals in postfix order.
+   * @param postfixLiterals : an array containing the string literals in postfix order.
    * The method assumes that each of these literals can be one of:
    * - "+", "-", "*", or "/"
    * - or a valid string representation of an integer.
@@ -113,12 +118,13 @@ public class Arith
   public static String[] convertPostfixToPrefix(String postfixLiterals[])
   {
     //TODO
+    return null;
   }
 
   /**
    * Converts prefix to infix.
    *
-   * @param infixLiterals : an array containing the string literals in prefix order.
+   * @param prefixLiterals : an array containing the string literals in prefix order.
    * The method assumes that each of these literals can be one of:
    * - "+", "-", "*", or "/"
    * - or a valid string representation of an integer.
@@ -128,12 +134,13 @@ public class Arith
   public static String[] convertPrefixToInfix(String prefixLiterals[])
   {
     //TODO
+    return null;
   }
 
   /**
    * Converts postfix to infix.
    *
-   * @param infixLiterals : an array containing the string literals in postfix order.
+   * @param postfixLiterals : an array containing the string literals in postfix order.
    * The method assumes that each of these literals can be one of:
    * - "+", "-", "*", or "/"
    * - or a valid string representation of an integer.
@@ -143,6 +150,7 @@ public class Arith
   public static String[] convertPostfixToInfix(String postfixLiterals[])
   {
     //TODO
+    return null;
   }
 
 
