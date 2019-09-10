@@ -26,8 +26,19 @@ public class Arith
    **/
   public static boolean validatePrefixOrder(String prefixLiterals[])
   {
-    //TODO
-    return false;
+    int counter = 1;
+    for (String literal : prefixLiterals) {
+      if (literal.length() != 1)
+        return false;
+      char currentChar = literal.charAt(0);
+      if(Character.isDigit(currentChar))
+        counter--;
+      else
+        counter++;
+      if (counter <= 0)
+        return false;
+    }
+    return true;
   }
 
 
@@ -43,8 +54,17 @@ public class Arith
    **/
   public static boolean validatePostfixOrder(String postfixLiterals[])
   {
-    //TODO
-    return false;
+    int counter = 0;
+    for (String literal : postfixLiterals) {
+      char currentChar = literal.charAt(0);
+      if(Character.isDigit(currentChar))
+        counter++;
+      else
+        counter--;
+      if (counter < 0)
+        return false;
+    }
+    return true;
   }
 
 
