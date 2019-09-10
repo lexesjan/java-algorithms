@@ -12,7 +12,7 @@ public class ArithTest {
 
     @Test
     void testValidatePostfixOrder() {
-        assertEquals(Arith.validatePostfixOrder(new String[]{}), true);
+        assertEquals(Arith.validatePostfixOrder(new String[]{"1", "2", "+"}), true);
         assertEquals(Arith.validatePostfixOrder(new String[]{}), false);
     }
 }
