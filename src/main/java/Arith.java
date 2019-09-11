@@ -27,15 +27,15 @@ public class Arith
   public static boolean validatePrefixOrder(String prefixLiterals[])
   {
     int counter = 1;
-    for (String literal : prefixLiterals) {
-      if (literal.length() != 1)
-        return false;
-      char currentChar = literal.charAt(0);
-      if(Character.isDigit(currentChar))
+    for (int i = 0; i < prefixLiterals.length; i++) {
+      String literal = prefixLiterals[i];
+      if(isNumber(literal))
         counter--;
       else
         counter++;
-      if (counter <= 0)
+      if (counter < 0)
+        return false;
+      if (counter == 0 && i != prefixLiterals.length - 1)
         return false;
     }
     return true;
@@ -55,13 +55,13 @@ public class Arith
   public static boolean validatePostfixOrder(String postfixLiterals[])
   {
     int counter = 0;
-    for (String literal : postfixLiterals) {
-      char currentChar = literal.charAt(0);
-      if(Character.isDigit(currentChar))
+    for (int i = 0; i < postfixLiterals.length; i++) {
+      String literal = postfixLiterals[i];
+      if(isNumber(literal))
         counter++;
       else
         counter--;
-      if (counter < 0)
+      if (counter <= 0)
         return false;
     }
     return true;
@@ -173,6 +173,23 @@ public class Arith
     return null;
   }
 
+  /**
+   * Converts postfix to infix.
+   *
+   * @param input : a string which can be parsed into a number or not
+   *
+   * @return true if the string is a digit, else false
+   **/
 
+  //~ Helper methods ..........................................................
+
+  private static boolean isNumber(String input) {
+    for (int i = 0; i < input.length(); i++) {
+      char currentChar = input.charAt(0);
+      if (currentChar < '0' || currentChar > '9')
+        return false;
+    }
+    return true;
+  }
 
 }
