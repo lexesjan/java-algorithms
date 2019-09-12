@@ -40,14 +40,22 @@ class Collinear
      *  Caclulate and write down the order of growth of your algorithm. You can use the asymptotic notation.
      *  You should adequately explain your answer. Answers without adequate explanation will not be counted.
      *
-     *  Order of growth: TODO
+     *  Order of growth: O(N^3)
      *
-     *  Explanation: TODO
+     *  Explanation: Three linear for-loops
      */
     static int countCollinear(int[] a1, int[] a2, int[] a3)
     {
-      //TODO: implement this method
-      return 0;
+      int y1 = 1;
+      int y2 = 2;
+      int y3 = 3;
+      int count = 0;
+      for(int x1: a1)
+        for(int x2: a2)
+          for(int x3: a3)
+            if (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0)
+              count++;
+      return count;
     }
 
     // ----------------------------------------------------------
@@ -78,7 +86,11 @@ class Collinear
     static int countCollinearFast(int[] a1, int[] a2, int[] a3)
     {
       //TODO: implement this method
-      return 0;
+      int y1 = 1;
+      int y2 = 2;
+      int y3 = 3;
+      int count = 0;
+      return count;
     }
 
     // ----------------------------------------------------------
