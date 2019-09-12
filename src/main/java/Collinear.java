@@ -3,7 +3,7 @@
  *  This class contains only two static methods that search for points on the
  *  same line in three arrays of integers. 
  *
- *  @author  
+ *  @author Lexes Jan Mantiquilla
  *  @version 18/09/18 12:21:09
  */
 class Collinear
@@ -24,8 +24,8 @@ class Collinear
      * line.
      *
      * Three points (x1, y1), (x2, y2), (x3, y3) are collinear (i.e., they are on the same line) if
-     * 
-     * x1(y2−y3)+x2(y3−y1)+x3(y1−y2)=0 
+     *
+     * x1(y2−y3)+x2(y3−y1)+x3(y1−y2)=0
      *
      * In our case y1=1, y2=2, y3=3.
      *
@@ -33,7 +33,7 @@ class Collinear
      *
      * ----------------------------------------------------------
      *
-     * 
+     *
      *  Order of Growth
      *  -------------------------
      *
@@ -85,7 +85,7 @@ class Collinear
     /**
      * Sorts an array of integers according to InsertionSort.
      * This method is static, thus it can be called as Collinear.sort(a)
-     * @param a: An UNSORTED array of integers. 
+     * @param a: An UNSORTED array of integers.
      * @return after the method returns, the array must be in ascending sorted order.
      *
      * ----------------------------------------------------------
@@ -139,8 +139,21 @@ class Collinear
      */
     static boolean binarySearch(int[] a, int x)
     {
-      //TODO: implement this method
-      return false;
+      int[] aSorted = new int[a.length];
+      System.arraycopy(a, 0, aSorted, 0, aSorted.length);
+      sort(aSorted);
+      return binarySearch(aSorted, x, 0, aSorted.length - 1);
+    }
+
+    private static boolean binarySearch(int[] a, int x, int l, int r) {
+      if (l > r)
+        return false;
+      int middle = (l + r) / 2;
+      if (x == a[middle])
+        return true;
+      if (x < a[middle])
+        return binarySearch(a, x, l, middle - 1);
+      return binarySearch(a, x, middle + 1, r);
     }
 
 }
