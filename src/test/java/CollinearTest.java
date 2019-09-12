@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 /**
  *  Test class for Collinear.java
  *
- *  @author  
+ *  @author Lexes Jan Mantiquilla
  *  @version 18/09/18 12:21:26
  */
 @RunWith(JUnit4.class)
