@@ -1,11 +1,11 @@
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.Arrays;
+
+import static org.junit.Assert.*;
 
 //-------------------------------------------------------------------------
 /**
@@ -72,8 +72,15 @@ public class CollinearTest
     }
 
 
-    // TODO: add more tests here. Each line of code and ech decision in Collinear.java should
-    // be executed at least once from at least one test.
-
+    @Test
+    public void testBinarySearch() {
+        int[] a = {3, 5, 1, 2, 6, 6, 10, 11};
+        int[] b = {3, 5, 1, 2, 6, 6, 10};
+        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 1));
+        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 3));
+        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 7));
+        assertTrue(String.format("binarySearch(%s)", Arrays.toString(b)), Collinear.binarySearch(b, 1));
+        assertTrue(String.format("binarySearch(%s)", Arrays.toString(b)), Collinear.binarySearch(b, 3));
+        assertFalse(String.format("binarySearch(%s)", Arrays.toString(b)), Collinear.binarySearch(b, 7));
+    }
 }
-
