@@ -1,7 +1,7 @@
 // -------------------------------------------------------------------------
 /**
  *  This class contains only two static methods that search for points on the
- *  same line in three arrays of integers. 
+ *  same line in three arrays of integers.
  *
  *  @author Lexes Jan Mantiquilla
  *  @version 18/09/18 12:21:09
@@ -132,19 +132,24 @@ class Collinear
      *  Caclulate and write down the order of growth of your algorithm. You can use the asymptotic notation.
      *  You should adequately explain your answer. Answers without adequate explanation will not be counted.
      *
-     *  Order of Growth: TODO
+     *  Order of Growth: O(lg(N))
      *
      *  Explanation: TODO
      *
      */
     static boolean binarySearch(int[] a, int x)
     {
-      int[] aSorted = new int[a.length];
-      System.arraycopy(a, 0, aSorted, 0, aSorted.length);
-      sort(aSorted);
-      return binarySearch(aSorted, x, 0, aSorted.length - 1);
+      return binarySearch(a, x, 0, a.length - 1);
     }
 
+    /**
+     * Helper function which recursively searches the array for the input x
+     * @param a: A array of integers SORTED in ascending order.
+     * @param x: An integer.
+     * @param l: An integer which indicates the starting index of the search.
+     * @param r: An integer which indicates the ending index of the search.
+     * @return true if 'x' is contained in 'a'; false otherwise.
+     */
     private static boolean binarySearch(int[] a, int x, int l, int r) {
       if (l > r)
         return false;
