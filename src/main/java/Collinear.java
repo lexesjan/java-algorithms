@@ -77,19 +77,23 @@ class Collinear
      *  Caclulate and write down the order of growth of your algorithm. You can use the asymptotic notation.
      *  You should adequately explain your answer. Answers without adequate explanation will not be counted.
      *
-     *  Order of Growth: TODO
+     *  Order of Growth: O(N^2 + N^2(lg(N)))
      *
-     *  Explanation: TODO
+     *  Explanation: Insertion sort at start and two nested for-loops after. The inner most loop uses binary search.
      *
      *
      */
     static int countCollinearFast(int[] a1, int[] a2, int[] a3)
     {
-      //TODO: implement this method
       int y1 = 1;
       int y2 = 2;
       int y3 = 3;
       int count = 0;
+      sort(a3);
+      for (int x1 : a1)
+        for (int x2 : a2)
+          if (binarySearch(a3, -(x1 * (y2 - y3) + x2 * (y3 - y1)) / (y1 - y2)))
+            count++;
       return count;
     }
 
