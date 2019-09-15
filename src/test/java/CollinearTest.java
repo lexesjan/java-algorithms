@@ -72,11 +72,13 @@ public class CollinearTest
         assertEquals("countCollinearFast(" + Arrays.toString(a1) + "," + Arrays.toString(a2) + "," + Arrays.toString(a3) + ")", expectedResult, Collinear.countCollinearFast(a1, a2, a3));
     }
 
+    /**
+     * Check for no false positives in an even sized array
+     */
 
     @Test
-    public void testBinarySearch() {
+    public void testBinarySearchEven() {
         int[] a = IntStream.range(0, 10).map(x -> 2  * x).toArray();
-        int[] b = IntStream.range(0, 9).map(x -> 2  * x).toArray();
 
         assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 2));
         assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 8));
@@ -85,13 +87,36 @@ public class CollinearTest
         assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 18));
         assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 7));
         assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 100));
+        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, -2));
+    }
 
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(b)), Collinear.binarySearch(b, 2));
+    /**
+     * Check for no false positives in an odd sized array
+     */
+
+    @Test
+    public void testBinarySearchOdd() {
+        int[] a = IntStream.range(0, 9).map(x -> 2  * x).toArray();
+
+        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 2));
         assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 8));
         assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 10));
         assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 14));
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(b)), Collinear.binarySearch(b, 16));
-        assertFalse(String.format("binarySearch(%s)", Arrays.toString(b)), Collinear.binarySearch(b, 7));
-        assertFalse(String.format("binarySearch(%s)", Arrays.toString(b)), Collinear.binarySearch(b, 100));
+        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 16));
+        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 7));
+        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 100));
+        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, -2));
+    }
+
+    /**
+     * Check for no false positives in an array of size 0
+     */
+
+    @Test
+    public void testBinarySearchSingle() {
+        int[] a = {10};
+
+        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 10));
+        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, -2));
     }
 }
