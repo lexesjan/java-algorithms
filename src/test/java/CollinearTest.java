@@ -109,7 +109,7 @@ public class CollinearTest
     }
 
     /**
-     * Check for no false positives in an array of size 0
+     * Check for no false positives in an array of size 1
      */
 
     @Test
