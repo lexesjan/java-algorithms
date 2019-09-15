@@ -80,14 +80,16 @@ public class CollinearTest
     public void testBinarySearchEven() {
         int[] a = IntStream.range(0, 10).map(x -> 2  * x).toArray();
 
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 2));
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 8));
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 10));
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 14));
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 18));
-        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 7));
-        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 100));
-        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, -2));
+        String message = String.format("binarySearch(%s)", Arrays.toString(a));
+        assertTrue(message, Collinear.binarySearch(a, 2));
+        assertTrue(message, Collinear.binarySearch(a, 8));
+        assertTrue(message, Collinear.binarySearch(a, 10));
+        assertTrue(message, Collinear.binarySearch(a, 14));
+        assertTrue(message, Collinear.binarySearch(a, 18));
+        assertFalse(message, Collinear.binarySearch(a, 7));
+        assertFalse(message, Collinear.binarySearch(a, 100));
+        assertFalse(message, Collinear.binarySearch(a, -2));
+        Arrays.stream(a).forEach(x -> assertTrue(message, Collinear.binarySearch(a, x)));
     }
 
     /**
@@ -96,16 +98,18 @@ public class CollinearTest
 
     @Test
     public void testBinarySearchOdd() {
-        int[] a = IntStream.range(0, 9).map(x -> 2  * x).toArray();
+        int[] a = IntStream.range(0, 9).map(x -> 2 * x).toArray();
 
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 2));
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 8));
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 10));
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 14));
-        assertTrue(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 16));
-        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 7));
-        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, 100));
-        assertFalse(String.format("binarySearch(%s)", Arrays.toString(a)), Collinear.binarySearch(a, -2));
+        String message = String.format("binarySearch(%s)", Arrays.toString(a));
+        assertTrue(message, Collinear.binarySearch(a, 2));
+        assertTrue(message, Collinear.binarySearch(a, 8));
+        assertTrue(message, Collinear.binarySearch(a, 10));
+        assertTrue(message, Collinear.binarySearch(a, 14));
+        assertTrue(message, Collinear.binarySearch(a, 16));
+        assertFalse(message, Collinear.binarySearch(a, 7));
+        assertFalse(message, Collinear.binarySearch(a, 100));
+        assertFalse(message, Collinear.binarySearch(a, -2));
+        Arrays.stream(a).forEach(x -> assertTrue(message, Collinear.binarySearch(a, x)));
     }
 
     /**
