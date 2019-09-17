@@ -150,7 +150,7 @@ class Collinear
      *
      *  Order of Growth: O(lg(N))
      *
-     *  Explanation: TODO
+     *  Explanation: After each recursive call, the search size is divided by two.
      *
      */
     static boolean binarySearch(int[] a, int x)
@@ -169,10 +169,10 @@ class Collinear
     private static boolean binarySearch(int[] a, int x, int l, int r) {
       if (l > r)
         return false;
-      int middle = (l + r) / 2;
+      int middle = r + (l - r) / 2;
       if (x == a[middle])
         return true;
-      if (x < a[middle])
+      else if (x < a[middle])
         return binarySearch(a, x, l, middle - 1);
       return binarySearch(a, x, middle + 1, r);
     }
