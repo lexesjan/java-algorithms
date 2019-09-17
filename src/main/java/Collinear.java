@@ -40,7 +40,7 @@ class Collinear
      *  Caclulate and write down the order of growth of your algorithm. You can use the asymptotic notation.
      *  You should adequately explain your answer. Answers without adequate explanation will not be counted.
      *
-     *  Order of growth: O(N^3)
+     *  Order of growth: N^3
      *
      *  Explanation: Three linear for-loops
      */
@@ -77,7 +77,7 @@ class Collinear
      *  Caclulate and write down the order of growth of your algorithm. You can use the asymptotic notation.
      *  You should adequately explain your answer. Answers without adequate explanation will not be counted.
      *
-     *  Order of Growth: O(N^2 + N^2(lg(N)))
+     *  Order of Growth: N^2 * log(N)
      *
      *  Explanation: Insertion sort at start and two nested for-loops after. The inner most loop uses binary search.
      *
@@ -148,7 +148,7 @@ class Collinear
      *  Caclulate and write down the order of growth of your algorithm. You can use the asymptotic notation.
      *  You should adequately explain your answer. Answers without adequate explanation will not be counted.
      *
-     *  Order of Growth: O(lg(N))
+     *  Order of Growth: log(N)
      *
      *  Explanation: After each recursive call, the search size is divided by two.
      *
