@@ -40,7 +40,7 @@ class Collinear
      *  Caclulate and write down the order of growth of your algorithm. You can use the asymptotic notation.
      *  You should adequately explain your answer. Answers without adequate explanation will not be counted.
      *
-     *  Order of growth: O(N^3)
+     *  Order of growth: N^3
      *
      *  Explanation: Three linear for-loops
      */
@@ -77,7 +77,7 @@ class Collinear
      *  Caclulate and write down the order of growth of your algorithm. You can use the asymptotic notation.
      *  You should adequately explain your answer. Answers without adequate explanation will not be counted.
      *
-     *  Order of Growth: O(N^2 + N^2(lg(N)))
+     *  Order of Growth: N^2 * log(N)
      *
      *  Explanation: Insertion sort at start and two nested for-loops after. The inner most loop uses binary search.
      *
@@ -148,9 +148,9 @@ class Collinear
      *  Caclulate and write down the order of growth of your algorithm. You can use the asymptotic notation.
      *  You should adequately explain your answer. Answers without adequate explanation will not be counted.
      *
-     *  Order of Growth: O(lg(N))
+     *  Order of Growth: log(N)
      *
-     *  Explanation: TODO
+     *  Explanation: After each recursive call, the search size is divided by two.
      *
      */
     static boolean binarySearch(int[] a, int x)
@@ -169,10 +169,10 @@ class Collinear
     private static boolean binarySearch(int[] a, int x, int l, int r) {
       if (l > r)
         return false;
-      int middle = (l + r) / 2;
+      int middle = r + (l - r) / 2;
       if (x == a[middle])
         return true;
-      if (x < a[middle])
+      else if (x < a[middle])
         return binarySearch(a, x, l, middle - 1);
       return binarySearch(a, x, middle + 1, r);
     }
