@@ -99,7 +99,7 @@ public class CollinearTest
 
     @Test
     public void testBinarySearchOdd() {
-        int[] a = new int[10];
+        int[] a = new int[9];
         for (int i = 0; i < a.length; i++) {
             a[i] = i * 2;
         }
