@@ -102,6 +102,15 @@ public class DoublyLinkedListTest {
     assertNull("Checking get to an empty list as position 3", testDLL.get(3));
     assertNull("Checking get to an empty list as position 10", testDLL.get(10));
 
+    // test list of size 1
+    testDLL = new DoublyLinkedList<Integer>();
+    testDLL.insertBefore(0, 1);
+    assertEquals("Checking get to a non-empty list at position 0", (Integer) 1, testDLL.get(0));
+    assertNull("Checking get to an empty list as position -1", testDLL.get(-1));
+    assertNull("Checking get to an empty list as position -10", testDLL.get(-10));
+    assertNull("Checking get to an empty list as position 3", testDLL.get(3));
+    assertNull("Checking get to an empty list as position 10", testDLL.get(10));
+
     // test empty list
     testDLL = new DoublyLinkedList<Integer>();
     assertNull("Checking get to an empty list as position 0", testDLL.get(0));
@@ -120,21 +129,29 @@ public class DoublyLinkedListTest {
     testDLL.insertBefore(2, 3);
     testDLL.insertBefore(3, 4);
     testDLL.insertBefore(4, 5);
-    assertEquals("Checking get to a non-empty list at position 0", "2, 3, 4, 5", testDLL.deleteAt(0));
-    assertEquals("Checking get to a non-empty list at position 1", (Integer) 2, testDLL.get(1));
-    assertEquals("Checking get to a non-empty list at position 2", (Integer) 3, testDLL.get(2));
-    assertNull("Checking get to an empty list as position -1", testDLL.get(-1));
-    assertNull("Checking get to an empty list as position -10", testDLL.get(-10));
-    assertNull("Checking get to an empty list as position 3", testDLL.get(3));
-    assertNull("Checking get to an empty list as position 10", testDLL.get(10));
+    assertTrue("Checking deleteAt to a non-empty list at position 0", testDLL.deleteAt(0));
+    assertEquals("Checking deleteAt to a non-empty list at position 0", "2,3,4,5", testDLL.toString());
+    assertTrue("Checking deleteAt to a non-empty list at position 1", testDLL.deleteAt(1));
+    assertEquals("Checking deleteAt to a non-empty list at position 1", "2,4,5", testDLL.toString());
+    assertTrue("Checking deleteAt to a non-empty list at position 2", testDLL.deleteAt(2));
+    assertEquals("Checking deleteAt to a non-empty list at position 2", "2,4", testDLL.toString());
+    assertFalse("Checking deleteAt to an empty list as position -1", testDLL.deleteAt(-1));
+    assertFalse("Checking deleteAt to an empty list as position -10", testDLL.deleteAt(-10));
+    assertFalse("Checking deleteAt to an empty list as position 3", testDLL.deleteAt(3));
+    assertFalse("Checking deleteAt to an empty list as position 10", testDLL.deleteAt(10));
+    assertTrue("Checking deleteAt to a non-empty list at position 0", testDLL.deleteAt(0));
+    assertEquals("Checking deleteAt to a non-empty list at position 0", "4", testDLL.toString());
+    assertTrue("Checking deleteAt to a non-empty list at position 0", testDLL.deleteAt(0));
+    assertEquals("Checking deleteAt to a non-empty list at position 0", "", testDLL.toString());
+
 
     // test empty list
     testDLL = new DoublyLinkedList<Integer>();
-    assertNull("Checking get to an empty list as position 0", testDLL.get(0));
-    assertNull("Checking get to an empty list as position 1", testDLL.get(1));
-    assertNull("Checking get to an empty list as position 10", testDLL.get(10));
-    assertNull("Checking get to an empty list as position -1", testDLL.get(-1));
-    assertNull("Checking get to an empty list as position -10", testDLL.get(-10));
+    assertFalse("Checking deleteAt to an empty list as position 0", testDLL.deleteAt(0));
+    assertFalse("Checking deleteAt to an empty list as position 1", testDLL.deleteAt(1));
+    assertFalse("Checking deleteAt to an empty list as position 10", testDLL.deleteAt(10));
+    assertFalse("Checking deleteAt to an empty list as position -1", testDLL.deleteAt(-1));
+    assertFalse("Checking deleteAt to an empty list as position -10", testDLL.deleteAt(-10));
   }
   // TODO: add more tests here. Each line of code in DoublyLinkedList.java should
   // be executed at least once from at least one test.
