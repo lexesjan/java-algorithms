@@ -1,4 +1,3 @@
-import java.util.stream.IntStream;
 import org.junit.Test;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
@@ -78,7 +77,10 @@ public class CollinearTest
 
     @Test
     public void testBinarySearchEven() {
-        int[] a = IntStream.range(0, 10).map(x -> 2  * x).toArray();
+        int[] a = new int[10];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = i * 2;
+        }
 
         String message = String.format("binarySearch(%s)", Arrays.toString(a));
         assertTrue(message, Collinear.binarySearch(a, 2));
@@ -89,7 +91,6 @@ public class CollinearTest
         assertFalse(message, Collinear.binarySearch(a, 7));
         assertFalse(message, Collinear.binarySearch(a, 100));
         assertFalse(message, Collinear.binarySearch(a, -2));
-        Arrays.stream(a).forEach(x -> assertTrue(message, Collinear.binarySearch(a, x)));
     }
 
     /**
@@ -98,7 +99,10 @@ public class CollinearTest
 
     @Test
     public void testBinarySearchOdd() {
-        int[] a = IntStream.range(0, 9).map(x -> 2 * x).toArray();
+        int[] a = new int[9];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = i * 2;
+        }
 
         String message = String.format("binarySearch(%s)", Arrays.toString(a));
         assertTrue(message, Collinear.binarySearch(a, 2));
@@ -109,7 +113,6 @@ public class CollinearTest
         assertFalse(message, Collinear.binarySearch(a, 7));
         assertFalse(message, Collinear.binarySearch(a, 100));
         assertFalse(message, Collinear.binarySearch(a, -2));
-        Arrays.stream(a).forEach(x -> assertTrue(message, Collinear.binarySearch(a, x)));
     }
 
     /**
