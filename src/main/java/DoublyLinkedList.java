@@ -141,7 +141,10 @@ class DoublyLinkedList<T extends Comparable<T>> {
    */
   public boolean deleteAt(int pos) {
     if (!isEmpty() && isValidPos(pos)) {
-      if (pos == 0) {
+      if (size == 1) {
+        head = null;
+        tail = null;
+      } else if (pos == 0) {
         head = head.next;
         head.prev = null;
       } else if (pos == size - 1) {
@@ -155,8 +158,8 @@ class DoublyLinkedList<T extends Comparable<T>> {
         DLLNode previous = current.prev;
         previous.next = current.next;
         current.next.prev = previous;
-        size--;
       }
+      size--;
       return true;
     }
     return false;
