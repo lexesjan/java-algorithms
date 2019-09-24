@@ -191,6 +191,33 @@ public class DoublyLinkedListTest {
     testDLL.reverse();
     assertEquals("Checking reverse to a list with the size of 0", "", testDLL.toString());
   }
+
+  @Test
+  public void testMakeUnique() {
+    // test odd non-empty list
+    DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+    testDLL.push(1);
+    testDLL.push(1);
+    testDLL.push(2);
+    testDLL.push(2);
+    testDLL.push(3);
+    testDLL.push(3);
+    testDLL.makeUnique();
+    assertEquals("Checking makeUnique to a list with the size of 6", "1,2,3", testDLL.toString());
+    testDLL.makeUnique();
+    assertEquals("Checking makeUnique to a list with the size of 3", "1,2,3", testDLL.toString());
+
+    testDLL = new DoublyLinkedList<Integer>();
+    for (int i = 0; i < 1000; i++) {
+      testDLL.push(1);
+    }
+    testDLL.makeUnique();
+    assertEquals("Checking makeUnique to a list with the size of 1000", "1", testDLL.toString());
+
+    // test empty list
+    testDLL = new DoublyLinkedList<Integer>();
+    assertEquals("Checking makeUnique to a list with the size of 0", "", testDLL.toString());
+  }
   // TODO: add more tests here. Each line of code in DoublyLinkedList.java should
   // be executed at least once from at least one test.
 }
