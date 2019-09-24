@@ -153,6 +153,44 @@ public class DoublyLinkedListTest {
     assertFalse("Checking deleteAt to an empty list as position -1", testDLL.deleteAt(-1));
     assertFalse("Checking deleteAt to an empty list as position -10", testDLL.deleteAt(-10));
   }
+
+  @Test
+  public void testReverse() {
+    // test odd non-empty list
+    DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+    testDLL.insertBefore(0, 1);
+    testDLL.insertBefore(1, 2);
+    testDLL.insertBefore(2, 3);
+    testDLL.reverse();
+    assertEquals("Checking reverse to a list with the size of 3", "3,2,1", testDLL.toString());
+    testDLL.reverse();
+    assertEquals("Checking reverse to a list with the size of 3", "1,2,3", testDLL.toString());
+
+    // test even sized list
+    testDLL = new DoublyLinkedList<Integer>();
+    testDLL.insertBefore(0, 1);
+    testDLL.insertBefore(1, 2);
+    testDLL.insertBefore(2, 3);
+    testDLL.insertBefore(3, 4);
+    testDLL.reverse();
+    assertEquals("Checking reverse to a list with the size of 3", "4,3,2,1", testDLL.toString());
+    testDLL.reverse();
+    assertEquals("Checking reverse to a list with the size of 3", "1,2,3,4", testDLL.toString());
+
+    // test list of size 1
+    testDLL = new DoublyLinkedList<Integer>();
+    testDLL.insertBefore(0, 1);
+    testDLL.reverse();
+    assertEquals("Checking reverse to a list with the size of 3", "1", testDLL.toString());
+    testDLL.reverse();
+    assertEquals("Checking reverse to a list with the size of 3", "1", testDLL.toString());
+
+
+    // test empty list
+    testDLL = new DoublyLinkedList<Integer>();
+    testDLL.reverse();
+    assertEquals("Checking reverse to a list with the size of 0", "", testDLL.toString());
+  }
   // TODO: add more tests here. Each line of code in DoublyLinkedList.java should
   // be executed at least once from at least one test.
 }
