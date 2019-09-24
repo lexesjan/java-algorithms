@@ -130,9 +130,11 @@ public class DoublyLinkedListTest {
     testDLL.insertBefore(3, 4);
     testDLL.insertBefore(4, 5);
     assertTrue("Checking deleteAt to a non-empty list at position 0", testDLL.deleteAt(0));
-    assertEquals("Checking deleteAt to a non-empty list at position 0", "2,3,4,5", testDLL.toString());
+    assertEquals(
+        "Checking deleteAt to a non-empty list at position 0", "2,3,4,5", testDLL.toString());
     assertTrue("Checking deleteAt to a non-empty list at position 1", testDLL.deleteAt(1));
-    assertEquals("Checking deleteAt to a non-empty list at position 1", "2,4,5", testDLL.toString());
+    assertEquals(
+        "Checking deleteAt to a non-empty list at position 1", "2,4,5", testDLL.toString());
     assertTrue("Checking deleteAt to a non-empty list at position 2", testDLL.deleteAt(2));
     assertEquals("Checking deleteAt to a non-empty list at position 2", "2,4", testDLL.toString());
     assertFalse("Checking deleteAt to an empty list as position -1", testDLL.deleteAt(-1));
@@ -143,7 +145,6 @@ public class DoublyLinkedListTest {
     assertEquals("Checking deleteAt to a non-empty list at position 0", "4", testDLL.toString());
     assertTrue("Checking deleteAt to a non-empty list at position 0", testDLL.deleteAt(0));
     assertEquals("Checking deleteAt to a non-empty list at position 0", "", testDLL.toString());
-
 
     // test empty list
     testDLL = new DoublyLinkedList<Integer>();
@@ -185,7 +186,6 @@ public class DoublyLinkedListTest {
     testDLL.reverse();
     assertEquals("Checking reverse to a list with the size of 3", "1", testDLL.toString());
 
-
     // test empty list
     testDLL = new DoublyLinkedList<Integer>();
     testDLL.reverse();
@@ -220,7 +220,6 @@ public class DoublyLinkedListTest {
     testDLL.makeUnique();
     assertEquals("Checking makeUnique to a list with the size of 1", "1", testDLL.toString());
 
-
     // test empty list
     testDLL = new DoublyLinkedList<Integer>();
     assertEquals("Checking makeUnique to a list with the size of 0", "", testDLL.toString());
@@ -237,12 +236,12 @@ public class DoublyLinkedListTest {
     testDLL.push(-1);
     assertEquals("Checking push multiple items to stack", "1,2,3,-1", testDLL.toString());
 
-
     testDLL = new DoublyLinkedList<Integer>();
     for (int i = 0; i < 10; i++) {
       testDLL.push(i);
     }
-    assertEquals("Checking push multiple items to stack", "0,1,2,3,4,5,6,7,8,9", testDLL.toString());
+    assertEquals(
+        "Checking push multiple items to stack", "0,1,2,3,4,5,6,7,8,9", testDLL.toString());
   }
 
   @Test
@@ -267,7 +266,10 @@ public class DoublyLinkedListTest {
     }
 
     for (int i = testDLL.size() - 1; i >= 0; i--) {
-      assertEquals(String.format("Checking pop with a stack with a size of %d", i + 1), (Integer) i, testDLL.pop());
+      assertEquals(
+          String.format("Checking pop with a stack with a size of %d", i + 1),
+          (Integer) i,
+          testDLL.pop());
     }
   }
 
@@ -282,12 +284,12 @@ public class DoublyLinkedListTest {
     testDLL.enqueue(-1);
     assertEquals("Checking enqueue multiple items to stack", "1,2,3,-1", testDLL.toString());
 
-
     testDLL = new DoublyLinkedList<Integer>();
     for (int i = 0; i < 10; i++) {
       testDLL.enqueue(i);
     }
-    assertEquals("Checking push multiple items to stack", "0,1,2,3,4,5,6,7,8,9", testDLL.toString());
+    assertEquals(
+        "Checking push multiple items to stack", "0,1,2,3,4,5,6,7,8,9", testDLL.toString());
   }
 
   @Test
@@ -312,7 +314,10 @@ public class DoublyLinkedListTest {
     }
 
     for (int i = 0; i < testDLL.size(); i++) {
-      assertEquals(String.format("Checking dequeue with a stack with a size of %d", i + 1), (Integer) i, testDLL.dequeue());
+      assertEquals(
+          String.format("Checking dequeue with a stack with a size of %d", i + 1),
+          (Integer) i,
+          testDLL.dequeue());
     }
   }
 
