@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 /**
  * This class contains the methods of Doubly Linked List.
  *
- * @author
+ * @author Lexes Jan Mantiquilla
  * @version 09/10/18 11:13:22
  */
 
@@ -198,7 +198,18 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * <p>Justification: TODO
    */
   public void makeUnique() {
-    // TODO
+    if (!isEmpty()) {
+      DoublyLinkedList<T> seen = new DoublyLinkedList<T>();
+      DLLNode current = head;
+      for (int i = 0; i < size; i++) {
+        T data = current.data;
+        if (!seen.contains(data)) seen.push(data);
+        current = current.next;
+      }
+      head = seen.head;
+      tail = seen.tail;
+      size = seen.size;
+    }
   }
 
   /*----------------------- STACK API
@@ -207,14 +218,14 @@ class DoublyLinkedList<T extends Comparable<T>> {
 
   /**
    * This method adds an element to the data structure. How exactly this will be represented in the
-   * Doubly Linked List is up to the programmer.
+   * Doubly Linked List is up to the programmer. The tail is the top of the stack.
    *
    * @param item : the item to push on the stack
    *     <p>Worst-case asymptotic running time cost: TODO
    *     <p>Justification: TODO
    */
   public void push(T item) {
-    // TODO
+    insertBefore(size, item);
   }
 
   /**
@@ -225,7 +236,9 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *     <p>Justification: TODO
    */
   public T pop() {
-    // TODO
+    int topIndex = size - 1;
+    T top = get(topIndex);
+    if(deleteAt(topIndex)) return top;
     return null;
   }
 
@@ -235,14 +248,14 @@ class DoublyLinkedList<T extends Comparable<T>> {
 
   /**
    * This method adds an element to the data structure. How exactly this will be represented in the
-   * Doubly Linked List is up to the programmer.
+   * Doubly Linked List is up to the programmer. The head is the start of the queue.
    *
    * @param item : the item to be enqueued to the stack
    *     <p>Worst-case asymptotic running time cost: TODO
    *     <p>Justification: TODO
    */
   public void enqueue(T item) {
-    // TODO
+    push(item);
   }
 
   /**
@@ -254,8 +267,9 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *     <p>Justification: TODO
    */
   public T dequeue() {
-    // TODO
-    return null;
+    T start = get(0);
+    deleteAt(0);
+    return start;
   }
 
   /**
@@ -274,11 +288,8 @@ class DoublyLinkedList<T extends Comparable<T>> {
 
     // iterate over the list, starting from the head
     for (DLLNode iter = head; iter != null; iter = iter.next) {
-      if (!isFirst) {
-        s.append(",");
-      } else {
-        isFirst = false;
-      }
+      if (!isFirst) s.append(",");
+      else isFirst = false;
       s.append(iter.data.toString());
     }
 
@@ -297,7 +308,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * This method returns if the position exists in the linked list.
+   * This method returns if the position exists in the doubly linked list.
    *
    * @return true if position is valid: false if position is invalid.
    *     <p>Worst-case asymptotic running time cost: Θ(1)
@@ -305,5 +316,23 @@ class DoublyLinkedList<T extends Comparable<T>> {
    */
   private boolean isValidPos(int pos) {
     return (pos >= 0 && pos < size);
+  }
+
+  /**
+   * This method checks if an element is contained in the doubly linked list
+   *
+   * @return true if element is found: false if element is not found.
+   *     <p>Worst-case asymptotic running time cost: Θ(1)
+   *     <p>Justification: TODO
+   */
+  public boolean contains(T data) {
+    if (!isEmpty()) {
+      DLLNode current = head;
+      for (int i = 0; i < size; i++) {
+        if (current.data.equals(data)) return true;
+        current = current.next;
+      }
+    }
+    return false;
   }
 }
