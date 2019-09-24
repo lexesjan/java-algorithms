@@ -142,7 +142,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *
    * @param pos : the position to delete in the list.
    * @return true : on successful deletion, false : list has not been modified.
-   *     <p>Worst-case asymptotic running time cost:
+   *     <p>Worst-case asymptotic running time cost: Θ(1)
    *     <p>Justification: First if statement is Θ(1) (isEmpty method and isValidPos method (both
    *     assumed to be Θ(1)), inside contains two if statements which are Θ(1). Inside the first two
    *     if statements are Θ(1) (Assumed Θ(1)). In the else statement a for loop is present which is
