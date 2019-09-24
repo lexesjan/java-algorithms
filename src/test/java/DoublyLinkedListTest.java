@@ -214,9 +214,61 @@ public class DoublyLinkedListTest {
     testDLL.makeUnique();
     assertEquals("Checking makeUnique to a list with the size of 1000", "1", testDLL.toString());
 
+    // test list of size 1
+    testDLL = new DoublyLinkedList<Integer>();
+    testDLL.push(1);
+    testDLL.makeUnique();
+    assertEquals("Checking makeUnique to a list with the size of 1", "1", testDLL.toString());
+
+
     // test empty list
     testDLL = new DoublyLinkedList<Integer>();
     assertEquals("Checking makeUnique to a list with the size of 0", "", testDLL.toString());
+  }
+
+  @Test
+  public void testPush() {
+    // test empty list
+    DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+    testDLL.push(1);
+    assertEquals("Checking push to an empty stack", "1", testDLL.toString());
+    testDLL.push(2);
+    testDLL.push(3);
+    testDLL.push(-1);
+    assertEquals("Checking push multiple items to stack", "1,2,3,-1", testDLL.toString());
+
+
+    testDLL = new DoublyLinkedList<Integer>();
+    for (int i = 0; i < 10; i++) {
+      testDLL.push(i);
+    }
+    assertEquals("Checking push multiple items to stack", "0,1,2,3,4,5,6,7,8,9", testDLL.toString());
+  }
+
+  @Test
+  public void testPop() {
+    // test non-empty list
+    DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+    for (int i = 0; i < 10; i++) {
+      testDLL.push(i);
+    }
+    assertEquals("Checking pop with a stack with a size of 10", (Integer) 9, testDLL.pop());
+    assertEquals("Checking pop with a stack with a size of 9", (Integer) 8, testDLL.pop());
+    assertEquals("Checking pop with a stack with a size of 8", (Integer) 7, testDLL.pop());
+
+    // test empty list
+    testDLL = new DoublyLinkedList<Integer>();
+    assertNull("Checking pop with a stack with a size of 0", testDLL.pop());
+
+    // test popping all items off a stack
+    testDLL = new DoublyLinkedList<Integer>();
+    for (int i = 0; i < 10; i++) {
+      testDLL.push(i);
+    }
+
+    for (int i = testDLL.size() - 1; i >= 0; i--) {
+      assertEquals(String.format("Checking pop with a stack with a size of %d", i + 1), (Integer) i, testDLL.pop());
+    }
   }
   // TODO: add more tests here. Each line of code in DoublyLinkedList.java should
   // be executed at least once from at least one test.
