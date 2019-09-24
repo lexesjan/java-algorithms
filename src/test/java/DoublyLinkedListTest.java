@@ -270,6 +270,51 @@ public class DoublyLinkedListTest {
       assertEquals(String.format("Checking pop with a stack with a size of %d", i + 1), (Integer) i, testDLL.pop());
     }
   }
+
+  @Test
+  public void testEnqueue() {
+    // test empty list
+    DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+    testDLL.enqueue(1);
+    assertEquals("Checking enqueue to an empty stack", "1", testDLL.toString());
+    testDLL.enqueue(2);
+    testDLL.enqueue(3);
+    testDLL.enqueue(-1);
+    assertEquals("Checking enqueue multiple items to stack", "1,2,3,-1", testDLL.toString());
+
+
+    testDLL = new DoublyLinkedList<Integer>();
+    for (int i = 0; i < 10; i++) {
+      testDLL.enqueue(i);
+    }
+    assertEquals("Checking push multiple items to stack", "0,1,2,3,4,5,6,7,8,9", testDLL.toString());
+  }
+
+  @Test
+  public void testDequeue() {
+    // test non-empty list
+    DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+    for (int i = 0; i < 10; i++) {
+      testDLL.enqueue(i);
+    }
+    assertEquals("Checking dequeue with a stack with a size of 10", (Integer) 0, testDLL.dequeue());
+    assertEquals("Checking dequeue with a stack with a size of 9", (Integer) 1, testDLL.dequeue());
+    assertEquals("Checking dequeue with a stack with a size of 8", (Integer) 2, testDLL.dequeue());
+
+    // test empty list
+    testDLL = new DoublyLinkedList<Integer>();
+    assertNull("Checking dequeue with a stack with a size of 0", testDLL.dequeue());
+
+    // test dequeue all items off a stack
+    testDLL = new DoublyLinkedList<Integer>();
+    for (int i = 0; i < 10; i++) {
+      testDLL.enqueue(i);
+    }
+
+    for (int i = 0; i < testDLL.size(); i++) {
+      assertEquals(String.format("Checking dequeue with a stack with a size of %d", i + 1), (Integer) i, testDLL.dequeue());
+    }
+  }
   // TODO: add more tests here. Each line of code in DoublyLinkedList.java should
   // be executed at least once from at least one test.
 }
