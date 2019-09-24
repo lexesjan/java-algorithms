@@ -12,7 +12,7 @@ import org.junit.runners.JUnit4;
 /**
  * Test class for Doubly Linked List
  *
- * @author
+ * @author Lexes Jan Mantiquilla
  * @version 13/10/16 18:15
  */
 @RunWith(JUnit4.class)
