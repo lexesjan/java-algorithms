@@ -174,15 +174,17 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * <p>Justification: TODO
    */
   public void reverse() {
-    tail = head;
-    DLLNode current = head;
-    for (int i = 0; i < size; i++) {
-      DLLNode temp = current.next;
-      current.next = current.prev;
-      current.prev = temp;
-      current = current.prev;
+    if (!isEmpty()) {
+      DLLNode current = head;
+      head = tail;
+      tail = current;
+      for (int i = 0; i < size; i++) {
+        DLLNode temp = current.next;
+        current.next = current.prev;
+        current.prev = temp;
+        current = current.prev;
+      }
     }
-    head = current;
   }
 
   /**
