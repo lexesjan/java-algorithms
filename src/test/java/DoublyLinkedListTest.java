@@ -315,6 +315,25 @@ public class DoublyLinkedListTest {
       assertEquals(String.format("Checking dequeue with a stack with a size of %d", i + 1), (Integer) i, testDLL.dequeue());
     }
   }
-  // TODO: add more tests here. Each line of code in DoublyLinkedList.java should
-  // be executed at least once from at least one test.
+
+  @Test
+  public void testContains() {
+    // test non-empty list
+    DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+    testDLL.push(1);
+    testDLL.push(2);
+    testDLL.push(3);
+    assertTrue("Checking isValidPos with a list of size 3", testDLL.contains(1));
+    assertTrue("Checking isValidPos with a list of size 3", testDLL.contains(2));
+    assertTrue("Checking isValidPos with a list of size 3", testDLL.contains(3));
+    assertFalse("Checking isValidPos with a list of size 3", testDLL.contains(4));
+    assertFalse("Checking isValidPos with a list of size 3", testDLL.contains(-1));
+    assertFalse("Checking isValidPos with a list of size 3", testDLL.contains(0));
+
+    // test empty list
+    testDLL = new DoublyLinkedList<Integer>();
+    assertFalse("Checking isValidPos with a list of size 0", testDLL.contains(0));
+    assertFalse("Checking isValidPos with a list of size 0", testDLL.contains(4));
+    assertFalse("Checking isValidPos with a list of size 0", testDLL.contains(-4));
+  }
 }
