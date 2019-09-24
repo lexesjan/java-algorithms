@@ -67,8 +67,8 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * Tests if the doubly linked list is empty
    *
    * @return true if list is empty, and false otherwise
-   *     <p>Worst-case asymptotic running time cost: TODO
-   *     <p>Justification: TODO
+   *     <p>Worst-case asymptotic running time cost: Θ(1)
+   *     <p>Justification: The if statement is assumed to take Θ(1)
    */
   public boolean isEmpty() {
     if (head == null && tail == null) return true;
@@ -84,8 +84,12 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *     element at the end of the list.
    * @param data : The new data of class T that needs to be added to the list
    * @return none
-   *     <p>Worst-case asymptotic running time cost: TODO
-   *     <p>Justification: TODO
+   *     <p>Worst-case asymptotic running time cost: Θ(N)
+   *     <p>Justification: First if statement is Θ(1) (isEmpty method), inside contains two if
+   *     statements which are Θ(1). Inside the first two if statements are Θ(1) (Assumed Θ(1)). In
+   *     the else statement a for loop is present which is Θ(N). The other method calls and java
+   *     operations within and outside the for loop are assumed to be Θ(1). Therefore the asymptotic
+   *     running time cost is Θ(N)
    */
   public void insertBefore(int pos, T data) {
     if (!isEmpty()) {
@@ -116,8 +120,10 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *
    * @param pos : the position
    * @return the data at pos, if pos is within the bounds of the list, and null otherwise.
-   *     <p>Worst-case asymptotic running time cost: TODO
-   *     <p>Justification: TODO
+   *     <p>Worst-case asymptotic running time cost: Θ(N)
+   *     <p>Justification: We assume the if statement takes Θ(1) (isEmpty is assumed Θ(1) and
+   *     isValidPos is assumed Θ(1)). The for loop is Θ(N). The other java operations in and outside
+   *     the for loop are assumed to be Θ(1).
    */
   public T get(int pos) {
     if (!isEmpty() && isValidPos(pos)) {
@@ -136,8 +142,12 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *
    * @param pos : the position to delete in the list.
    * @return true : on successful deletion, false : list has not been modified.
-   *     <p>Worst-case asymptotic running time cost: TODO
-   *     <p>Justification: TODO
+   *     <p>Worst-case asymptotic running time cost:
+   *     <p>Justification: First if statement is Θ(1) (isEmpty method and isValidPos method (both
+   *     assumed to be Θ(1)), inside contains two if statements which are Θ(1). Inside the first two
+   *     if statements are Θ(1) (Assumed Θ(1)). In the else statement a for loop is present which is
+   *     Θ(N). The other method calls and java operations in the for loop are assumed to be Θ(1).
+   *     Therefore the asymptotic running time cost is Θ(N)
    */
   public boolean deleteAt(int pos) {
     if (!isEmpty() && isValidPos(pos)) {
@@ -169,9 +179,11 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * Reverses the list. If the list contains "A", "B", "C", "D" before the method is called Then it
    * should contain "D", "C", "B", "A" after it returns.
    *
-   * <p>Worst-case asymptotic running time cost: TODO
+   * <p>Worst-case asymptotic running time cost: Θ(N)
    *
-   * <p>Justification: TODO
+   * <p>Justification: If statement with method IsEmpty is assumed to be Θ(1). The for loop is Θ(N).
+   * All the other java operations in the for loop are assumed to be Θ(1). Therefore the asymptotic
+   * running time cost is Θ(N)
    */
   public void reverse() {
     if (!isEmpty()) {
@@ -193,9 +205,12 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * before the method is called Then it should contain "A", "B", "C", "D" after it returns. The
    * relative order of elements in the resulting list should be the same as the starting list.
    *
-   * <p>Worst-case asymptotic running time cost: TODO
+   * <p>Worst-case asymptotic running time cost: Θ(N)
    *
-   * <p>Justification: TODO
+   * <p>Justification: If statement is assumed to be Θ(1) (isEmpty method is assumed to be Θ(1)).
+   * Next two java operations are each assumed to be Θ(1). A for loop is then Θ(N). Inside the for
+   * loop are operations cost Θ(1) (Java operations, push method is Θ(1)). The other java operations
+   * outside the loop are assumed to be Θ(1).
    */
   public void makeUnique() {
     if (!isEmpty()) {
@@ -221,8 +236,10 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * Doubly Linked List is up to the programmer. The tail is the top of the stack.
    *
    * @param item : the item to push on the stack
-   *     <p>Worst-case asymptotic running time cost: TODO
-   *     <p>Justification: TODO
+   *     <p>Worst-case asymptotic running time cost: Θ(1)
+   *     <p>Justification: The call to the method insertBefore is assumed to be Θ(1). Since the
+   *     insertBefore method will enter the second if statement (which only contains Θ(1)
+   *     operations), insertBefore method will cost Θ(1)
    */
   public void push(T item) {
     insertBefore(size, item);
@@ -232,14 +249,16 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * This method returns and removes the element that was most recently added by the push method.
    *
    * @return the last item inserted with a push; or null when the list is empty.
-   *     <p>Worst-case asymptotic running time cost: TODO
-   *     <p>Justification: TODO
+   *     <p>Worst-case asymptotic running time cost: Θ(N)
+   *     <p>Justification: The java operations are assumed to cost Θ(1). The getMethod and
+   *     the deleteAt method both cost Θ(N). That is Θ(1) + Θ(N) + Θ(N) + Θ(1) which simplified
+   *     is Θ(N).
    */
   public T pop() {
     int topIndex = size - 1;
     T top = get(topIndex);
-    if(deleteAt(topIndex)) return top;
-    return null;
+    deleteAt(topIndex);
+    return top;
   }
 
   /*----------------------- QUEUE API
@@ -251,8 +270,8 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * Doubly Linked List is up to the programmer. The head is the start of the queue.
    *
    * @param item : the item to be enqueued to the stack
-   *     <p>Worst-case asymptotic running time cost: TODO
-   *     <p>Justification: TODO
+   *     <p>Worst-case asymptotic running time cost: Θ(1)
+   *     <p>Justification: The method uses the push method which costs Θ(1).
    */
   public void enqueue(T item) {
     push(item);
@@ -262,9 +281,11 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * This method returns and removes the element that was least recently added by the enqueue
    * method.
    *
-   * @return the earliest item inserted with an equeue; or null when the list is empty.
-   *     <p>Worst-case asymptotic running time cost: TODO
-   *     <p>Justification: TODO
+   * @return the earliest item inserted with an enqueue; or null when the list is empty.
+   *     <p>Worst-case asymptotic running time cost: Θ(N)
+   *     <p>Justification: The get method has a worst cost of Θ(N). The deleteAt method
+   *     also has a cost of Θ(N). The other java operations cost Θ(1). Therefore when simplified
+   *     the asymptotic running time cost is Θ(N)
    */
   public T dequeue() {
     T start = get(0);
@@ -301,7 +322,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *
    * @return the doubly linked list size.
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: TODO
+   *     <p>Justification: We assume Java operation takes Θ(1)
    */
   public int size() {
     return size;
@@ -312,7 +333,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *
    * @return true if position is valid: false if position is invalid.
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: TODO
+   *     <p>Justification: We assume Java operation takes Θ(1)
    */
   private boolean isValidPos(int pos) {
     return (pos >= 0 && pos < size);
@@ -322,8 +343,10 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * This method checks if an element is contained in the doubly linked list
    *
    * @return true if element is found: false if element is not found.
-   *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: TODO
+   *     <p>Worst-case asymptotic running time cost: Θ(N)
+   *     <p>Justification: We assume all all java operations take Θ(1) time. The for loop runs for
+   *     Θ(N) and the inner loop method calls are Θ(1). Therefore the asymptotic running time cost
+   *     is Θ(N).
    */
   public boolean contains(T data) {
     if (!isEmpty()) {
