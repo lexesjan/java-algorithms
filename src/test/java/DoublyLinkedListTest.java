@@ -196,6 +196,8 @@ public class DoublyLinkedListTest {
   public void testMakeUnique() {
     // test odd non-empty list
     DoublyLinkedList<Integer> testDLL = new DoublyLinkedList<Integer>();
+    testDLL.push(3);
+    testDLL.push(3);
     testDLL.push(1);
     testDLL.push(1);
     testDLL.push(2);
@@ -203,9 +205,9 @@ public class DoublyLinkedListTest {
     testDLL.push(3);
     testDLL.push(3);
     testDLL.makeUnique();
-    assertEquals("Checking makeUnique to a list with the size of 6", "1,2,3", testDLL.toString());
+    assertEquals("Checking makeUnique to a list with the size of 6", "3,1,2", testDLL.toString());
     testDLL.makeUnique();
-    assertEquals("Checking makeUnique to a list with the size of 3", "1,2,3", testDLL.toString());
+    assertEquals("Checking makeUnique to a list with the size of 3", "3,1,2", testDLL.toString());
 
     testDLL = new DoublyLinkedList<Integer>();
     for (int i = 0; i < 1000; i++) {
