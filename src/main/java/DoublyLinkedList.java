@@ -76,12 +76,14 @@ class DoublyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Inserts an element in the doubly linked list
+   * Inserts an element in the doubly linked list at the head of the list
    *
    * @param data : The new data of class T that needs to be added to the list
    * @return none
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: TODO
+   *     <p>Justification: The isEmpty method takes Θ(1) to run which is within the if statement
+   *     condition. The constructor and all assignments is assumed Θ(1) to run. This applies to both
+   *     if statement conditional blocks. Thus the total running cost is Θ(1)
    */
   public void insertFirst(T data) {
     if (isEmpty()) {
@@ -95,12 +97,14 @@ class DoublyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Inserts an element in the doubly linked list
+   * Inserts an element in the doubly linked list at the tail of the list
    *
    * @param data : The new data of class T that needs to be added to the list
    * @return none
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: TODO
+   *     <p>Justification: The isEmpty method takes Θ(1) to run which is within the if statement
+   *     condition. The constructor and all assignments is assumed Θ(1) to run. This applies to both
+   *     if statement conditional blocks. Thus the total running cost is Θ(1)
    */
   public void insertLast(T data) {
     if (isEmpty()) {
@@ -123,11 +127,12 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * @param data : The new data of class T that needs to be added to the list
    * @return none
    *     <p>Worst-case asymptotic running time cost: Θ(N)
-   *     <p>Justification: First if statement is Θ(1) (isEmpty method), inside contains two if
-   *     statements which are Θ(1). Inside the first two if statements are Θ(1) (Assumed Θ(1)). In
-   *     the else statement a for loop is present which is Θ(N). The other method calls and java
-   *     operations within and outside the for loop are assumed to be Θ(1). Therefore the asymptotic
-   *     running time cost is Θ(N)
+   *     <p>Justification: First if statement condition is Θ(1) (isEmpty method), inside contains
+   *     two if statements which are Θ(1). Inside the first two if statements are Θ(1) due to
+   *     insertFirst and insertLast being Θ(1). In the else statement a for loop is present which is
+   *     Θ(N) in the worst case scenario. The other method calls and Java operations within and
+   *     outside the for loop are assumed to be Θ(1). Therefore the asymptotic running time cost is
+   *     Θ(N)
    */
   public void insertBefore(int pos, T data) {
     if (pos <= 0) {
@@ -147,11 +152,13 @@ class DoublyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Returns the data stored at a particular position
+   * Returns the data stored at the start of the list
    *
    * @return the data at the head of the double linked list.
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: TODO
+   *     <p>Justification: The if statement condition uses the isEmpty method which runs in Θ(1)
+   *     time. The other Java operations is assumed to be Θ(1). Therefore the total running cost is
+   *     Θ(1).
    */
   public T getFirst() {
     if (!isEmpty()) {
@@ -161,11 +168,13 @@ class DoublyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Returns the data stored at a particular position
+   * Returns the data stored at the end of the list
    *
    * @return the data at the head of the double linked list.
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: TODO
+   *     <p>Justification: The if statement condition uses the isEmpty method which runs in Θ(1)
+   *     time. The other Java operations is assumed to be Θ(1). Therefore the total running cost is
+   *     Θ(1).
    */
   public T getLast() {
     if (!isEmpty()) {
@@ -180,9 +189,9 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * @param pos : the position
    * @return the data at pos, if pos is within the bounds of the list, and null otherwise.
    *     <p>Worst-case asymptotic running time cost: Θ(N)
-   *     <p>Justification: We assume the if statement takes Θ(1) (isEmpty is assumed Θ(1) and
-   *     isValidPos is assumed Θ(1)). The for loop is Θ(N). The other java operations in and outside
-   *     the for loop are assumed to be Θ(1).
+   *     <p>Justification: We assume the if statement takes Θ(1) (isEmpty is Θ(1) and isValidPos is
+   *     Θ(1)). The for loop is Θ(N) for the worst case scenario. The other Java operations in and
+   *     outside the for loop are assumed to be Θ(1).
    */
   public T get(int pos) {
     if (pos == 0) return getFirst();
@@ -198,14 +207,14 @@ class DoublyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Deletes the element of the list at position pos. First element in the list has position 0. If
-   * pos points outside the elements of the list then no modification happens to the list.
+   * Deletes the element of the list at the head of the list
    *
    * @return true : on successful deletion, false : list has not been modified.
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: TODO
+   *     <p>Justification: The isEmpty method takes Θ(1) to run which is within the if statement
+   *     condition. All assignments is assumed Θ(1) to run. This applies to both if statement
+   *     conditional blocks. Thus the total running cost is Θ(1)
    */
-
   public boolean deleteFirst() {
     if (!isEmpty()) {
       if (size == 1) {
@@ -222,14 +231,14 @@ class DoublyLinkedList<T extends Comparable<T>> {
   }
 
   /**
-   * Deletes the element of the list at position pos. First element in the list has position 0. If
-   * pos points outside the elements of the list then no modification happens to the list.
+   * Deletes the element of the list at the tail of the list
    *
    * @return true : on successful deletion, false : list has not been modified.
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: TODO
+   *     <p>Justification: The isEmpty method takes Θ(1) to run which is within the if statement
+   *     condition. All assignments is assumed Θ(1) to run. This applies to both if statement
+   *     conditional blocks. Thus the total running cost is Θ(1)
    */
-
   public boolean deleteLast() {
     if (!isEmpty()) {
       if (size == 1) {
@@ -253,10 +262,11 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * @return true : on successful deletion, false : list has not been modified.
    *     <p>Worst-case asymptotic running time cost: Θ(N)
    *     <p>Justification: First if statement is Θ(1) (isEmpty method and isValidPos method (both
-   *     assumed to be Θ(1)), inside contains two if statements which are Θ(1). Inside the first two
-   *     if statements are Θ(1) (Assumed Θ(1)). In the else statement a for loop is present which is
-   *     Θ(N). The other method calls and java operations in the for loop are assumed to be Θ(1).
-   *     Therefore the asymptotic running time cost is Θ(N) TODO
+   *     Θ(1) running time cose), inside contains two if statements which are Θ(1). Inside the first
+   *     two if statements are Θ(1) (The deleteFirst and deleteLast methods are Θ(1)). In the else
+   *     statement a for loop is present which is Θ(N) in the worse scenario. The other method calls
+   *     and Java operations in the for loop are assumed to be Θ(1). Therefore the asymptotic
+   *     running time cost is Θ(N)
    */
   public boolean deleteAt(int pos) {
     if (!isEmpty() && isValidPos(pos)) {
@@ -309,41 +319,43 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * before the method is called Then it should contain "A", "B", "C", "D" after it returns. The
    * relative order of elements in the resulting list should be the same as the starting list.
    *
-   * <p>Worst-case asymptotic running time cost: Θ(N)
+   * <p>Worst-case asymptotic running time cost: Θ(N^2)
    *
-   * <p>Justification: If statement is assumed to be Θ(1) (isEmpty method is assumed to be Θ(1)).
-   * Next two java operations are each assumed to be Θ(1). A for loop is then Θ(N). Inside the for
-   * loop are operations cost Θ(1) (Java operations, push method is Θ(1)). The other java operations
-   * outside the loop are assumed to be Θ(1).
+   * <p>Justification: The outer if statement uses the method isEmpty which costs Θ(1) to run.
+   * Within the if statement a new double linked list is created which is assumed to cost Θ(1). There
+   * is a for loop present which runs N times. Within this for loop a method call to contains is called
+   * which costs Θ(N). The push method costs Θ(1). All the other Java operations is assumed to cost
+   * Θ(1). Thus the inner for loop costs N * Θ(Θ(N) + Θ(1)) which simplifies to Θ(N^2). Thus the
+   * total running time cost is Θ(N^2);
    */
   public void makeUnique() {
-//    if (!isEmpty()) {
-//      DoublyLinkedList<T> seen = new DoublyLinkedList<T>();
-//      DLLNode current = head;
-//      for (int i = 0; i < size; i++) {
-//        T data = current.data;
-//        if (!seen.contains(data)) seen.push(data);
-//        current = current.next;
-//      }
-//      head = seen.head;
-//      tail = seen.tail;
-//      size = seen.size;
-//    }
-//  }
-    DLLNode current1 = head;
-    for (int i = 0; i < size; i++) {
-      T data1 = current1.data;
-      DLLNode current2 = head;
-      int j = 0;
-      while (j < size) {
-        T data2 = current2.data;
-        if (i != j && data1.equals(data2)) deleteAt(j);
-        else j++;
-        current2 = current2.next;
+    if (!isEmpty()) {
+      DoublyLinkedList<T> seen = new DoublyLinkedList<T>();
+      DLLNode current = head;
+      for (int i = 0; i < size; i++) {
+        T data = current.data;
+        if (!seen.contains(data)) seen.push(data);
+        current = current.next;
       }
-      current1 = current1.next;
+      head = seen.head;
+      tail = seen.tail;
+      size = seen.size;
     }
   }
+  //    DLLNode current1 = head;
+  //    for (int i = 0; i < size; i++) {
+  //      T data1 = current1.data;
+  //      DLLNode current2 = head;
+  //      int j = 0;
+  //      while (j < size) {
+  //        T data2 = current2.data;
+  //        if (i != j && data1.equals(data2)) deleteAt(j);
+  //        else j++;
+  //        current2 = current2.next;
+  //      }
+  //      current1 = current1.next;
+  //    }
+  //  }
 
   /*----------------------- STACK API
    * If only the push and pop methods are called the data structure should behave like a stack.
@@ -355,7 +367,7 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *
    * @param item : the item to push on the stack
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: The call to the method insertLast is assumed to be Θ(1). TODO
+   *     <p>Justification: The call to the method insertLast is Θ(1) running time cost.
    */
   public void push(T item) {
     insertLast(item);
@@ -366,13 +378,12 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *
    * @return the last item inserted with a push; or null when the list is empty.
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: The java operations are assumed to cost Θ(1). The getMethod and
-   *     the deleteAt method both cost Θ(N). That is Θ(1) + Θ(N) + Θ(N) + Θ(1) which simplified
-   *     is Θ(N). TODO
+   *     <p>Justification: The java operations are assumed to cost Θ(1). The getLast and the
+   *     deleteLast method both cost Θ(1). That is Θ(1) + Θ(1) + Θ(1) + Θ(1) which simplified is
+   *     Θ(1).
    */
   public T pop() {
-    int topIndex = size - 1;
-    T top = get(topIndex);
+    T top = getLast();
     deleteLast();
     return top;
   }
@@ -387,10 +398,10 @@ class DoublyLinkedList<T extends Comparable<T>> {
    *
    * @param item : the item to be enqueued to the stack
    *     <p>Worst-case asymptotic running time cost: Θ(1)
-   *     <p>Justification: The method uses the push method which costs Θ(1).
+   *     <p>Justification: The method uses the insertFirst method which costs Θ(1).
    */
   public void enqueue(T item) {
-    push(item);
+    insertLast(item);
   }
 
   /**
@@ -398,10 +409,10 @@ class DoublyLinkedList<T extends Comparable<T>> {
    * method.
    *
    * @return the earliest item inserted with an enqueue; or null when the list is empty.
-   *     <p>Worst-case asymptotic running time cost: Θ(N)
-   *     <p>Justification: The get method has a worst cost of Θ(N). The deleteAt method
-   *     also has a cost of Θ(N). The other java operations cost Θ(1). Therefore when simplified
-   *     the asymptotic running time cost is Θ(N) TODO
+   *     <p>Worst-case asymptotic running time cost: Θ(1)
+   *     <p>Justification: The getFirst method has a worst cost of Θ(1). The deleteFirst method also
+   *     has a cost of Θ(N). The other java operations cost Θ(1). Therefore when simplified the
+   *     asymptotic running time cost is Θ(1)
    */
   public T dequeue() {
     T start = getFirst();
