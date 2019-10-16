@@ -223,8 +223,8 @@ class DoublyLinkedList<T extends Comparable<T>> {
       } else {
         head = head.next;
         head.prev = null;
-        size--;
       }
+      size--;
       return true;
     }
     return false;
@@ -247,8 +247,8 @@ class DoublyLinkedList<T extends Comparable<T>> {
       } else {
         tail = tail.prev;
         tail.next = null;
-        size--;
       }
+      size--;
       return true;
     }
     return false;
@@ -342,20 +342,6 @@ class DoublyLinkedList<T extends Comparable<T>> {
       size = seen.size;
     }
   }
-  //    DLLNode current1 = head;
-  //    for (int i = 0; i < size; i++) {
-  //      T data1 = current1.data;
-  //      DLLNode current2 = head;
-  //      int j = 0;
-  //      while (j < size) {
-  //        T data2 = current2.data;
-  //        if (i != j && data1.equals(data2)) deleteAt(j);
-  //        else j++;
-  //        current2 = current2.next;
-  //      }
-  //      current1 = current1.next;
-  //    }
-  //  }
 
   /*----------------------- STACK API
    * If only the push and pop methods are called the data structure should behave like a stack.
