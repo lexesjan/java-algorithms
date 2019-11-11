@@ -158,4 +158,60 @@ public class BSTTest {
 
     assertEquals("Getting height of 4", 4, bst.height());
   }
+
+  @Test
+  public void testPrintInOrder() {
+    BST<Character, Character> bst = new BST<>();
+
+    assertEquals("Printing in order empty tree", "()", bst.printKeysInOrder());
+
+    bst.put('A', 'A');
+
+    /*
+     A
+     */
+
+    assertEquals("Printing in order with tree of A", "(()A())", bst.printKeysInOrder());
+
+    bst = new BST<>();
+
+    bst.put('B', 'B');
+    bst.put('A', 'A');
+    bst.put('C', 'C');
+    bst.put('D', 'D');
+
+    /*
+       B
+      / \
+     A   C
+          \
+           D
+     */
+
+    bst = new BST<>();
+
+    bst.put('S', 'S');
+    bst.put('X', 'X');
+    bst.put('E', 'E');
+    bst.put('A', 'A');
+    bst.put('R', 'R');
+    bst.put('C', 'C');
+    bst.put('H', 'H');
+    bst.put('M', 'M');
+
+    /*
+               _S_
+             /     \
+           _E_      X
+         /     \
+        A       R
+         \     /
+          C   H
+               \
+                M
+     */
+
+
+    assertEquals("Printing in order with tree of A", "(((()A(()C()))E((()H(()M()))R()))S(()X()))", bst.printKeysInOrder());
+  }
 }

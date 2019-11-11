@@ -146,8 +146,14 @@ public class BST<Key extends Comparable<Key>, Value> {
    */
   public String printKeysInOrder() {
     if (isEmpty()) return "()";
-    // TODO fill in the correct implementation
-    return null;
+    return "(" + printKeysInOrder(root) + ")";
+  }
+
+  private String printKeysInOrder(Node node) {
+    if (node == null) return "";
+    String leftSide = printKeysInOrder(node.left);
+    String rightSide = printKeysInOrder(node.right);
+    return "(" + leftSide + ")" + node.key + "(" + rightSide + ")";
   }
 
   /**
