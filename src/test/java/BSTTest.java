@@ -337,4 +337,51 @@ public class BSTTest {
 
     assertEquals("Getting median of tree", new Character('H'), bst.median());
   }
+
+  @Test
+  public void testMax() {
+    BST<Integer, Integer> bst = new BST<>();
+
+    assertNull("Getting max of empty tree", bst.max());
+
+    bst.put(7, 7);
+
+    assertEquals("Getting max of tree with max 7", new Integer(7), bst.max());
+
+    bst.put(8, 8);
+    bst.put(3, 3);
+    bst.put(1, 1);
+    bst.put(2, 2);
+    bst.put(6, 6);
+    bst.put(4, 4);
+    bst.put(5, 5);
+    /*
+            _7_
+          /     \
+        _3_      8
+      /     \
+     1       6
+      \     /
+       2   4
+            \
+             5
+     */
+
+    assertEquals("Getting max of tree with max 8", new Integer(8), bst.max());
+  }
+
+  @Test
+  public void testContains() {
+
+  }
+
+  @Test
+  public void testPut() {
+
+  }
+
+  @Test
+  public void testGet() {
+
+  }
 }

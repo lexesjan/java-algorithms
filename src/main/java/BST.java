@@ -192,7 +192,7 @@ public class BST<Key extends Comparable<Key>, Value> {
   }
 
   /**
-   * Deteles a key from a tree (if the key is in the tree). Note that this method works
+   * Deletes a key from a tree (if the key is in the tree). Note that this method works
    * symmetrically from the Hibbard deletion: If the node to be deleted has two child nodes, then it
    * needs to be replaced with its predecessor (not its successor) node.
    *
@@ -200,5 +200,46 @@ public class BST<Key extends Comparable<Key>, Value> {
    */
   public void delete(Key key) {
     // TODO fill in the correct implementation.
+    delete(root, key);
+  }
+
+  private Node delete(Node node, Key key) {
+    if (node == null) return null;
+    int cmp = key.compareTo(node.key);
+    if (cmp < 0) node.left = delete(node.left, key);
+    else if (cmp > 0) node.right = delete(node.right, key);
+    else {
+      if (node.right == null) return node.left;
+      if (node.left == null) return node.right;
+
+      Node temp = node;
+      node = max(temp.left);
+      node.left = deleteMax(temp.left);
+      node.right = temp.right;
+    }
+    node.N = size(node.left) + size(node.right) + 1;
+    return node;
+  }
+
+  private Node deleteMax(Node node) {
+    if (node.right == null) return node.left;
+    node.right = deleteMax(node.right);
+    node.N = size(node.right) + size(node.left) + 1;
+    return node;
+  }
+
+  /**
+   * Retrieves the maximum value of the tree
+   *
+   * @return the maximum value in the tree
+   */
+  public Value max() {
+    if (isEmpty()) return null;
+    return max(root).val;
+  }
+
+  private Node max(Node node) {
+    if (node.right != null) return max(node.right);
+    return node;
   }
 }
