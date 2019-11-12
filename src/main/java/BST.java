@@ -129,6 +129,12 @@ public class BST<Key extends Comparable<Key>, Value> {
     return select(middleKeyPos);
   }
 
+  /**
+   * Returns the rank of the node which matches the key
+   *
+   * @param key the key of the node you want to get the rank of
+   * @return the rank of the node
+   */
   public int rank(Key key) {
     return rank(root, key);
   }
@@ -141,6 +147,12 @@ public class BST<Key extends Comparable<Key>, Value> {
     return 1 + size(node.left) + rank(node.right, key);
   }
 
+  /**
+   * Returns the key of the node which matches the rank inputted
+   *
+   * @param rank the rank of the node to be searched
+   * @return the key of the node which matches the rank inputted
+   */
   public Key select(int rank) {
     if (rank < 0 || rank >= size(root)) return null;
     return select(root, rank).key;
@@ -221,7 +233,15 @@ public class BST<Key extends Comparable<Key>, Value> {
     return node;
   }
 
+  /**
+   * Deletes the biggest value in the tree
+   */
+  public void deleteMax() {
+    root = deleteMax(root);
+  }
+
   private Node deleteMax(Node node) {
+    if (node == null) return null;
     if (node.right == null) return node.left;
     node.right = deleteMax(node.right);
     node.N = size(node.right) + size(node.left) + 1;

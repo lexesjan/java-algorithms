@@ -371,6 +371,40 @@ public class BSTTest {
   }
 
   @Test
+  public void testDeleteMax() {
+    BST<Integer, Integer> bst = new BST<>();
+
+    bst.deleteMax();
+    assertEquals("Deleting max of an empty tree", "()", bst.printKeysInOrder());
+
+    bst.put(7, 7);
+
+    bst.deleteMax();
+    assertEquals("Deleting max of a tree with one node", "()", bst.printKeysInOrder());
+
+    bst.put(8, 8);
+    bst.put(3, 3);
+    bst.put(1, 1);
+    bst.put(2, 2);
+    bst.put(6, 6);
+    bst.put(4, 4);
+    bst.put(5, 5);
+    /*
+           8
+          /
+        _3_
+      /     \
+     1       6
+      \     /
+       2   4
+            \
+             5
+     */
+    bst.deleteMax();
+    assertEquals("Deleting max of a tree", "((()1(()2()))3((()4(()5()))6()))", bst.printKeysInOrder());
+  }
+
+  @Test
   public void testContains() {
 
   }
