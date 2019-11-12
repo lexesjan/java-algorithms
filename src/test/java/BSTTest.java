@@ -77,16 +77,16 @@ public class BSTTest {
     bst.put(4, 4);
     bst.put(5, 5);
     /*
-            _7_
-          /     \
-        _3_      8
-      /     \
-     1       6
-      \     /
-       2   4
-            \
-             5
-     */
+           _7_
+         /     \
+       _3_      8
+     /     \
+    1       6
+     \     /
+      2   4
+           \
+            5
+    */
 
     assertEquals(
         "Checking order of constructed tree",
@@ -122,8 +122,8 @@ public class BSTTest {
     bst.put(7, 7);
 
     /*
-     7
-     */
+    7
+    */
 
     assertEquals("Getting height of tree with one node", 0, bst.height());
 
@@ -131,10 +131,10 @@ public class BSTTest {
     bst.put(3, 3);
 
     /*
-        _7_
-      /     \
-     3       8
-     */
+       _7_
+     /     \
+    3       8
+    */
 
     assertEquals("Getting height of tree of 1", 1, bst.height());
 
@@ -145,16 +145,16 @@ public class BSTTest {
     bst.put(5, 5);
 
     /*
-            _7_
-          /     \
-        _3_      8
-      /     \
-     1       6
-      \     /
-       2   4
-            \
-             5
-     */
+           _7_
+         /     \
+       _3_      8
+     /     \
+    1       6
+     \     /
+      2   4
+           \
+            5
+    */
 
     assertEquals("Getting height of 4", 4, bst.height());
   }
@@ -168,8 +168,8 @@ public class BSTTest {
     bst.put('A', 'A');
 
     /*
-     A
-     */
+    A
+    */
 
     assertEquals("Printing in order with tree of A", "(()A())", bst.printKeysInOrder());
 
@@ -181,12 +181,12 @@ public class BSTTest {
     bst.put('D', 'D');
 
     /*
-       B
-      / \
-     A   C
-          \
-           D
-     */
+      B
+     / \
+    A   C
+         \
+          D
+    */
 
     bst = new BST<>();
 
@@ -200,19 +200,21 @@ public class BSTTest {
     bst.put('M', 'M');
 
     /*
-               _S_
-             /     \
-           _E_      X
-         /     \
-        A       R
-         \     /
-          C   H
-               \
-                M
-     */
+              _S_
+            /     \
+          _E_      X
+        /     \
+       A       R
+        \     /
+         C   H
+              \
+               M
+    */
 
-
-    assertEquals("Printing in order with tree of A", "(((()A(()C()))E((()H(()M()))R()))S(()X()))", bst.printKeysInOrder());
+    assertEquals(
+        "Printing in order with tree of A",
+        "(((()A(()C()))E((()H(()M()))R()))S(()X()))",
+        bst.printKeysInOrder());
   }
 
   @Test
@@ -231,16 +233,16 @@ public class BSTTest {
     bst.put('M', 'M');
 
     /*
-               _S_
-             /     \
-           _E_      X
-         /     \
-        A       R
-         \     /
-          C   H
-               \
-                M
-     */
+              _S_
+            /     \
+          _E_      X
+        /     \
+       A       R
+        \     /
+         C   H
+              \
+               M
+    */
 
     assertEquals("Getting rank of A", 0, bst.rank('A'));
     assertEquals("Getting rank of S", 6, bst.rank('S'));
@@ -264,16 +266,16 @@ public class BSTTest {
     bst.put('M', 'M');
 
     /*
-               _S_
-             /     \
-           _E_      X
-         /     \
-        A       R
-         \     /
-          C   H
-               \
-                M
-     */
+              _S_
+            /     \
+          _E_      X
+        /     \
+       A       R
+        \     /
+         C   H
+              \
+               M
+    */
 
     assertNull("Selecting key of rank -1", bst.select(-1));
     assertEquals("Selecting key of rank 2", new Character('E'), bst.select(2));
@@ -299,16 +301,16 @@ public class BSTTest {
     bst.put('M', 'M');
 
     /*
-               _S_
-             /     \
-           _E_      X
-         /     \
-        A       R
-         \     /
-          C   H
-               \
-                M
-     */
+              _S_
+            /     \
+          _E_      X
+        /     \
+       A       R
+        \     /
+         C   H
+              \
+               M
+    */
 
     assertEquals("Getting median of tree", new Character('H'), bst.median());
 
@@ -322,18 +324,17 @@ public class BSTTest {
     bst.put('H', 'H');
     bst.put('M', 'M');
 
-
     /*
-              S
-             /
-           _E_
-         /     \
-        A       R
-         \     /
-          C   H
-               \
-                M
-     */
+             S
+            /
+          _E_
+        /     \
+       A       R
+        \     /
+         C   H
+              \
+               M
+    */
 
     assertEquals("Getting median of tree", new Character('H'), bst.median());
   }
@@ -356,16 +357,16 @@ public class BSTTest {
     bst.put(4, 4);
     bst.put(5, 5);
     /*
-            _7_
-          /     \
-        _3_      8
-      /     \
-     1       6
-      \     /
-       2   4
-            \
-             5
-     */
+           _7_
+         /     \
+       _3_      8
+     /     \
+    1       6
+     \     /
+      2   4
+           \
+            5
+    */
 
     assertEquals("Getting max of tree with max 8", new Integer(8), bst.max());
   }
@@ -390,32 +391,50 @@ public class BSTTest {
     bst.put(4, 4);
     bst.put(5, 5);
     /*
-           8
-          /
-        _3_
-      /     \
-     1       6
-      \     /
-       2   4
-            \
-             5
-     */
+          8
+         /
+       _3_
+     /     \
+    1       6
+     \     /
+      2   4
+           \
+            5
+    */
     bst.deleteMax();
-    assertEquals("Deleting max of a tree", "((()1(()2()))3((()4(()5()))6()))", bst.printKeysInOrder());
+    assertEquals(
+        "Deleting max of a tree", "((()1(()2()))3((()4(()5()))6()))", bst.printKeysInOrder());
   }
 
   @Test
   public void testContains() {
+    BST<Integer, Integer> bst = new BST<>();
 
+    bst.put(7, 7);
+    bst.put(8, 8);
+    bst.put(3, 3);
+    bst.put(1, 1);
+    bst.put(2, 2);
+    bst.put(6, 6);
+    bst.put(4, 4);
+    bst.put(5, 5);
+    /*
+           _7_
+         /     \
+       _3_      8
+     /     \
+    1       6
+     \     /
+      2   4
+           \
+            5
+    */
+    for (int i = 1; i <= 8; i++) assertTrue("Checking if tree contains " + i, bst.contains(i));
   }
 
   @Test
-  public void testPut() {
-
-  }
+  public void testPut() {}
 
   @Test
-  public void testGet() {
-
-  }
+  public void testGet() {}
 }
