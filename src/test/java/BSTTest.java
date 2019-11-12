@@ -410,6 +410,8 @@ public class BSTTest {
   public void testContains() {
     BST<Integer, Integer> bst = new BST<>();
 
+    assertFalse("Test contains on empty tree", bst.contains(0));
+
     bst.put(7, 7);
     bst.put(8, 8);
     bst.put(3, 3);
@@ -430,10 +432,59 @@ public class BSTTest {
             5
     */
     for (int i = 1; i <= 8; i++) assertTrue("Checking if tree contains " + i, bst.contains(i));
+    assertFalse("Check if contains with int not in tree", bst.contains(0));
   }
 
   @Test
-  public void testPut() {}
+  public void testPut() {
+    BST<Integer, Integer> bst = new BST<>();
+
+    bst.put(7, 7);
+    bst.put(8, 8);
+    bst.put(3, 3);
+    bst.put(1, 1);
+    bst.put(2, 2);
+    bst.put(6, 6);
+    bst.put(4, 4);
+    bst.put(5, 5);
+    /*
+           _7_
+         /     \
+       _3_      8
+     /     \
+    1       6
+     \     /
+      2   4
+           \
+            5
+    */
+
+    /*
+           _6_
+         /     \
+       _3_      8
+     /     \
+    1       4
+     \       \
+      2       5
+    */
+
+    assertEquals(
+        "Testing put", "(((()1(()2()))3((()4(()5()))6()))7(()8()))", bst.printKeysInOrder());
+
+    bst.put(7, 7);
+    assertEquals(
+        "Testing put with the same key and value",
+        "(((()1(()2()))3((()4(()5()))6()))7(()8()))",
+        bst.printKeysInOrder());
+
+    bst.put(7, 8);
+    assertEquals("Changing value with put", bst.get(7), new Integer(8));
+
+    bst.put(7, null);
+    assertEquals(
+        "Putting null value", "(((()1(()2()))3(()4(()5())))6(()8()))", bst.printKeysInOrder());
+  }
 
   @Test
   public void testGet() {}

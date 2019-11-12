@@ -212,7 +212,7 @@ public class BST<Key extends Comparable<Key>, Value> {
    */
   public void delete(Key key) {
     // TODO fill in the correct implementation.
-    delete(root, key);
+    root = delete(root, key);
   }
 
   private Node delete(Node node, Key key) {
