@@ -13,9 +13,6 @@ import org.junit.runners.JUnit4;
  */
 @RunWith(JUnit4.class)
 public class BSTTest {
-
-  // TODO write more tests here.
-
   /** Test {@link BST#prettyPrintKeys()}. */
   @Test
   public void testPrettyPrint() {

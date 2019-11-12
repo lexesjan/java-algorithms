@@ -96,7 +96,9 @@ public class BST<Key extends Comparable<Key>, Value> {
   /**
    * Tree height.
    *
-   * <p>Asymptotic worst-case running time using Theta notation: TODO
+   * <p>Asymptotic worst-case running time using Theta notation: Θ(N)
+   *
+   * Justification: The method is called recursively by each node i.e. it traverses whole tree.
    *
    * @return the number of links from the root to the deepest leaf.
    *     <p>Example 1: for an empty tree this should return -1. Example 2: for a tree with only one
@@ -104,7 +106,6 @@ public class BST<Key extends Comparable<Key>, Value> {
    *     D
    */
   public int height() {
-    // TODO fill in the correct implementation.
     return height(root);
   }
 
@@ -123,8 +124,6 @@ public class BST<Key extends Comparable<Key>, Value> {
    */
   public Key median() {
     if (isEmpty()) return null;
-    // TODO fill in the correct implementation. The running time should be Theta(h), where h is the
-    // height of the tree.
     int middleKeyPos = (size(root) - 1) / 2;
     return select(middleKeyPos);
   }
@@ -160,7 +159,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 
   private Node select(Node node, int rank) {
     if (node == null) return null;
-    int temp =  size(node.left);
+    int temp = size(node.left);
     if (rank < temp) return select(node.left, rank);
     else if (rank > temp) return select(node.right, rank - temp - 1);
     return node;
@@ -199,8 +198,15 @@ public class BST<Key extends Comparable<Key>, Value> {
    * @return a multi-line string with the pretty ascii picture of the tree.
    */
   public String prettyPrintKeys() {
-    // TODO fill in the correct implementation.
-    return null;
+    return prettyPrint(root, "");
+  }
+
+  private String prettyPrint(Node node, String prefix) {
+    if (node == null) return prefix + "-null\n";
+    String root = prefix + "-" + node.key + "\n";
+    String left = prettyPrint(node.left, prefix + " |");
+    String right = prettyPrint(node.right, prefix + "  ");
+    return root + left + right;
   }
 
   /**
@@ -211,7 +217,6 @@ public class BST<Key extends Comparable<Key>, Value> {
    * @param key the key to delete
    */
   public void delete(Key key) {
-    // TODO fill in the correct implementation.
     root = delete(root, key);
   }
 
@@ -233,9 +238,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     return node;
   }
 
-  /**
-   * Deletes the biggest value in the tree
-   */
+  /** Deletes the biggest value in the tree */
   public void deleteMax() {
     root = deleteMax(root);
   }
