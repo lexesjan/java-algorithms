@@ -459,16 +459,6 @@ public class BSTTest {
             5
     */
 
-    /*
-           _6_
-         /     \
-       _3_      8
-     /     \
-    1       4
-     \       \
-      2       5
-    */
-
     assertEquals(
         "Testing put", "(((()1(()2()))3((()4(()5()))6()))7(()8()))", bst.printKeysInOrder());
 
@@ -481,11 +471,49 @@ public class BSTTest {
     bst.put(7, 8);
     assertEquals("Changing value with put", bst.get(7), new Integer(8));
 
+    /*
+           _6_
+         /     \
+       _3_      8
+     /     \
+    1       4
+     \       \
+      2       5
+    */
+
     bst.put(7, null);
     assertEquals(
         "Putting null value", "(((()1(()2()))3(()4(()5())))6(()8()))", bst.printKeysInOrder());
   }
 
   @Test
-  public void testGet() {}
+  public void testGet() {
+    BST<Integer, Integer> bst = new BST<>();
+
+    assertNull("Testing get empty tree", bst.get(0));
+
+    bst.put(7, 7);
+    bst.put(8, 8);
+    bst.put(3, 3);
+    bst.put(1, 1);
+    bst.put(2, 2);
+    bst.put(6, 6);
+    bst.put(4, 4);
+    bst.put(5, 5);
+    /*
+           _7_
+         /     \
+       _3_      8
+     /     \
+    1       6
+     \     /
+      2   4
+           \
+            5
+    */
+
+    for (int i = 1; i <= 8; i++)
+      assertEquals("Testing get with the key " + i, bst.get(i), new Integer(i));
+    assertNull("Testing get with key not in tree", bst.get(0));
+  }
 }
