@@ -105,12 +105,11 @@ public class BST<Key extends Comparable<Key>, Value> {
    */
   public int height() {
     // TODO fill in the correct implementation.
-    if (!isEmpty()) return height(root) - 1;
-    return -1;
+    return height(root);
   }
 
   private int height(Node node) {
-    if (node == null) return 0;
+    if (node == null) return -1;
     int leftHeight = height(node.left);
     int rightHeight = height(node.right);
     return Math.max(leftHeight, rightHeight) + 1;
@@ -126,7 +125,33 @@ public class BST<Key extends Comparable<Key>, Value> {
     if (isEmpty()) return null;
     // TODO fill in the correct implementation. The running time should be Theta(h), where h is the
     // height of the tree.
-    return null;
+    int middleKeyPos = (size(root) - 1) / 2;
+    return select(middleKeyPos);
+  }
+
+  public int rank(Key key) {
+    return rank(root, key);
+  }
+
+  private int rank(Node node, Key key) {
+    if (node == null) return 0;
+    int cmp = key.compareTo(node.key);
+    if (cmp == 0) return size(node.left);
+    else if (cmp < 0) return rank(node.left, key);
+    return 1 + size(node.left) + rank(node.right, key);
+  }
+
+  public Key select(int rank) {
+    if (rank < 0 || rank >= size(root)) return null;
+    return select(root, rank).key;
+  }
+
+  private Node select(Node node, int rank) {
+    if (node == null) return null;
+    int temp =  size(node.left);
+    if (rank < temp) return select(node.left, rank);
+    else if (rank > temp) return select(node.right, rank - temp - 1);
+    return node;
   }
 
   /**

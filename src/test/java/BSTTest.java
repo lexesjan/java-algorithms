@@ -214,4 +214,127 @@ public class BSTTest {
 
     assertEquals("Printing in order with tree of A", "(((()A(()C()))E((()H(()M()))R()))S(()X()))", bst.printKeysInOrder());
   }
+
+  @Test
+  public void testRank() {
+    BST<Character, Character> bst = new BST<>();
+
+    assertEquals("Getting rank of empty list", 0, bst.rank('?'));
+
+    bst.put('S', 'S');
+    bst.put('X', 'X');
+    bst.put('E', 'E');
+    bst.put('A', 'A');
+    bst.put('R', 'R');
+    bst.put('C', 'C');
+    bst.put('H', 'H');
+    bst.put('M', 'M');
+
+    /*
+               _S_
+             /     \
+           _E_      X
+         /     \
+        A       R
+         \     /
+          C   H
+               \
+                M
+     */
+
+    assertEquals("Getting rank of A", 0, bst.rank('A'));
+    assertEquals("Getting rank of S", 6, bst.rank('S'));
+    assertEquals("Getting rank of X", 7, bst.rank('X'));
+    assertEquals("Getting rank of X", 5, bst.rank('R'));
+  }
+
+  @Test
+  public void testSelect() {
+    BST<Character, Character> bst = new BST<>();
+
+    assertNull("Selecting key in an empty tree", bst.select(0));
+
+    bst.put('S', 'S');
+    bst.put('X', 'X');
+    bst.put('E', 'E');
+    bst.put('A', 'A');
+    bst.put('R', 'R');
+    bst.put('C', 'C');
+    bst.put('H', 'H');
+    bst.put('M', 'M');
+
+    /*
+               _S_
+             /     \
+           _E_      X
+         /     \
+        A       R
+         \     /
+          C   H
+               \
+                M
+     */
+
+    assertNull("Selecting key of rank -1", bst.select(-1));
+    assertEquals("Selecting key of rank 2", new Character('E'), bst.select(2));
+    assertEquals("Selecting key of rank 6", new Character('R'), bst.select(5));
+    assertEquals("Selecting key of rank 6", new Character('S'), bst.select(6));
+    assertEquals("Selecting key of rank 7", new Character('X'), bst.select(7));
+    assertNull("Selecting key of rank 8", bst.select(8));
+  }
+
+  @Test
+  public void testMedian() {
+    BST<Character, Character> bst = new BST<>();
+
+    assertNull("Getting median of empty list", bst.median());
+
+    bst.put('S', 'S');
+    bst.put('X', 'X');
+    bst.put('E', 'E');
+    bst.put('A', 'A');
+    bst.put('R', 'R');
+    bst.put('C', 'C');
+    bst.put('H', 'H');
+    bst.put('M', 'M');
+
+    /*
+               _S_
+             /     \
+           _E_      X
+         /     \
+        A       R
+         \     /
+          C   H
+               \
+                M
+     */
+
+    assertEquals("Getting median of tree", new Character('H'), bst.median());
+
+    bst = new BST<>();
+
+    bst.put('S', 'S');
+    bst.put('E', 'E');
+    bst.put('A', 'A');
+    bst.put('R', 'R');
+    bst.put('C', 'C');
+    bst.put('H', 'H');
+    bst.put('M', 'M');
+
+
+    /*
+              S
+             /
+           _E_
+         /     \
+        A       R
+         \     /
+          C   H
+               \
+                M
+     */
+
+    assertEquals("Getting median of tree", new Character('H'), bst.median());
+  }
 }
