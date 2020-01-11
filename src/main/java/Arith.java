@@ -3,7 +3,7 @@
  *  Utility class containing validation/evaluation/conversion operations
  *  for prefix and postfix arithmetic expressions.
  *
- *  @author  
+ *  @author Lexes Jan Mantiquilla
  *  @version 1/12/15 13:03:48
  */
 
@@ -55,9 +55,8 @@ public class Arith
   public static boolean validatePostfixOrder(String[] postfixLiterals)
   {
     int counter = 0;
-    for (int i = 0; i < postfixLiterals.length; i++) {
-      String literal = postfixLiterals[i];
-      if(isNumber(literal))
+    for (String literal : postfixLiterals) {
+      if (isNumber(literal))
         counter++;
       else
         counter--;
@@ -184,7 +183,8 @@ public class Arith
   //~ Helper methods ..........................................................
 
   private static boolean isNumber(String input) {
-    for (int i = 0; i < input.length(); i++) {
+    boolean isNegative = input.charAt(0) == '-';
+    for (int i = (isNegative) ? 1 : 0; i < input.length(); i++) {
       char currentChar = input.charAt(i);
       if (currentChar < '0' || currentChar > '9')
         return false;
