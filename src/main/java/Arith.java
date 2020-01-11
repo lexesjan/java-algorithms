@@ -138,8 +138,23 @@ public class Arith {
    * @return the expression in prefix order.
    */
   public static String[] convertPostfixToPrefix(String[] postfixLiterals) {
-    // TODO
-    return null;
+    Stack<List<String>> stack = new Stack<>();
+    for (String literal : postfixLiterals) {
+      if (isOperator(literal)) {
+        List<String> expression2 = stack.pop();
+        List<String> expression1 = stack.pop();
+        List<String> result = new LinkedList<>();
+        result.add(literal);
+        result.addAll(expression1);
+        result.addAll(expression2);
+        stack.push(result);
+      } else {
+        List<String> literalList = new LinkedList<>();
+        literalList.add(literal);
+        stack.push(literalList);
+      }
+    }
+    return stack.pop().toArray(new String[] {});
   }
 
   /**
@@ -185,17 +200,6 @@ public class Arith {
         return true;
     }
     return false;
-  }
-
-  /**
-   * Checks if a list of strings is an operator or not
-   *
-   * @param input the input as a list of strings
-   * @return true if the list of strings is an operator, false if it's not
-   */
-  private static boolean isOperator(List<String> input) {
-    if (input.size() != 1) return false;
-    return isOperator(input.get(0));
   }
 
   /**
