@@ -24,7 +24,7 @@ public class Arith
    *
    * @return true if the parameter is indeed in prefix notation, and false otherwise.
    **/
-  public static boolean validatePrefixOrder(String prefixLiterals[])
+  public static boolean validatePrefixOrder(String[] prefixLiterals)
   {
     int counter = 1;
     for (int i = 0; i < prefixLiterals.length; i++) {
@@ -52,7 +52,7 @@ public class Arith
    *
    * @return true if the parameter is indeed in postfix notation, and false otherwise.
    **/
-  public static boolean validatePostfixOrder(String postfixLiterals[])
+  public static boolean validatePostfixOrder(String[] postfixLiterals)
   {
     int counter = 0;
     for (int i = 0; i < postfixLiterals.length; i++) {
@@ -81,7 +81,7 @@ public class Arith
    *
    * @return the integer result of evaluating the expression
    **/
-  public static int evaluatePrefixOrder(String prefixLiterals[])
+  public static int evaluatePrefixOrder(String[] prefixLiterals)
   {
     //TODO
     return -1;
@@ -98,7 +98,7 @@ public class Arith
    *
    * @return the integer result of evaluating the expression
    **/
-  public static int evaluatePostfixOrder(String postfixLiterals[])
+  public static int evaluatePostfixOrder(String[] postfixLiterals)
   {
     //TODO
     return -1;
@@ -118,7 +118,7 @@ public class Arith
    *
    * @return the expression in postfix order.
    **/
-  public static String[] convertPrefixToPostfix(String prefixLiterals[])
+  public static String[] convertPrefixToPostfix(String[] prefixLiterals)
   {
     //TODO
     return null;
@@ -135,7 +135,7 @@ public class Arith
    *
    * @return the expression in prefix order.
    **/
-  public static String[] convertPostfixToPrefix(String postfixLiterals[])
+  public static String[] convertPostfixToPrefix(String[] postfixLiterals)
   {
     //TODO
     return null;
@@ -151,7 +151,7 @@ public class Arith
    *
    * @return the expression in infix order.
    **/
-  public static String[] convertPrefixToInfix(String prefixLiterals[])
+  public static String[] convertPrefixToInfix(String[] prefixLiterals)
   {
     //TODO
     return null;
@@ -167,7 +167,7 @@ public class Arith
    *
    * @return the expression in infix order.
    **/
-  public static String[] convertPostfixToInfix(String postfixLiterals[])
+  public static String[] convertPostfixToInfix(String[] postfixLiterals)
   {
     //TODO
     return null;
