@@ -1,5 +1,7 @@
 // -------------------------------------------------------------------------
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -108,17 +110,22 @@ public class Arith {
    */
   public static String[] convertPrefixToPostfix(String[] prefixLiterals) {
     if (!validatePrefixOrder(prefixLiterals)) throw new IllegalArgumentException();
-    Stack<String> stack = new Stack<>();
+    Stack<List<String>> stack = new Stack<>();
     for (int i = prefixLiterals.length - 1; i >= 0; i--) {
       String token = prefixLiterals[i];
       if (isOperator(token)) {
-        String expression1 = stack.pop();
-        String expression2 = stack.pop();
-        String result = String.format("%s %s %s", expression1, expression2, token);
+        List<String> expression1 = stack.pop();
+        List<String> expression2 = stack.pop();
+        List<String> result = new LinkedList<>(expression1);
+        result.addAll(expression2);
         stack.push(result);
-      } else stack.push(token);
+      } else {
+        List<String> literalList = new LinkedList<>();
+        literalList.add(token);
+        stack.push(literalList);
+      }
     }
-    return stack.pop().split(" ");
+    return stack.pop().toArray(new String[] {});
   }
 
   /**
@@ -163,7 +170,7 @@ public class Arith {
   // ~ Helper methods ..........................................................
 
   /**
-   * Checks if the string is an operator or not
+   * Checks if a string is an operator or not
    *
    * @param input the input string
    * @return true if the string is an operator, false if it's not
@@ -179,6 +186,16 @@ public class Arith {
     return false;
   }
 
+  /**
+   * Checks if a list of strings is an operator or not
+   *
+   * @param input the input as a list of strings
+   * @return true if the list of strings is an operator, false if it's not
+   */
+  private static boolean isOperator(List<String> input) {
+    if (input.size() != 1) return false;
+    return isOperator(input.get(0));
+  }
 
   /**
    * Applies the operator on num1 and num2
