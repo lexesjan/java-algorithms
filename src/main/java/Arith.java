@@ -118,6 +118,7 @@ public class Arith {
         List<String> expression2 = stack.pop();
         List<String> result = new LinkedList<>(expression1);
         result.addAll(expression2);
+        result.add(token);
         stack.push(result);
       } else {
         List<String> literalList = new LinkedList<>();
