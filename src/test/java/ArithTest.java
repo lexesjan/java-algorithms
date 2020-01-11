@@ -32,6 +32,10 @@ public class ArithTest {
         "Validating postfix order with valid input",
         Arith.validatePostfixOrder(
             new String[] {"3", "3", "1", "-", "*", "3", "6", "/", "3", "+", "10", "-", "+"}));
+    assertTrue(
+        "Validating postfix order with valid input",
+        Arith.validatePostfixOrder(
+            new String[] {"1", "2", "-", "3", "*", "10", "3", "6", "3", "/", "+", "-", "+"}));
     assertFalse(
         "Validating postfix order with invalid input",
         Arith.validatePostfixOrder(new String[] {"1", "-", "2", "3", "+"}));
@@ -45,7 +49,31 @@ public class ArithTest {
 
   @Test
   public void testEvaluatePrefixOrder() {
-    // TODO
+    assertEquals(
+        "Evaluating postfix order", 3, Arith.evaluatePrefixOrder(new String[] {"+", "1", "2"}));
+    assertEquals(
+        "Evaluating postfix order", -3, Arith.evaluatePrefixOrder(new String[] {"+", "-1", "-2"}));
+    assertEquals(
+        "Evaluating postfix order",
+        0,
+        Arith.evaluatePrefixOrder(new String[] {"-", "+", "1", "2", "3"}));
+    assertEquals(
+        "Evaluating postfix order",
+        0,
+        Arith.evaluatePrefixOrder(new String[] {"-", "+", "-1", "-2", "-3"}));
+    assertEquals(
+        "Evaluating postfix order",
+        3,
+        Arith.evaluatePrefixOrder(new String[] {"*", "-", "1", "2", "-3"}));
+    assertEquals(
+        "Evaluating postfix order",
+        -3,
+        Arith.evaluatePrefixOrder(new String[] {"*", "-", "1", "2", "3"}));
+    assertEquals(
+        "Evaluating postfix order",
+        2,
+        Arith.evaluatePrefixOrder(
+            new String[] {"+", "*", "-", "1", "2", "3", "-", "10", "+", "3", "/", "6", "3"}));
   }
 
   @Test
@@ -72,9 +100,9 @@ public class ArithTest {
         Arith.evaluatePostfixOrder(new String[] {"3", "1", "2", "-", "*"}));
     assertEquals(
         "Evaluating postfix order",
-        -1,
+        2,
         Arith.evaluatePostfixOrder(
-            new String[] {"3", "3", "1", "-", "*", "3", "6", "/", "3", "+", "10", "-", "+"}));
+            new String[] {"1", "2", "-", "3", "*", "10", "3", "6", "3", "/", "+", "-", "+"}));
   }
 
   @Test
