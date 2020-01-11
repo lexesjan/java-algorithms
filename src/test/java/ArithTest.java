@@ -175,36 +175,36 @@ public class ArithTest {
   public void testConvertPrefixToInfix() {
     // TODO
     assertArrayEquals(
-        "Converting postfix to infix",
+        "Converting prefix to infix",
         new String[] {"(", "1", "+", "2", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPrefixToInfix(new String[] {}));
     assertArrayEquals(
-        "Converting postfix to infix",
+        "Converting prefix to infix",
         new String[] {"(", "-1", "+", "-2", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPrefixToInfix(new String[] {}));
     assertArrayEquals(
-        "Converting postfix to infix",
+        "Converting prefix to infix",
         new String[] {"(", "(", "1", "+", "2", ")", "-", "3", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPrefixToInfix(new String[] {}));
     assertArrayEquals(
-        "Converting postfix to infix",
+        "Converting prefix to infix",
         new String[] {"(", "(", "-1", "+", "-2", ")", "-", "-3", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPrefixToInfix(new String[] {}));
     assertArrayEquals(
-        "Converting postfix to infix",
+        "Converting prefix to infix",
         new String[] {"(", "3", "*", "(", "1", "-", "2", ")", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPrefixToInfix(new String[] {}));
     assertArrayEquals(
-        "Converting postfix to infix",
+        "Converting prefix to infix",
         new String[] {"(", "-3", "*", "(", "1", "-", "2", ")", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPrefixToInfix(new String[] {}));
     assertArrayEquals(
-        "Converting postfix to infix",
+        "Converting prefix to infix",
         new String[] {
-          "(", "(", "1", "-", "2", ")", "*", "3", ")", "+", "(", "10", "-", "(", "3", "+", "(", "6",
-          "/", "3", ")", ")", ")", ")"
+          "(", "(", "(", "1", "-", "2", ")", "*", "3", ")", "+", "(", "10", "-", "(", "3", "+", "(",
+          "6", "/", "3", ")", ")", ")", ")"
         },
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPrefixToInfix(new String[] {}));
   }
 
   @Test
@@ -213,33 +213,34 @@ public class ArithTest {
     assertArrayEquals(
         "Converting postfix to infix",
         new String[] {"(", "1", "+", "2", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPostfixToInfix(new String[] {"1", "2", "+"}));
     assertArrayEquals(
         "Converting postfix to infix",
         new String[] {"(", "-1", "+", "-2", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPostfixToInfix(new String[] {"-1", "-2", "+"}));
     assertArrayEquals(
         "Converting postfix to infix",
         new String[] {"(", "(", "1", "+", "2", ")", "-", "3", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPostfixToInfix(new String[] {"1", "2", "+", "3", "-"}));
     assertArrayEquals(
         "Converting postfix to infix",
         new String[] {"(", "(", "-1", "+", "-2", ")", "-", "-3", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
-    assertArrayEquals(
-        "Converting postfix to infix",
-        new String[] {"(", "3", "*", "(", "1", "-", "2", ")", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPostfixToInfix(new String[] {"-1", "-2", "+", "-3", "-"}));
     assertArrayEquals(
         "Converting postfix to infix",
         new String[] {"(", "-3", "*", "(", "1", "-", "2", ")", ")"},
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPostfixToInfix(new String[] {"-3", "1", "2", "-", "*"}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {"(", "3", "*", "(", "1", "-", "2", ")", ")"},
+        Arith.convertPostfixToInfix(new String[] {"3", "1", "2", "-", "*"}));
     assertArrayEquals(
         "Converting postfix to infix",
         new String[] {
-          "(", "(", "1", "-", "2", ")", "*", "3", ")", "+", "(", "10", "-", "(", "3", "+", "(", "6",
-          "/", "3", ")", ")", ")", ")"
+          "(", "(", "(", "1", "-", "2", ")", "*", "3", ")", "+", "(", "10", "-", "(", "3", "+", "(",
+          "6", "/", "3", ")", ")", ")", ")"
         },
-        Arith.convertPostfixToInfix(new String[] {}));
+        Arith.convertPostfixToInfix(
+            new String[] {"1", "2", "-", "3", "*", "10", "3", "6", "3", "/", "+", "-", "+"}));
   }
 }
