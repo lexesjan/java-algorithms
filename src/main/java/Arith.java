@@ -1,195 +1,176 @@
 // -------------------------------------------------------------------------
+
+import java.util.Stack;
+
 /**
- *  Utility class containing validation/evaluation/conversion operations
- *  for prefix and postfix arithmetic expressions.
+ * Utility class containing validation/evaluation/conversion operations for prefix and postfix
+ * arithmetic expressions.
  *
- *  @author Lexes Jan Mantiquilla
- *  @version 1/12/15 13:03:48
+ * @author Lexes Jan Mantiquilla
+ * @version 1/12/15 13:03:48
  */
+public class Arith {
 
-public class Arith 
-{
-
-
-  //~ Validation methods ..........................................................
-
+  // ~ Validation methods ..........................................................
 
   /**
    * Validation method for prefix notation.
    *
-   * @param prefixLiterals : an array containing the string literals hopefully in prefix order.
-   * The method assumes that each of these literals can be one of:
-   * - "+", "-", "*", or "/"
-   * - or a valid string representation of an integer.
-   *
+   * @param prefixLiterals : an array containing the string literals hopefully in prefix order. The
+   *     method assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a
+   *     valid string representation of an integer.
    * @return true if the parameter is indeed in prefix notation, and false otherwise.
-   **/
-  public static boolean validatePrefixOrder(String[] prefixLiterals)
-  {
+   */
+  public static boolean validatePrefixOrder(String[] prefixLiterals) {
     int counter = 1;
     for (int i = 0; i < prefixLiterals.length; i++) {
       String literal = prefixLiterals[i];
-      if(isNumber(literal))
-        counter--;
-      else
-        counter++;
-      if (counter < 0)
-        return false;
-      if (counter == 0 && i != prefixLiterals.length - 1)
-        return false;
+      if (isNumber(literal)) counter--;
+      else counter++;
+      if (counter < 0) return false;
+      if (counter == 0 && i != prefixLiterals.length - 1) return false;
     }
     return true;
   }
-
 
   /**
    * Validation method for postfix notation.
    *
    * @param postfixLiterals : an array containing the string literals hopefully in postfix order.
-   * The method assumes that each of these literals can be one of:
-   * - "+", "-", "*", or "/"
-   * - or a valid string representation of an integer.
-   *
+   *     The method assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or
+   *     a valid string representation of an integer.
    * @return true if the parameter is indeed in postfix notation, and false otherwise.
-   **/
-  public static boolean validatePostfixOrder(String[] postfixLiterals)
-  {
+   */
+  public static boolean validatePostfixOrder(String[] postfixLiterals) {
     int counter = 0;
     for (String literal : postfixLiterals) {
-      if (isNumber(literal))
-        counter++;
-      else
-        counter--;
-      if (counter <= 0)
-        return false;
+      if (isNumber(literal)) counter++;
+      else counter--;
+      if (counter <= 0) return false;
     }
     return true;
   }
 
-
-  //~ Evaluation  methods ..........................................................
-
+  // ~ Evaluation  methods ..........................................................
 
   /**
    * Evaluation method for prefix notation.
    *
-   * @param prefixLiterals : an array containing the string literals in prefix order.
-   * The method assumes that each of these literals can be one of:
-   * - "+", "-", "*", or "/"
-   * - or a valid string representation of an integer.
-   *
+   * @param prefixLiterals : an array containing the string literals in prefix order. The method
+   *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
+   *     string representation of an integer.
    * @return the integer result of evaluating the expression
-   **/
-  public static int evaluatePrefixOrder(String[] prefixLiterals)
-  {
-    //TODO
+   */
+  public static int evaluatePrefixOrder(String[] prefixLiterals) {
+    // TODO
     return -1;
   }
-
 
   /**
    * Evaluation method for postfix notation.
    *
-   * @param postfixLiterals : an array containing the string literals in postfix order.
-   * The method assumes that each of these literals can be one of:
-   * - "+", "-", "*", or "/"
-   * - or a valid string representation of an integer.
-   *
+   * @param postfixLiterals : an array containing the string literals in postfix order. The method
+   *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
+   *     string representation of an integer.
    * @return the integer result of evaluating the expression
-   **/
-  public static int evaluatePostfixOrder(String[] postfixLiterals)
-  {
-    //TODO
-    return -1;
+   */
+  public static int evaluatePostfixOrder(String[] postfixLiterals) {
+    if (!validatePostfixOrder(postfixLiterals)) throw new IllegalArgumentException();
+    Stack<Integer> stack = new Stack<>();
+    for (String token : postfixLiterals) {
+      if (!isNumber(token)) {
+        int num2 = stack.pop();
+        int num1 = stack.pop();
+        int result = applyOperand(num1, num2, token);
+        stack.push(result);
+      } else stack.push(Integer.parseInt(token));
+    }
+    return stack.pop();
   }
 
-
-  //~ Conversion  methods ..........................................................
-
+  // ~ Conversion  methods ..........................................................
 
   /**
    * Converts prefix to postfix.
    *
-   * @param prefixLiterals : an array containing the string literals in prefix order.
-   * The method assumes that each of these literals can be one of:
-   * - "+", "-", "*", or "/"
-   * - or a valid string representation of an integer.
-   *
+   * @param prefixLiterals : an array containing the string literals in prefix order. The method
+   *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
+   *     string representation of an integer.
    * @return the expression in postfix order.
-   **/
-  public static String[] convertPrefixToPostfix(String[] prefixLiterals)
-  {
-    //TODO
+   */
+  public static String[] convertPrefixToPostfix(String[] prefixLiterals) {
+    // TODO
     return null;
   }
-
 
   /**
    * Converts postfix to prefix.
    *
-   * @param postfixLiterals : an array containing the string literals in postfix order.
-   * The method assumes that each of these literals can be one of:
-   * - "+", "-", "*", or "/"
-   * - or a valid string representation of an integer.
-   *
+   * @param postfixLiterals : an array containing the string literals in postfix order. The method
+   *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
+   *     string representation of an integer.
    * @return the expression in prefix order.
-   **/
-  public static String[] convertPostfixToPrefix(String[] postfixLiterals)
-  {
-    //TODO
+   */
+  public static String[] convertPostfixToPrefix(String[] postfixLiterals) {
+    // TODO
     return null;
   }
 
   /**
    * Converts prefix to infix.
    *
-   * @param prefixLiterals : an array containing the string literals in prefix order.
-   * The method assumes that each of these literals can be one of:
-   * - "+", "-", "*", or "/"
-   * - or a valid string representation of an integer.
-   *
+   * @param prefixLiterals : an array containing the string literals in prefix order. The method
+   *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
+   *     string representation of an integer.
    * @return the expression in infix order.
-   **/
-  public static String[] convertPrefixToInfix(String[] prefixLiterals)
-  {
-    //TODO
+   */
+  public static String[] convertPrefixToInfix(String[] prefixLiterals) {
+    // TODO
     return null;
   }
 
   /**
    * Converts postfix to infix.
    *
-   * @param postfixLiterals : an array containing the string literals in postfix order.
-   * The method assumes that each of these literals can be one of:
-   * - "+", "-", "*", or "/"
-   * - or a valid string representation of an integer.
-   *
+   * @param postfixLiterals : an array containing the string literals in postfix order. The method
+   *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
+   *     string representation of an integer.
    * @return the expression in infix order.
-   **/
-  public static String[] convertPostfixToInfix(String[] postfixLiterals)
-  {
-    //TODO
+   */
+  public static String[] convertPostfixToInfix(String[] postfixLiterals) {
+    // TODO
     return null;
   }
 
+  // ~ Helper methods ..........................................................
+
   /**
-   * Converts postfix to infix.
+   * Checks if a number is an integer or not
    *
    * @param input : a string which can be parsed into a number or not
-   *
    * @return true if the string is a digit, else false
-   **/
-
-  //~ Helper methods ..........................................................
+   */
 
   private static boolean isNumber(String input) {
     boolean isNegative = input.charAt(0) == '-';
     for (int i = (isNegative) ? 1 : 0; i < input.length(); i++) {
       char currentChar = input.charAt(i);
-      if (currentChar < '0' || currentChar > '9')
-        return false;
+      if (currentChar < '0' || currentChar > '9') return false;
     }
     return true;
   }
 
+  private static int applyOperand(int num1, int num2, String operator) {
+    switch(operator) {
+      case "+":
+        return num1 + num2;
+      case "-":
+        return num1 - num2;
+      case "/":
+        return num1 / num2;
+      case "*":
+        return num1 * num2;
+    }
+    throw new IllegalArgumentException();
+  }
 }
