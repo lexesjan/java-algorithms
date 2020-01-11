@@ -107,12 +107,68 @@ public class ArithTest {
 
   @Test
   public void testConvertPrefixToPostfix() {
-    // TODO
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"1", "2", "+"},
+        Arith.convertPrefixToPostfix(new String[] {"+", "1", "2"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"-1", "-2", "+"},
+        Arith.convertPrefixToPostfix(new String[] {"+", "-1", "-2"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"1", "2", "+", "3", "-"},
+        Arith.convertPrefixToPostfix(new String[] {"-", "+", "1", "2", "3"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"-1", "-2", "+", "-3", "-"},
+        Arith.convertPrefixToPostfix(new String[] {"-", "+", "-1", "-2", "-3"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"-3", "1", "2", "-", "*"},
+        Arith.convertPrefixToPostfix(new String[] {"*", "-3", "-", "1", "2"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"3", "1", "2", "-", "*"},
+        Arith.convertPrefixToPostfix(new String[] {"*", "3", "-", "1", "2"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"1", "2", "-", "3", "*", "10", "3", "6", "3", "/", "+", "-", "+"},
+        Arith.convertPrefixToPostfix(
+            new String[] {"+", "*", "-", "1", "2", "3", "-", "10", "+", "3", "/", "6", "3"}));
   }
 
   @Test
   public void testConvertPostfixToPrefix() {
-    // TODO
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"+", "1", "2"},
+        Arith.convertPostfixToPrefix(new String[] {"1", "2", "+"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"+", "-1", "-2"},
+        Arith.convertPostfixToPrefix(new String[] {"-1", "-2", "+"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"-", "+", "1", "2", "3"},
+        Arith.convertPostfixToPrefix(new String[] {"1", "2", "+", "3", "-"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"-", "+", "-1", "-2", "-3"},
+        Arith.convertPostfixToPrefix(new String[] {"-1", "-2", "+", "-3", "-"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"*", "-3", "-", "1", "2"},
+        Arith.convertPostfixToPrefix(new String[] {"-3", "1", "2", "-", "*"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"*", "3", "-", "1", "2"},
+        Arith.convertPostfixToPrefix(new String[] {"3", "1", "2", "-", "*"}));
+    assertArrayEquals(
+        "Converting prefix to postfix",
+        new String[] {"+", "*", "-", "1", "2", "3", "-", "10", "+", "3", "/", "6", "3"},
+        Arith.convertPostfixToPrefix(
+            new String[] {"1", "2", "-", "3", "*", "10", "3", "6", "3", "/", "+", "-", "+"}));
   }
 
   @Test
