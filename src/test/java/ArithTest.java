@@ -42,4 +42,34 @@ public class ArithTest {
         "Validating postfix order with only a operator",
         Arith.validatePrefixOrder(new String[] {"+"}));
   }
+
+  @Test
+  public void testEvaluatePrefixOrder() {
+    // TODO
+  }
+
+  @Test
+  public void testEvaluatePostfixOrder() {
+    // TODO
+  }
+
+  @Test
+  public void testConvertPrefixToPostfix() {
+    // TODO
+  }
+
+  @Test
+  public void testConvertPostfixToPrefix() {
+    // TODO
+  }
+
+  @Test
+  public void testConvertPrefixToInfix() {
+    // TODO
+  }
+
+  @Test
+  public void testConvertPostfixToInfix() {
+    // TODO
+  }
 }
