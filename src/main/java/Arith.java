@@ -185,7 +185,7 @@ public class Arith
 
   private static boolean isNumber(String input) {
     for (int i = 0; i < input.length(); i++) {
-      char currentChar = input.charAt(0);
+      char currentChar = input.charAt(i);
       if (currentChar < '0' || currentChar > '9')
         return false;
     }
