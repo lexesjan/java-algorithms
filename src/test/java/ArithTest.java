@@ -50,7 +50,31 @@ public class ArithTest {
 
   @Test
   public void testEvaluatePostfixOrder() {
-    // TODO
+    assertEquals(
+        "Evaluating postfix order", 3, Arith.evaluatePostfixOrder(new String[] {"1", "2", "+"}));
+    assertEquals(
+        "Evaluating postfix order", -3, Arith.evaluatePostfixOrder(new String[] {"-1", "-2", "+"}));
+    assertEquals(
+        "Evaluating postfix order",
+        0,
+        Arith.evaluatePostfixOrder(new String[] {"1", "2", "+", "3", "-"}));
+    assertEquals(
+        "Evaluating postfix order",
+        0,
+        Arith.evaluatePostfixOrder(new String[] {"-1", "-2", "+", "-3", "-"}));
+    assertEquals(
+        "Evaluating postfix order",
+        3,
+        Arith.evaluatePostfixOrder(new String[] {"-3", "1", "2", "-", "*"}));
+    assertEquals(
+        "Evaluating postfix order",
+        -3,
+        Arith.evaluatePostfixOrder(new String[] {"3", "1", "2", "-", "*"}));
+    assertEquals(
+        "Evaluating postfix order",
+        -1,
+        Arith.evaluatePostfixOrder(
+            new String[] {"3", "3", "1", "-", "*", "3", "6", "/", "3", "+", "10", "-", "+"}));
   }
 
   @Test

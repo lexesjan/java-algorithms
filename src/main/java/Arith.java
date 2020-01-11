@@ -60,8 +60,18 @@ public class Arith {
    * @return the integer result of evaluating the expression
    */
   public static int evaluatePrefixOrder(String[] prefixLiterals) {
-    // TODO
-    return -1;
+    if (!validatePrefixOrder(prefixLiterals)) throw new IllegalArgumentException();
+    Stack<Integer> stack = new Stack<>();
+    for (int i = prefixLiterals.length - 1; i >= 0; i--) {
+      String token = prefixLiterals[i];
+      if (!isNumber(token)) {
+        int num1 = stack.pop();
+        int num2 = stack.pop();
+        int result = applyOperand(num1, num2, token);
+        stack.push(result);
+      } else stack.push(Integer.parseInt(token));
+    }
+    return stack.pop();
   }
 
   /**
