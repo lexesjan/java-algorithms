@@ -25,7 +25,7 @@ public class Arith {
     int counter = 1;
     for (String literal : prefixLiterals) {
       if (counter <= 0) return false;
-      if (isNumber(literal)) counter--;
+      if (!isOperator(literal)) counter--;
       else counter++;
     }
     return counter == 0;
@@ -42,7 +42,7 @@ public class Arith {
   public static boolean validatePostfixOrder(String[] postfixLiterals) {
     int counter = 0;
     for (String literal : postfixLiterals) {
-      if (isNumber(literal)) counter++;
+      if (!isOperator(literal)) counter++;
       else counter--;
       if (counter <= 0) return false;
     }
@@ -64,7 +64,7 @@ public class Arith {
     Stack<Integer> stack = new Stack<>();
     for (int i = prefixLiterals.length - 1; i >= 0; i--) {
       String token = prefixLiterals[i];
-      if (!isNumber(token)) {
+      if (isOperator(token)) {
         int num1 = stack.pop();
         int num2 = stack.pop();
         int result = applyOperator(num1, num2, token);
@@ -86,7 +86,7 @@ public class Arith {
     if (!validatePostfixOrder(postfixLiterals)) throw new IllegalArgumentException();
     Stack<Integer> stack = new Stack<>();
     for (String token : postfixLiterals) {
-      if (!isNumber(token)) {
+      if (isOperator(token)) {
         int num2 = stack.pop();
         int num1 = stack.pop();
         int result = applyOperator(num1, num2, token);
@@ -111,7 +111,7 @@ public class Arith {
     Stack<String> stack = new Stack<>();
     for (int i = prefixLiterals.length - 1; i >= 0; i--) {
       String token = prefixLiterals[i];
-      if (!isNumber(token)) {
+      if (isOperator(token)) {
         String expression1 = stack.pop();
         String expression2 = stack.pop();
         String result = String.format("%s %s %s", expression1, expression2, token);
@@ -163,19 +163,22 @@ public class Arith {
   // ~ Helper methods ..........................................................
 
   /**
-   * Checks if a number is an integer or not
+   * Checks if the string is an operator or not
    *
-   * @param input : a string which can be parsed into a number or not
-   * @return true if the string is a digit, else false
+   * @param input the input string
+   * @return true if the string is an operator, false if it's not
    */
-  public static boolean isNumber(String input) {
-    boolean isNegative = input.length() != 1 && input.charAt(0) == '-';
-    for (int i = (isNegative) ? 1 : 0; i < input.length(); i++) {
-      char currentChar = input.charAt(i);
-      if (currentChar < '0' || currentChar > '9') return false;
+  private static boolean isOperator(String input) {
+    switch (input) {
+      case "+":
+      case "-":
+      case "/":
+      case "*":
+        return true;
     }
-    return true;
+    return false;
   }
+
 
   /**
    * Applies the operator on num1 and num2
