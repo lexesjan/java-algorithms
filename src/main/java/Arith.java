@@ -107,8 +107,18 @@ public class Arith {
    * @return the expression in postfix order.
    */
   public static String[] convertPrefixToPostfix(String[] prefixLiterals) {
-    // TODO
-    return null;
+    if (!validatePrefixOrder(prefixLiterals)) throw new IllegalArgumentException();
+    Stack<String> stack = new Stack<>();
+    for (int i = prefixLiterals.length - 1; i >= 0; i--) {
+      String token = prefixLiterals[i];
+      if (!isNumber(token)) {
+        String expression1 = stack.pop();
+        String expression2 = stack.pop();
+        String result = String.format("%s %s %s", expression1, expression2, token);
+        stack.push(result);
+      } else stack.push(token);
+    }
+    return stack.pop().split(" ");
   }
 
   /**
