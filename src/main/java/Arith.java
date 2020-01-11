@@ -166,8 +166,27 @@ public class Arith {
    * @return the expression in infix order.
    */
   public static String[] convertPrefixToInfix(String[] prefixLiterals) {
-    // TODO
-    return null;
+    if (!validatePrefixOrder(prefixLiterals)) throw new IllegalArgumentException();
+    Stack<List<String>> stack = new Stack<>();
+    for (int i = prefixLiterals.length - 1; i >= 0; i--) {
+      String token = prefixLiterals[i];
+      if (isOperator(token)) {
+        List<String> expression1 = stack.pop();
+        List<String> expression2 = stack.pop();
+        List<String> result = new LinkedList<>();
+        result.add("(");
+        result.addAll(expression1);
+        result.add(token);
+        result.addAll(expression2);
+        result.add(")");
+        stack.push(result);
+      } else {
+        List<String> operand = new LinkedList<>();
+        operand.add(token);
+        stack.push(operand);
+      }
+    }
+    return stack.pop().toArray(new String[] {});
   }
 
   /**
