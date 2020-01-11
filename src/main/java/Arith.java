@@ -152,7 +152,7 @@ public class Arith {
    */
 
   private static boolean isNumber(String input) {
-    boolean isNegative = input.charAt(0) == '-';
+    boolean isNegative = input.length() != 1 && input.charAt(0) == '-';
     for (int i = (isNegative) ? 1 : 0; i < input.length(); i++) {
       char currentChar = input.charAt(i);
       if (currentChar < '0' || currentChar > '9') return false;
@@ -160,6 +160,14 @@ public class Arith {
     return true;
   }
 
+  /**
+   * Applies the operator on num1 and num2
+   *
+   * @param num1 the first number
+   * @param num2 the second number
+   * @param operator the operator to apply the first and second number
+   * @return the result of the operator being applied to the two operands
+   */
   private static int applyOperand(int num1, int num2, String operator) {
     switch(operator) {
       case "+":
