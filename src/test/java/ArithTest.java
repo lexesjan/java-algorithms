@@ -173,11 +173,59 @@ public class ArithTest {
 
   @Test
   public void testConvertPrefixToInfix() {
-    // TODO
+     // TODO
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
   }
 
   @Test
   public void testConvertPostfixToInfix() {
     // TODO
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
+    assertArrayEquals(
+        "Converting postfix to infix",
+        new String[] {},
+        Arith.convertPostfixToInfix(new String[] {}));
   }
 }
