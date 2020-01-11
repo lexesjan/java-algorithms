@@ -23,14 +23,12 @@ public class Arith {
    */
   public static boolean validatePrefixOrder(String[] prefixLiterals) {
     int counter = 1;
-    for (int i = 0; i < prefixLiterals.length; i++) {
-      String literal = prefixLiterals[i];
+    for (String literal : prefixLiterals) {
+      if (counter <= 0) return false;
       if (isNumber(literal)) counter--;
       else counter++;
-      if (counter < 0) return false;
-      if (counter == 0 && i != prefixLiterals.length - 1) return false;
     }
-    return true;
+    return counter == 0;
   }
 
   /**
@@ -150,8 +148,7 @@ public class Arith {
    * @param input : a string which can be parsed into a number or not
    * @return true if the string is a digit, else false
    */
-
-  private static boolean isNumber(String input) {
+  public static boolean isNumber(String input) {
     boolean isNegative = input.length() != 1 && input.charAt(0) == '-';
     for (int i = (isNegative) ? 1 : 0; i < input.length(); i++) {
       char currentChar = input.charAt(i);
@@ -169,7 +166,7 @@ public class Arith {
    * @return the result of the operator being applied to the two operands
    */
   private static int applyOperand(int num1, int num2, String operator) {
-    switch(operator) {
+    switch (operator) {
       case "+":
         return num1 + num2;
       case "-":
