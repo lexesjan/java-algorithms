@@ -67,7 +67,7 @@ public class Arith {
       if (!isNumber(token)) {
         int num1 = stack.pop();
         int num2 = stack.pop();
-        int result = applyOperand(num1, num2, token);
+        int result = applyOperator(num1, num2, token);
         stack.push(result);
       } else stack.push(Integer.parseInt(token));
     }
@@ -89,7 +89,7 @@ public class Arith {
       if (!isNumber(token)) {
         int num2 = stack.pop();
         int num1 = stack.pop();
-        int result = applyOperand(num1, num2, token);
+        int result = applyOperator(num1, num2, token);
         stack.push(result);
       } else stack.push(Integer.parseInt(token));
     }
@@ -175,7 +175,7 @@ public class Arith {
    * @param operator the operator to apply the first and second number
    * @return the result of the operator being applied to the two operands
    */
-  private static int applyOperand(int num1, int num2, String operator) {
+  private static int applyOperator(int num1, int num2, String operator) {
     switch (operator) {
       case "+":
         return num1 + num2;
