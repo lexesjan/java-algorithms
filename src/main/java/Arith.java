@@ -139,19 +139,19 @@ public class Arith {
    */
   public static String[] convertPostfixToPrefix(String[] postfixLiterals) {
     Stack<List<String>> stack = new Stack<>();
-    for (String literal : postfixLiterals) {
-      if (isOperator(literal)) {
+    for (String token : postfixLiterals) {
+      if (isOperator(token)) {
         List<String> expression2 = stack.pop();
         List<String> expression1 = stack.pop();
         List<String> result = new LinkedList<>();
-        result.add(literal);
+        result.add(token);
         result.addAll(expression1);
         result.addAll(expression2);
         stack.push(result);
       } else {
-        List<String> literalList = new LinkedList<>();
-        literalList.add(literal);
-        stack.push(literalList);
+        List<String> operand = new LinkedList<>();
+        operand.add(token);
+        stack.push(operand);
       }
     }
     return stack.pop().toArray(new String[] {});
@@ -179,8 +179,26 @@ public class Arith {
    * @return the expression in infix order.
    */
   public static String[] convertPostfixToInfix(String[] postfixLiterals) {
-    // TODO
-    return null;
+    if (!validatePostfixOrder(postfixLiterals)) throw new IllegalArgumentException();
+    Stack<List<String>> stack = new Stack<>();
+    for (String token : postfixLiterals) {
+      if (isOperator(token)) {
+        List<String> expression2 = stack.pop();
+        List<String> expression1 = stack.pop();
+        List<String> result = new LinkedList<>();
+        result.add("(");
+        result.addAll(expression1);
+        result.add(token);
+        result.addAll(expression2);
+        result.add(")");
+        stack.push(result);
+      } else {
+        List<String> operand = new LinkedList<>();
+        operand.add(token);
+        stack.push(operand);
+      }
+    }
+    return stack.pop().toArray(new String[] {});
   }
 
   // ~ Helper methods ..........................................................
