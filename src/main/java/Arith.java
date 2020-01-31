@@ -22,7 +22,8 @@ public class Arith {
    *
    * <p>Justification: There is a for loop which loops through the prefixLiterals array. Each
    * statement in the for loop is constant. The function isOperator() has a worst case running time
-   * complexity of O(1)
+   * complexity of O(1). I chose worst-case running time as it gives a rough estimate of how the
+   * program will run at the worst case.
    *
    * @param prefixLiterals : an array containing the string literals hopefully in prefix order. The
    *     method assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a
@@ -46,7 +47,8 @@ public class Arith {
    *
    * <p>Justification: There is a for loop which loops through the postfixLiterals array. Each
    * statement in the for loop is constant. The function isOperator() has a worst case running time
-   * complexity of O(1)
+   * complexity of O(1). I chose worst-case running time as it gives a rough estimate of how the
+   * program will run at the worst case.
    *
    * @param postfixLiterals : an array containing the string literals hopefully in postfix order.
    *     The method assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or
@@ -73,7 +75,9 @@ public class Arith {
    * <p>Justification: There is one for loop which loops through the prefixLiterals array. All the
    * methods and statements run in constant time. The function isOperator(), pop() has a worst case
    * running time complexity of O(1). The function push() has an amortized running time complexity
-   * of O(1).
+   * of O(1). I chose amortized running time as it gives a rough estimate of how the program will
+   * run at the worst case. Since the push function is amortized due to a resizing array
+   * implementation, the running time used is amortized.
    *
    * @param prefixLiterals : an array containing the string literals in prefix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
@@ -103,7 +107,9 @@ public class Arith {
    * <p>Justification: There is one for loop which loops through the postfixLiterals array. All the
    * methods and statements run in constant time. The function isOperator(), pop() has a worst case
    * running time complexity of O(1). The function push() has an amortized running time complexity
-   * of O(1).
+   * of O(1). I chose amortized running time as it gives a rough estimate of how the program will
+   * run at the worst case. Since the push function is amortized due to a resizing array
+   * implementation, the running time used is amortized.
    *
    * @param postfixLiterals : an array containing the string literals in postfix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
@@ -135,7 +141,10 @@ public class Arith {
    * for loop all the statements have a worst case or amortized running time complexity of O(1)
    * except for the new LinkedList<>(Collection<? extends E> c) and addAll(Collection<? extends E>
    * c) function which have a worst case running time complexity of O(sizeof(c)). Since sizeof(c)
-   * can be n, the final amortized running time complexity is O(n^2).
+   * can be n, the final amortized running time complexity is O(n^2). I chose amortized running time
+   * as it gives a rough estimate of how the program will run at the worst case. Since the push
+   * function is amortized due to a resizing array implementation, the running time used is
+   * amortized.
    *
    * @param prefixLiterals : an array containing the string literals in prefix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
@@ -172,7 +181,10 @@ public class Arith {
    * for loop all the statements have a worst case or amortized running time complexity of O(1)
    * except for the new LinkedList<>(Collection<? extends E> c) and addAll(Collection<? extends E>
    * c) function which have a worst case running time complexity of O(sizeof(c)). Since sizeof(c)
-   * can be n, the final amortized running time complexity is O(n^2).
+   * can be n, the final amortized running time complexity is O(n^2). I chose amortized running time
+   * as it gives a rough estimate of how the program will run at the worst case. Since the push
+   * function is amortized due to a resizing array implementation, the running time used is
+   * amortized.
    *
    * @param postfixLiterals : an array containing the string literals in postfix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
@@ -208,7 +220,10 @@ public class Arith {
    * for loop all the statements have a worst case or amortized running time complexity of O(1)
    * except for the new LinkedList<>(Collection<? extends E> c) and addAll(Collection<? extends E>
    * c) function which have a worst case running time complexity of O(sizeof(c)). Since sizeof(c)
-   * can be n, the final amortized running time complexity is O(n^2).
+   * can be n, the final amortized running time complexity is O(n^2). I chose amortized running time
+   * as it gives a rough estimate of how the program will run at the worst case. Since the push
+   * function is amortized due to a resizing array implementation, the running time used is
+   * amortized.
    *
    * @param prefixLiterals : an array containing the string literals in prefix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
@@ -248,7 +263,10 @@ public class Arith {
    * for loop all the statements have a worst case or amortized running time complexity of O(1)
    * except for the new LinkedList<>(Collection<? extends E> c) and addAll(Collection<? extends E>
    * c) function which have a worst case running time complexity of O(sizeof(c)). Since sizeof(c)
-   * can be n, the final amortized running time complexity is O(n^2).
+   * can be n, the final amortized running time complexity is O(n^2). I chose amortized running time
+   * as it gives a rough estimate of how the program will run at the worst case. Since the push
+   * function is amortized due to a resizing array implementation, the running time used is
+   * amortized.
    *
    * @param postfixLiterals : an array containing the string literals in postfix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
