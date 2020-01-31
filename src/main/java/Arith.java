@@ -25,6 +25,10 @@ public class Arith {
    * complexity of O(1). I chose worst-case running time as it gives a rough estimate of how the
    * program will run at the worst case.
    *
+   * <p>Optimality: I believe that this method has the optimal space complexity as it is constant.
+   * The run time complexity is also optimal, it is not possible to validate the input without going
+   * through each token.
+   *
    * @param prefixLiterals : an array containing the string literals hopefully in prefix order. The
    *     method assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a
    *     valid string representation of an integer.
@@ -49,6 +53,10 @@ public class Arith {
    * statement in the for loop is constant. The function isOperator() has a worst case running time
    * complexity of O(1). I chose worst-case running time as it gives a rough estimate of how the
    * program will run at the worst case.
+   *
+   * <p>Optimality: I believe that this method has the optimal space complexity as it is constant.
+   * The run time complexity is also optimal it, is not possible to validate the input without going
+   * through each token.
    *
    * @param postfixLiterals : an array containing the string literals hopefully in postfix order.
    *     The method assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or
@@ -78,6 +86,10 @@ public class Arith {
    * of O(1). I chose amortized running time as it gives a rough estimate of how the program will
    * run at the worst case. Since the push function is amortized due to a resizing array
    * implementation, the running time used is amortized.
+   *
+   * <p>Optimality: I believe that this method has the optimal space complexity as it uses O(n)
+   * space. A stack is needed when evaluating the inputThe run time complexity is also optimal, it
+   * is not possible to evaluate the input without going through each token.
    *
    * @param prefixLiterals : an array containing the string literals in prefix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
@@ -111,6 +123,10 @@ public class Arith {
    * run at the worst case. Since the push function is amortized due to a resizing array
    * implementation, the running time used is amortized.
    *
+   * <p>Optimality: I believe that this method has the optimal space complexity as it uses O(n)
+   * space. A stack is needed when evaluating the input. The run time complexity is also optimal, it
+   * is not possible to evaluate the input without going through each token.
+   *
    * @param postfixLiterals : an array containing the string literals in postfix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
    *     string representation of an integer.
@@ -135,16 +151,21 @@ public class Arith {
   /**
    * Converts prefix to postfix.
    *
-   * <p>Asymptotic amortized running time : O(n^2)
+   * <p>Asymptotic amortized running time : O(n * m) where m <= n
    *
    * <p>Justification: There is a for loop which loops through all the prefixLiterals. Within the
    * for loop all the statements have a worst case or amortized running time complexity of O(1)
    * except for the new LinkedList<>(Collection<? extends E> c) and addAll(Collection<? extends E>
    * c) function which have a worst case running time complexity of O(sizeof(c)). Since sizeof(c)
-   * can be n, the final amortized running time complexity is O(n^2). I chose amortized running time
-   * as it gives a rough estimate of how the program will run at the worst case. Since the push
-   * function is amortized due to a resizing array implementation, the running time used is
+   * can be m where m <= n, the final amortized running time complexity is O(m). I chose amortized
+   * running time as it gives a rough estimate of how the program will run at the worst case. Since
+   * the push function is amortized due to a resizing array implementation, the running time used is
    * amortized.
+   *
+   * <p>Optimality: I believe that this method has the optimal space complexity as it uses O(n)
+   * space. A stack is needed when converting the input to postfix. Instead of Lists, strings could
+   * be used, however it will have the same time complexity. The function also has optimal space
+   * run time complexity as concatenating the Strings take is m, it cannot be constant.
    *
    * @param prefixLiterals : an array containing the string literals in prefix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
@@ -175,16 +196,21 @@ public class Arith {
   /**
    * Converts postfix to prefix.
    *
-   * <p>Asymptotic amortized running time : O(n^2)
+   * <p>Asymptotic amortized running time : O(n * m) where m <= n
    *
    * <p>Justification: There is a for loop which loops through all the postfixLiterals. Within the
    * for loop all the statements have a worst case or amortized running time complexity of O(1)
    * except for the new LinkedList<>(Collection<? extends E> c) and addAll(Collection<? extends E>
    * c) function which have a worst case running time complexity of O(sizeof(c)). Since sizeof(c)
-   * can be n, the final amortized running time complexity is O(n^2). I chose amortized running time
-   * as it gives a rough estimate of how the program will run at the worst case. Since the push
-   * function is amortized due to a resizing array implementation, the running time used is
+   * can be m where m <= n, the final amortized running time complexity is O(m). I chose amortized
+   * running time as it gives a rough estimate of how the program will run at the worst case. Since
+   * the push function is amortized due to a resizing array implementation, the running time used is
    * amortized.
+   *
+   * <p>Optimality: I believe that this method has the optimal space complexity as it uses O(n)
+   * space. A stack is needed when converting the input to prefix. Instead of Lists, strings could
+   * be used, however it will have the same time complexity. The function also has optimal space
+   * run time complexity as concatenating the Strings take is m, it cannot be constant.
    *
    * @param postfixLiterals : an array containing the string literals in postfix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
@@ -214,16 +240,21 @@ public class Arith {
   /**
    * Converts prefix to infix.
    *
-   * <p>Asymptotic amortized running time : O(n^2)
+   * <p>Asymptotic amortized running time : O(n * m) where m <= n
    *
    * <p>Justification: There is a for loop which loops through all the prefixLiterals. Within the
    * for loop all the statements have a worst case or amortized running time complexity of O(1)
    * except for the new LinkedList<>(Collection<? extends E> c) and addAll(Collection<? extends E>
    * c) function which have a worst case running time complexity of O(sizeof(c)). Since sizeof(c)
-   * can be n, the final amortized running time complexity is O(n^2). I chose amortized running time
-   * as it gives a rough estimate of how the program will run at the worst case. Since the push
-   * function is amortized due to a resizing array implementation, the running time used is
+   * can be m where m <= n, the final amortized running time complexity is O(m). I chose amortized
+   * running time as it gives a rough estimate of how the program will run at the worst case. Since
+   * the push function is amortized due to a resizing array implementation, the running time used is
    * amortized.
+   *
+   * <p>Optimality: I believe that this method has the optimal space complexity as it uses O(n)
+   * space. A stack is needed when converting the input to infix. Instead of Lists, strings could
+   * be used, however it will have the same time complexity. The function also has optimal space
+   * run time complexity as concatenating the Strings take is m, it cannot be constant.
    *
    * @param prefixLiterals : an array containing the string literals in prefix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
@@ -257,16 +288,21 @@ public class Arith {
   /**
    * Converts postfix to infix.
    *
-   * <p>Asymptotic amortized running time : O(n^2)
+   * <p>Asymptotic amortized running time : O(n * m) where m <= n
    *
    * <p>Justification: There is a for loop which loops through all the postfixLiterals. Within the
    * for loop all the statements have a worst case or amortized running time complexity of O(1)
    * except for the new LinkedList<>(Collection<? extends E> c) and addAll(Collection<? extends E>
    * c) function which have a worst case running time complexity of O(sizeof(c)). Since sizeof(c)
-   * can be n, the final amortized running time complexity is O(n^2). I chose amortized running time
-   * as it gives a rough estimate of how the program will run at the worst case. Since the push
-   * function is amortized due to a resizing array implementation, the running time used is
+   * can be m where m <= n, the final amortized running time complexity is O(m). I chose amortized
+   * running time as it gives a rough estimate of how the program will run at the worst case. Since
+   * the push function is amortized due to a resizing array implementation, the running time used is
    * amortized.
+   *
+   * <p>Optimality: I believe that this method has the optimal space complexity as it uses O(n)
+   * space. A stack is needed when converting the input to infix. Instead of Lists, strings could
+   * be used, however it will have the same time complexity. The function also has optimal space
+   * run time complexity as concatenating the Strings take is m, it cannot be constant.
    *
    * @param postfixLiterals : an array containing the string literals in postfix order. The method
    *     assumes that each of these literals can be one of: - "+", "-", "*", or "/" - or a valid
