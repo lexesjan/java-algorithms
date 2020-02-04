@@ -17,8 +17,6 @@ class SortComparison {
    * @return array sorted in ascending order.
    */
   static double[] insertionSort(double[] a) {
-
-    // todo: implement the sort
     return null;
   } // end insertionsort
 
@@ -77,5 +75,12 @@ class SortComparison {
   public static void main(String[] args) {
 
     // todo: do experiments as per assignment instructions
+  }
+
+  // ~ Helper Methods ........................................................
+  private static void swap(double[] arr, int index1, int index2) {
+    double temp = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = temp;
   }
 } // end class
