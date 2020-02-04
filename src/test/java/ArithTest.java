@@ -1,7 +1,17 @@
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import static org.junit.Assert.*;
 
+// -------------------------------------------------------------------------
+/**
+ * Test class for Arith
+ *
+ * @version 1.0 31/01/2020 20:51:11
+ * @author Lexes Jan Mantiquilla
+ */
+@RunWith(JUnit4.class)
 public class ArithTest {
   @Test
   public void testValidatePrefixOrder() {
