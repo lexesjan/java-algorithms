@@ -18,7 +18,8 @@ class SortComparison {
    * @param a: An unsorted array of doubles.
    * @return array sorted in ascending order.
    */
-  static double[] insertionSort(double[] a) {
+  public static double[] insertionSort(double[] a) {
+    assert a != null;
     for (int i = 1; i < a.length; i++) {
       double key = a[i];
       int j = i - 1;
@@ -38,7 +39,8 @@ class SortComparison {
    * @param a: An unsorted array of doubles.
    * @return array sorted in ascending order
    */
-  static double[] selectionSort(double[] a) {
+  public static double[] selectionSort(double[] a) {
+    assert a != null;
     for (int i = 0; i < a.length - 1; i++) {
       int minIndex = findMin(a, i);
       swap(a, minIndex, i);
@@ -73,11 +75,32 @@ class SortComparison {
    * @param a: An unsorted array of doubles.
    * @return array sorted in ascending order
    */
-  static double[] quickSort(double[] a) {
-
-    // todo: implement the sort
-    return null;
+  public static double[] quickSort(double[] a) {
+    assert a != null;
+    quickSort(a, 0, a.length - 1);
+    return a;
   } // end quicksort
+
+  private static void quickSort(double[] a, int low, int high) {
+    if (high <= low) return;
+    int partitionIndex = partition(a, low, high);
+    quickSort(a, low, partitionIndex - 1);
+    quickSort(a, partitionIndex + 1, high);
+  }
+
+  private static int partition(double[] a, int low, int high) {
+    int i = low;
+    int j = high + 1;
+    double pivot = a[low];
+    while (true) {
+      while (a[++i] <= pivot) if (i == high) break;
+      while (a[--j] >= pivot) if (j == low) break;
+      if (j <= i) break;
+      swap(a, i, j);
+    }
+    swap(a, low, j);
+    return j;
+  }
 
   /**
    * Sorts an array of doubles using iterative implementation of Merge Sort. This method is static,
@@ -86,8 +109,8 @@ class SortComparison {
    * @param a: An unsorted array of doubles.
    * @return after the method returns, the array must be in ascending sorted order.
    */
-  static double[] mergeSortIterative(double[] a) {
-
+  public static double[] mergeSortIterative(double[] a) {
+    assert a != null;
     // todo: implement the sort
     return null;
   } // end mergesortIterative
@@ -99,8 +122,8 @@ class SortComparison {
    * @param a: An unsorted array of doubles.
    * @return after the method returns, the array must be in ascending sorted order.
    */
-  static double[] mergeSortRecursive(double[] a) {
-
+  public static double[] mergeSortRecursive(double[] a) {
+    assert a != null;
     // todo: implement the sort
     return null;
   } // end mergeSortRecursive
@@ -114,10 +137,9 @@ class SortComparison {
     }
 
     long start = System.currentTimeMillis();
-    insertionSort(nums);
+    quickSort(nums);
     long end = System.currentTimeMillis();
     System.out.printf("Finished in %d ms \n", end - start);
-    System.out.println(isSorted(nums));
     scanner.close();
     // todo: do experiments as per assignment instructions
   }
@@ -135,18 +157,5 @@ class SortComparison {
     double temp = arr[index1];
     arr[index1] = arr[index2];
     arr[index2] = temp;
-  }
-
-  /**
-   * Checks of the array is sorted
-   *
-   * @param arr input array
-   * @return true of the array is sorted else false
-   */
-  private static boolean isSorted(double[] arr) {
-    for (int i = 0; i < arr.length - 1; i++) {
-      if (arr[i] > arr[i + 1]) return false;
-    }
-    return true;
   }
 } // end class
