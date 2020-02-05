@@ -7,6 +7,73 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+// ~ Results ---------------------------------------------------------------
+
+/*
+|----------------------+--------+-----------+----------------+-----------------+-------|
+|                      | Insert | Selection | Merge Recusive | Merge Iterative | Quick |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 10 random            | 0ms *  | 0ms *     | 0ms *          | 0ms *           | 0ms * |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 100 random           | 0ms *  | 0ms *     | 0ms *          | 0ms *           | 0ms * |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 1000 random          | 1ms    | 3ms       | 0ms *          | 0ms *           | 0ms * |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 1000 few unique      | 1ms    | 2ms       | 0ms *          | 0ms *           | 0ms * |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 1000 nearly ordered  | 1ms    | 2ms       | 0ms *          | 0ms *           | 0ms * |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 1000 reverse order   | 8ms    | 2ms       | 0ms *          | 0ms *           | 1ms   |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 1000 sorted          | 0ms *  | 2ms       | 0ms *          | 0ms *           | 2ms   |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 10000 random         | 11ms   | 15ms      | 2ms            | 1ms *           | 1ms * |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 100000 random        | 944ms  | 1378ms    | 9ms            | 8ms             | 7ms * |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 10000 few unique     | 11ms   | 15ms      | 1ms            | 0ms *           | 2ms   |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 10000 reverse order  | 19ms   | 23ms      | 3ms            | 0ms *           | 19ms  |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 10000 sorted         | 0ms    | 12ms      | 0ms *          | 0ms *           | 18ms  |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+| 10000 nearly ordered | 4ms    | 13ms      | 0ms *          | 0ms *           | 1ms   |
+|----------------------+--------+-----------+----------------+-----------------+-------|
+ */
+
+// ~ Questions --------------------------------------------------------------
+
+/*
+ * a.  Which of the sorting algorithms does the order of input have an impact on? Why?
+ *     --
+ *     Answer - Insertion sort. If the list is reversed, it causes the worst case. If the list is
+ *              almost sorted, it has the best case scenario. Quick sort. If the list is sorted, it
+ *              causes the worst case scenario.
+ *     --
+ * b.  Which algorithm has the biggest difference between the best and worst performance, based on
+ *     the type of input, for the input of size 1000? Why?
+ *     --
+ *     Answer - Insertion sort. The algorithm checks if the jth element is greater than
+ *              the j + 1 th element and swaps it. Since the list is reversed, this is always true.
+ *     --
+ * c.  Which algorithm has the best/worst scalability, i.e., the difference in performance time
+ *     based on the input size? Please consider only input files with random order for this answer.
+ *     --
+ *     Answer - Selection sort has the worst scalability. Merge sort iterative has the best
+ *              scalability.
+ *     --
+ * d.  Did you observe any difference between iterative and recursive implementations of merge sort?
+ *     --
+ *     Answer - The recursive implementation of merge sort appears to be slightly slower than the
+ *              iterative merge sort. This could be due to the overhead required when using
+ *              recursion.
+ *     --
+ * e.  Which algorithm is the fastest for each of the 7 input files?
+ *     --
+ *     Answer - See above table, elements with * represent the fastest algorithm for the input file.
+ *     --
+ */
+
 // -------------------------------------------------------------------------
 /**
  * Test class for SortComparison.java
