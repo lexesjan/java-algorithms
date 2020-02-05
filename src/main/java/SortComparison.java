@@ -20,10 +20,13 @@ class SortComparison {
    */
   static double[] insertionSort(double[] a) {
     for (int i = 1; i < a.length; i++) {
-      for (int j = i; j > 0; j--) {
-        if (a[j] < a[j - 1]) swap(a, j - 1, j);
-        else break;
+      double key = a[i];
+      int j = i - 1;
+      while (j >= 0 && key <= a[j]) {
+        a[j] = a[j + 1];
+        j--;
       }
+      a[j + 1] = key;
     }
     return a;
   } // end insertionsort
