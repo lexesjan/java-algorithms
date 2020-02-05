@@ -303,35 +303,63 @@ public class SortComparisonTest {
     double[] nums = getInput();
     double[] copy = new double[nums.length];
 
-    System.arraycopy(nums, 0, copy, 0, copy.length);
-    long start = System.currentTimeMillis();
-    SortComparison.insertionSort(copy);
-    long end = System.currentTimeMillis();
-    System.out.printf("Finished insertion sort in %d ms \n", end - start);
+    long start = 0;
+    long end = 0;
+    long average = 0;
+    int times = 10;
 
-    System.arraycopy(nums, 0, copy, 0, copy.length);
-    start = System.currentTimeMillis();
-    SortComparison.selectionSort(copy);
-    end = System.currentTimeMillis();
-    System.out.printf("Finished selection sort in %d ms \n", end - start);
+    for (int i = 0; i < times; i++) {
+      System.arraycopy(nums, 0, copy, 0, copy.length);
+      start = System.currentTimeMillis();
+      SortComparison.insertionSort(copy);
+      end = System.currentTimeMillis();
+      average += end - start;
+    }
+    average /= times;
+    System.out.printf("Finished insertion sort in %d ms \n", average);
 
-    System.arraycopy(nums, 0, copy, 0, copy.length);
-    start = System.currentTimeMillis();
-    SortComparison.mergeSortRecursive(copy);
-    end = System.currentTimeMillis();
-    System.out.printf("Finished merge sort recursive in %d ms \n", end - start);
+    for (int i = 0; i < times; i++) {
+      System.arraycopy(nums, 0, copy, 0, copy.length);
+      start = System.currentTimeMillis();
+      SortComparison.selectionSort(copy);
+      end = System.currentTimeMillis();
+      average += end - start;
+    }
+    average /= times;
+    System.out.printf("Finished selection sort in %d ms \n", average);
 
-    System.arraycopy(nums, 0, copy, 0, copy.length);
-    start = System.currentTimeMillis();
-    SortComparison.mergeSortIterative(copy);
-    end = System.currentTimeMillis();
-    System.out.printf("Finished merge sort iterative in %d ms \n", end - start);
+    average = 0;
+    for (int i = 0; i < times; i++) {
+      System.arraycopy(nums, 0, copy, 0, copy.length);
+      start = System.currentTimeMillis();
+      SortComparison.mergeSortRecursive(copy);
+      end = System.currentTimeMillis();
+      average += end - start;
+    }
+    average /= times;
+    System.out.printf("Finished merge sort recursive in %d ms \n", average);
 
-    System.arraycopy(nums, 0, copy, 0, copy.length);
-    start = System.currentTimeMillis();
-    SortComparison.quickSort(copy);
-    end = System.currentTimeMillis();
-    System.out.printf("Finished quick sort in %d ms \n", end - start);
+    average = 0;
+    for (int i = 0; i < times; i++) {
+      System.arraycopy(nums, 0, copy, 0, copy.length);
+      start = System.currentTimeMillis();
+      SortComparison.mergeSortIterative(copy);
+      end = System.currentTimeMillis();
+      average += end - start;
+    }
+    average /= times;
+    System.out.printf("Finished merge sort iterative in %d ms \n", average);
+
+    average = 0;
+    for (int i = 0; i < times; i++) {
+      System.arraycopy(nums, 0, copy, 0, copy.length);
+      start = System.currentTimeMillis();
+      SortComparison.quickSort(copy);
+      end = System.currentTimeMillis();
+      average += end - start;
+    }
+    average /= times;
+    System.out.printf("Finished quick sort in %d ms \n", average);
   }
 
   // ~ Helper Methods ........................................................
