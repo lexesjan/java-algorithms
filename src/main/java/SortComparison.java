@@ -39,10 +39,32 @@ class SortComparison {
    * @return array sorted in ascending order
    */
   static double[] selectionSort(double[] a) {
-
-    // todo: implement the sort
-    return null;
+    for (int i = 0; i < a.length - 1; i++) {
+      int minIndex = findMin(a, i);
+      swap(a, minIndex, i);
+    }
+    return a;
   } // end selectionsort
+
+  /**
+   * Finds the index of the smallest element in the array
+   *
+   * @param arr the input array
+   * @param start starting index of the search
+   * @return the index of the smallest element
+   */
+  private static int findMin(double[] arr, int start) {
+    int minIndex = start;
+    double min = arr[start];
+    for (int i = start; i < arr.length; i++) {
+      double curr = arr[i];
+      if (curr < min) {
+        min = arr[i];
+        minIndex = i;
+      }
+    }
+    return minIndex;
+  }
 
   /**
    * Sorts an array of doubles using Quick Sort. This method is static, thus it can be called as
@@ -101,12 +123,26 @@ class SortComparison {
   }
 
   // ~ Helper Methods ........................................................
+
+  /**
+   * Swaps the contents of index1 and index2 in arr
+   *
+   * @param arr the array to complete the swap on
+   * @param index1 first index to swap with
+   * @param index2 second index to swap with
+   */
   private static void swap(double[] arr, int index1, int index2) {
     double temp = arr[index1];
     arr[index1] = arr[index2];
     arr[index2] = temp;
   }
 
+  /**
+   * Checks of the array is sorted
+   *
+   * @param arr input array
+   * @return true of the array is sorted else false
+   */
   private static boolean isSorted(double[] arr) {
     for (int i = 0; i < arr.length - 1; i++) {
       if (arr[i] > arr[i + 1]) return false;
