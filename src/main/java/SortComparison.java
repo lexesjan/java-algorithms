@@ -1,7 +1,5 @@
 // -------------------------------------------------------------------------
 
-import java.util.Scanner;
-
 /**
  * This class contains static methods that implementing sorting of an array of numbers using
  * different sort algorithms.
@@ -24,7 +22,7 @@ class SortComparison {
       double key = a[i];
       int j = i - 1;
       while (j >= 0 && key <= a[j]) {
-        a[j] = a[j + 1];
+        a[j + 1] = a[j];
         j--;
       }
       a[j + 1] = key;
@@ -114,7 +112,7 @@ class SortComparison {
     int n = a.length;
     double[] aux = new double[n];
     for (int size = 1; size < n; size *= 2) {
-      for (int low = 0; low < n; low += size * 2) {
+      for (int low = 0; low < n - size; low += size * 2) {
         int mid = low + size - 1;
         int high = Math.min(mid + size, n - 1);
         merge(a, aux, low, mid, high);
@@ -142,7 +140,7 @@ class SortComparison {
     int mid = low + (high - low) / 2;
     mergeSortRecursive(a, aux, low, mid);
     mergeSortRecursive(a, aux, mid + 1, high);
-    merge(aux, a, low, mid, high);
+    merge(a, aux, low, mid, high);
   }
 
   private static void merge(double[] a, double[] aux, int low, int mid, int high) {
