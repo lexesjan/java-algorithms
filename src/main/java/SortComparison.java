@@ -158,22 +158,6 @@ class SortComparison {
     }
   }
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    int len = scanner.nextInt();
-    double[] nums = new double[len];
-    for (int i = 0; i < nums.length; i++) {
-      nums[i] = scanner.nextDouble();
-    }
-
-    long start = System.currentTimeMillis();
-    mergeSortRecursive(nums);
-    long end = System.currentTimeMillis();
-    System.out.printf("Finished in %d ms \n", end - start);
-    scanner.close();
-    // todo: do experiments as per assignment instructions
-  }
-
   // ~ Helper Methods ........................................................
 
   /**
