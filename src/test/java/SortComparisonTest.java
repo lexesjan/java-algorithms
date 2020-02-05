@@ -29,21 +29,27 @@ public class SortComparisonTest {
   @Test
   public void testEmpty() {
     double[] toSort = {};
-    assertTrue(testInsertionSort(toSort));
-    assertTrue(testSelectionSort(toSort));
-    assertTrue(testQuickSort(toSort));
-    assertTrue(testMergeSortIterative(toSort));
-    assertTrue(testMergeSortRecursive(toSort));
+    double[] sorted = new double[toSort.length];
+    System.arraycopy(toSort, 0, sorted, 0, sorted.length);
+    Arrays.sort(sorted);
+    assertTrue(testInsertionSort(toSort, sorted));
+    assertTrue(testSelectionSort(toSort, sorted));
+    assertTrue(testQuickSort(toSort, sorted));
+    assertTrue(testMergeSortIterative(toSort, sorted));
+    assertTrue(testMergeSortRecursive(toSort, sorted));
   }
 
   @Test
   public void testSingle() {
     double[] toSort = {1};
-    assertTrue(testInsertionSort(toSort));
-    assertTrue(testSelectionSort(toSort));
-    assertTrue(testQuickSort(toSort));
-    assertTrue(testMergeSortIterative(toSort));
-    assertTrue(testMergeSortRecursive(toSort));
+    double[] sorted = new double[toSort.length];
+    System.arraycopy(toSort, 0, sorted, 0, sorted.length);
+    Arrays.sort(sorted);
+    assertTrue(testInsertionSort(toSort, sorted));
+    assertTrue(testSelectionSort(toSort, sorted));
+    assertTrue(testQuickSort(toSort, sorted));
+    assertTrue(testMergeSortIterative(toSort, sorted));
+    assertTrue(testMergeSortRecursive(toSort, sorted));
   }
 
   @Test
@@ -51,11 +57,14 @@ public class SortComparisonTest {
     double[] toSort = {
       2377.88, 2910.66, 8458.14, 1522.08, 5855.37, 1934.75, 8106.23, 1735.31, 4849.83, 1518.63
     };
-    assertTrue(testInsertionSort(toSort));
-    assertTrue(testSelectionSort(toSort));
-    assertTrue(testQuickSort(toSort));
-    assertTrue(testMergeSortIterative(toSort));
-    assertTrue(testMergeSortRecursive(toSort));
+    double[] sorted = new double[toSort.length];
+    System.arraycopy(toSort, 0, sorted, 0, sorted.length);
+    Arrays.sort(sorted);
+    assertTrue(testInsertionSort(toSort, sorted));
+    assertTrue(testSelectionSort(toSort, sorted));
+    assertTrue(testQuickSort(toSort, sorted));
+    assertTrue(testMergeSortIterative(toSort, sorted));
+    assertTrue(testMergeSortRecursive(toSort, sorted));
   }
 
   @Test
@@ -162,11 +171,14 @@ public class SortComparisonTest {
       1036.71, 139.715, 6746.64, 4690.52, 6111.53, 9082.25, 9722.47, 8085.56, 4437.15, 2964.01,
       8720.78, 820.547, 2361.18, 2425.37, 2856.96, 6057.54, 9949.84
     };
-    assertTrue(testInsertionSort(toSort));
-    assertTrue(testSelectionSort(toSort));
-    assertTrue(testQuickSort(toSort));
-    assertTrue(testMergeSortIterative(toSort));
-    assertTrue(testMergeSortRecursive(toSort));
+    double[] sorted = new double[toSort.length];
+    System.arraycopy(toSort, 0, sorted, 0, sorted.length);
+    Arrays.sort(sorted);
+    assertTrue(testInsertionSort(toSort, sorted));
+    assertTrue(testSelectionSort(toSort, sorted));
+    assertTrue(testQuickSort(toSort, sorted));
+    assertTrue(testMergeSortIterative(toSort, sorted));
+    assertTrue(testMergeSortRecursive(toSort, sorted));
   }
 
   @Test
@@ -237,53 +249,46 @@ public class SortComparisonTest {
       76.0, 60.0, 41.0, 53.0, 89.0, 10.0, 1.0, 67.0, 46.0, 61.0, 90.0, 97.0, 80.0, 44.0, 29.0, 87.0,
       8.0, 23.0, 24.0, 28.0, 60.0, 99.0
     };
-    assertTrue(testInsertionSort(toSort));
-    assertTrue(testSelectionSort(toSort));
-    assertTrue(testQuickSort(toSort));
-    assertTrue(testMergeSortIterative(toSort));
-    assertTrue(testMergeSortRecursive(toSort));
+    double[] sorted = new double[toSort.length];
+    System.arraycopy(toSort, 0, sorted, 0, sorted.length);
+    Arrays.sort(sorted);
+    assertTrue(testInsertionSort(toSort, sorted));
+    assertTrue(testSelectionSort(toSort, sorted));
+    assertTrue(testQuickSort(toSort, sorted));
+    assertTrue(testMergeSortIterative(toSort, sorted));
+    assertTrue(testMergeSortRecursive(toSort, sorted));
   }
 
-  private boolean testInsertionSort(double[] arr) {
+  private boolean testInsertionSort(double[] arr, double[] sorted) {
     double[] copy = new double[arr.length];
-    double[] sorted = new double[arr.length];
-    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.insertionSort(copy);
     return Arrays.equals(copy, sorted);
   }
 
-  private boolean testSelectionSort(double[] arr) {
+  private boolean testSelectionSort(double[] arr, double[] sorted) {
     double[] copy = new double[arr.length];
-    double[] sorted = new double[arr.length];
-    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.selectionSort(copy);
     return Arrays.equals(copy, sorted);
   }
 
-  private boolean testQuickSort(double[] arr) {
+  private boolean testQuickSort(double[] arr, double[] sorted) {
     double[] copy = new double[arr.length];
-    double[] sorted = new double[arr.length];
-    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.quickSort(copy);
     return Arrays.equals(copy, sorted);
   }
 
-  private boolean testMergeSortIterative(double[] arr) {
+  private boolean testMergeSortIterative(double[] arr, double[] sorted) {
     double[] copy = new double[arr.length];
-    double[] sorted = new double[arr.length];
-    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.mergeSortIterative(copy);
     return Arrays.equals(copy, sorted);
   }
 
-  private boolean testMergeSortRecursive(double[] arr) {
+  private boolean testMergeSortRecursive(double[] arr, double[] sorted) {
     double[] copy = new double[arr.length];
-    double[] sorted = new double[arr.length];
-    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.mergeSortRecursive(copy);
     return Arrays.equals(copy, sorted);
