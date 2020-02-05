@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -243,37 +246,47 @@ public class SortComparisonTest {
 
   private boolean testInsertionSort(double[] arr) {
     double[] copy = new double[arr.length];
+    double[] sorted = new double[arr.length];
+    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.insertionSort(copy);
-    return isSorted(copy);
+    return Arrays.equals(copy, sorted);
   }
 
   private boolean testSelectionSort(double[] arr) {
     double[] copy = new double[arr.length];
+    double[] sorted = new double[arr.length];
+    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.selectionSort(copy);
-    return isSorted(copy);
+    return Arrays.equals(copy, sorted);
   }
 
   private boolean testQuickSort(double[] arr) {
     double[] copy = new double[arr.length];
+    double[] sorted = new double[arr.length];
+    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.quickSort(copy);
-    return isSorted(copy);
+    return Arrays.equals(copy, sorted);
   }
 
   private boolean testMergeSortIterative(double[] arr) {
     double[] copy = new double[arr.length];
+    double[] sorted = new double[arr.length];
+    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.mergeSortIterative(copy);
-    return isSorted(copy);
+    return Arrays.equals(copy, sorted);
   }
 
   private boolean testMergeSortRecursive(double[] arr) {
     double[] copy = new double[arr.length];
+    double[] sorted = new double[arr.length];
+    Arrays.sort(sorted);
     System.arraycopy(arr, 0, copy, 0, copy.length);
     SortComparison.mergeSortRecursive(copy);
-    return isSorted(copy);
+    return Arrays.equals(copy, sorted);
   }
 
   // ----------------------------------------------------------
@@ -282,20 +295,54 @@ public class SortComparisonTest {
    * performance questions of this assignment.
    */
   public static void main(String[] args) {
-    // TODO: implement this method
+    double[] nums = getInput();
+    double[] copy = new double[nums.length];
+
+    System.arraycopy(nums, 0, copy, 0, copy.length);
+    long start = System.currentTimeMillis();
+    SortComparison.insertionSort(copy);
+    long end = System.currentTimeMillis();
+    System.out.printf("Finished insertion sort in %d ms \n", end - start);
+
+    System.arraycopy(nums, 0, copy, 0, copy.length);
+    start = System.currentTimeMillis();
+    SortComparison.selectionSort(copy);
+    end = System.currentTimeMillis();
+    System.out.printf("Finished selection sort in %d ms \n", end - start);
+
+    System.arraycopy(nums, 0, copy, 0, copy.length);
+    start = System.currentTimeMillis();
+    SortComparison.mergeSortRecursive(copy);
+    end = System.currentTimeMillis();
+    System.out.printf("Finished merge sort recursive in %d ms \n", end - start);
+
+    System.arraycopy(nums, 0, copy, 0, copy.length);
+    start = System.currentTimeMillis();
+    SortComparison.mergeSortIterative(copy);
+    end = System.currentTimeMillis();
+    System.out.printf("Finished merge sort iterative in %d ms \n", end - start);
+
+    System.arraycopy(nums, 0, copy, 0, copy.length);
+    start = System.currentTimeMillis();
+    SortComparison.quickSort(copy);
+    end = System.currentTimeMillis();
+    System.out.printf("Finished quick sort in %d ms \n", end - start);
   }
 
   // ~ Helper Methods ........................................................
   /**
-   * Checks of the array is sorted
+   * Retrieves the input from stdin
    *
-   * @param arr input array
-   * @return true of the array is sorted else false
+   * @return an array containing all the numbers from the input text file
    */
-  private static boolean isSorted(double[] arr) {
-    for (int i = 0; i < arr.length - 1; i++) {
-      if (arr[i] > arr[i + 1]) return false;
+  private static double[] getInput() {
+    Scanner scanner = new Scanner(System.in);
+    int len = scanner.nextInt();
+    double[] nums = new double[len];
+    for (int i = 0; i < nums.length; i++) {
+      nums[i] = scanner.nextDouble();
     }
-    return true;
+    scanner.close();
+    return nums;
   }
 }
