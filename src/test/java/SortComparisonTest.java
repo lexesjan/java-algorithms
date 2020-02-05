@@ -306,7 +306,7 @@ public class SortComparisonTest {
     long start = 0;
     long end = 0;
     long average = 0;
-    int times = 10;
+    int times = 5;
 
     for (int i = 0; i < times; i++) {
       System.arraycopy(nums, 0, copy, 0, copy.length);
