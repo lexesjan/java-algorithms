@@ -124,9 +124,31 @@ class SortComparison {
    */
   public static double[] mergeSortRecursive(double[] a) {
     assert a != null;
-    // todo: implement the sort
-    return null;
+    double[] aux = new double[a.length];
+    mergeSortRecursive(a, aux, 0, a.length - 1);
+    return a;
   } // end mergeSortRecursive
+
+  private static void mergeSortRecursive(double[] a, double[] aux, int low, int high) {
+    if (high <= low) return;
+    int mid = low + (high - low) / 2;
+    mergeSortRecursive(a, aux, low, mid);
+    mergeSortRecursive(a, aux, mid + 1, high);
+    merge(aux, a, low, mid, high);
+  }
+
+  private static void merge(double[] a, double[] aux, int low, int mid, int high) {
+    System.arraycopy(a, low, aux, low, high - low + 1);
+
+    int i = low;
+    int j = mid + 1;
+    for (int k = low; k <= high; k++) {
+      if (i > mid) a[k] = aux[j++];
+      else if(j > high) a[k] = aux[i++];
+      else if(a[j] < aux[i]) a[k] = aux[j++];
+      else a[k] = aux[i++];
+    }
+  }
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
@@ -137,7 +159,7 @@ class SortComparison {
     }
 
     long start = System.currentTimeMillis();
-    quickSort(nums);
+    mergeSortRecursive(nums);
     long end = System.currentTimeMillis();
     System.out.printf("Finished in %d ms \n", end - start);
     scanner.close();
