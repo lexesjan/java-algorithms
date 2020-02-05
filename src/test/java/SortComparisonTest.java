@@ -26,9 +26,6 @@ public class SortComparisonTest {
   @Test
   public void testEmpty() {}
 
-  // TODO: add more tests here. Each line of code and ech decision in Collinear.java should
-  // be executed at least once from at least one test.
-
   // ----------------------------------------------------------
   /**
    * Main Method. Use this main method to create the experiments needed to answer the experimental
@@ -36,5 +33,19 @@ public class SortComparisonTest {
    */
   public static void main(String[] args) {
     // TODO: implement this method
+  }
+
+  // ~ Helper Methods ........................................................
+  /**
+   * Checks of the array is sorted
+   *
+   * @param arr input array
+   * @return true of the array is sorted else false
+   */
+  private static boolean isSorted(double[] arr) {
+    for (int i = 0; i < arr.length - 1; i++) {
+      if (arr[i] > arr[i + 1]) return false;
+    }
+    return true;
   }
 }
