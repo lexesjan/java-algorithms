@@ -15,6 +15,12 @@
  * This class implements the competition using Floyd-Warshall algorithm
  */
 
+/**
+ * This class contains a solution for the competition using Floyd Warshall's algorithm.
+ *
+ * @author Lexes Jan Mantiquilla
+ * @version HT 2020
+ */
 public class CompetitionFloydWarshall {
 
     /**

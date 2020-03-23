@@ -15,6 +15,12 @@
  * This class implements the competition using Dijkstra's algorithm
  */
 
+/**
+ * This class contains a solution for the competition using Dijkstra's algorithm.
+ *
+ * @author Lexes Jan Mantiquilla
+ * @version HT 2020
+ */
 public class CompetitionDijkstra {
 
     /**
