@@ -23,23 +23,19 @@
  */
 public class CompetitionFloydWarshall {
 
-    /**
-     * @param filename: A filename containing the details of the city road network
-     * @param sA, sB, sC: speeds for 3 contestants
-     */
-    CompetitionFloydWarshall (String filename, int sA, int sB, int sC){
+  /**
+   * @param filename: A filename containing the details of the city road network
+   * @param sA, sB, sC: speeds for 3 contestants
+   */
+  public CompetitionFloydWarshall(String filename, int sA, int sB, int sC) {
 
-        //TODO
-    }
+    // TODO
+  }
 
+  /** @return int: minimum minutes that will pass before the three contestants can meet */
+  public int timeRequiredforCompetition() {
 
-    /**
-     * @return int: minimum minutes that will pass before the three contestants can meet
-     */
-    public int timeRequiredforCompetition(){
-
-        //TO DO
-        return -1;
-    }
-
+    // TO DO
+    return -1;
+  }
 }

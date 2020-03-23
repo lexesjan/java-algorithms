@@ -1,25 +1,25 @@
 import org.junit.Test;
 
-//-------------------------------------------------------------------------
+// -------------------------------------------------------------------------
 /**
- *  Test class for CompetitionDijkstra.java and CompetitionFloydWarshall.java
+ * Test class for CompetitionDijkstra.java and CompetitionFloydWarshall.java
  *
- *  @author Lexes Jan Mantiquilla
- *  @version 18/09/18 12:21:26
+ * @author Lexes Jan Mantiquilla
+ * @version 18/09/18 12:21:26
  */
 public class CompetitionTests {
 
-    @Test
-    public void testDijkstraConstructor() {
+  @Test
+  public void testDijkstraConstructor() {
 
-        //TODO
-    }
+    // TODO
+  }
 
-    @Test
-    public void testFWConstructor() {
-        //TODO
-    }
+  @Test
+  public void testFWConstructor() {
+    // TODO
+  }
 
-    //TODO - more tests
-    
+  // TODO - more tests
+
 }

@@ -15,6 +15,12 @@
  * This class implements the competition using Dijkstra's algorithm
  */
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Scanner;
+
 /**
  * This class contains a solution for the competition using Dijkstra's algorithm.
  *
@@ -22,24 +28,52 @@
  * @version HT 2020
  */
 public class CompetitionDijkstra {
+  private Graph graph;
+  private int speedA;
+  private int speedB;
+  private int speedC;
 
-    /**
-     * @param filename: A filename containing the details of the city road network
-     * @param sA, sB, sC: speeds for 3 contestants
-    */
-    CompetitionDijkstra (String filename, int sA, int sB, int sC){
+  /**
+   * @param filename: A filename containing the details of the city road network
+   * @param sA, sB, sC: speeds for 3 contestants
+   */
+  public CompetitionDijkstra(String filename, int sA, int sB, int sC) {
+    this.graph = new Graph(filename);
+    this.speedA = sA;
+    this.speedB = sB;
+    this.speedC = sC;
+  }
 
-       //TODO
+  private static class Graph {
+    private Vertex[] vertices;
+
+    private Graph(String filename) {
+      if (filename == null || "".equals(filename)) return;
+      Scanner scanner = new Scanner(filename);
+      this.vertices = new Vertex[scanner.nextInt()];
+      int numEdges = scanner.nextInt();
+      for (int i = 0; i < numEdges; i++) {
+        int vertexFrom = scanner.nextInt();
+        int vertexTo = scanner.nextInt();
+        double distance = scanner.nextDouble();
+        if (vertices[vertexFrom] == null) vertices[vertexFrom] = new Vertex(vertexFrom);
+        if (vertices[vertexTo] == null) vertices[vertexTo] = new Vertex(vertexTo);
+        vertices[vertexFrom].connections.add(vertices[vertexTo]);
+        vertices[vertexFrom].costs[vertexTo] = distance;
+      }
+      scanner.close();
     }
 
+    private class Vertex {
+      int label;
+      double[] costs;
+      List<Vertex> connections;
 
-    /**
-    * @return int: minimum minutes that will pass before the three contestants can meet
-     */
-    public int timeRequiredforCompetition(){
-
-        //TO DO
-        return -1;
+      private Vertex(int label) {
+        this.label = label;
+        this.costs = new double[Graph.this.vertices.length];
+        this.connections = new ArrayList<>();
+      }
     }
-
+  }
 }
