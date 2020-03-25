@@ -11,15 +11,13 @@ public class CompetitionTests {
 
   @Test
   public void testDijkstraConstructor() {
-
-    // TODO
+    CompetitionDijkstra competitionDijkstra =
+        new CompetitionDijkstra("input/competition/input-A.txt", 55, 60, 75);
+    System.out.println(competitionDijkstra.timeRequiredforCompetition());
   }
 
   @Test
   public void testFWConstructor() {
     // TODO
   }
-
-  // TODO - more tests
-
 }
