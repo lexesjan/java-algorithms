@@ -15,11 +15,14 @@
  * This class implements the competition using Dijkstra's algorithm
  */
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
@@ -45,7 +48,7 @@ public class CompetitionDijkstra {
   public CompetitionDijkstra(String filename, int sA, int sB, int sC) {
     try {
       this.graph = new Graph(filename);
-    } catch (FileNotFoundException e) {
+    } catch (IOException e) {
       this.graph = null;
     }
     this.speedA = sA;
@@ -79,10 +82,10 @@ public class CompetitionDijkstra {
 
   /** @return an array of shortest path tables for each vertex */
   private DijkstraEntry[][] generateAllShortestPaths() {
-    if (graph == null) return null;
+    if (graph == null || this.graph.invalidGraph) return null;
     DijkstraEntry[][] shortestPaths = new DijkstraEntry[graph.numVertices][];
     for (int i = 0; i < graph.numVertices; i++) {
-      shortestPaths[i] = generateShortestPaths(i);
+      if (graph.vertices[i] != null) shortestPaths[i] = generateShortestPaths(i);
     }
     return shortestPaths;
   }
@@ -103,7 +106,7 @@ public class CompetitionDijkstra {
       for (Vertex adjacent : curr.adjacent) {
         if (!seen[adjacent.label]) {
           DijkstraEntry toInsert = shortestPaths[adjacent.label];
-          double calculatedDistance = currEntry.shortestDistance + curr.costs[adjacent.label];
+          double calculatedDistance = currEntry.shortestDistance + curr.costs.get(adjacent.label);
           if (calculatedDistance < toInsert.shortestDistance) {
             toInsert.shortestDistance = calculatedDistance;
             toInsert.prevId = curr.label;
@@ -140,35 +143,42 @@ public class CompetitionDijkstra {
   private static class Graph {
     private Vertex[] vertices;
     private int numVertices;
+    private boolean invalidGraph;
 
-    private Graph(String filename) throws FileNotFoundException {
+    private Graph(String filename) throws IOException {
       if (filename == null || "".equals(filename)) return;
-      Scanner scanner = new Scanner(new File(filename));
-      this.numVertices = scanner.nextInt();
+      BufferedReader bf = new BufferedReader(new FileReader(filename));
+      this.numVertices = Integer.parseInt(bf.readLine());
       this.vertices = new Vertex[numVertices];
-      int numEdges = scanner.nextInt();
-      for (int i = 0; i < numEdges; i++) {
+      int numEdges = Integer.parseInt(bf.readLine());
+      int i = 0;
+      String line = bf.readLine();
+      while (line != null) {
+        Scanner scanner = new Scanner(line);
         int vertexFrom = scanner.nextInt();
         int vertexTo = scanner.nextInt();
         double distance = scanner.nextDouble();
         if (vertices[vertexFrom] == null)
-          vertices[vertexFrom] = new Vertex(vertexFrom, this.numVertices);
-        if (vertices[vertexTo] == null) vertices[vertexTo] = new Vertex(vertexTo, this.numVertices);
+          vertices[vertexFrom] = new Vertex(vertexFrom);
+        if (vertices[vertexTo] == null) vertices[vertexTo] = new Vertex(vertexTo);
         vertices[vertexFrom].adjacent.add(vertices[vertexTo]);
-        vertices[vertexFrom].costs[vertexTo] = distance;
+        vertices[vertexFrom].costs.put(vertexTo, distance);
+        scanner.close();
+        line = bf.readLine();
+        i++;
       }
-      scanner.close();
+      if (i != numEdges) this.invalidGraph = true;
     }
   }
 
   private static class Vertex {
     int label;
-    double[] costs;
+    Map<Integer, Double> costs;
     List<Vertex> adjacent;
 
-    private Vertex(int label, int numVertices) {
+    private Vertex(int label) {
       this.label = label;
-      this.costs = new double[numVertices];
+      this.costs = new HashMap<>();
       this.adjacent = new ArrayList<>();
     }
   }
