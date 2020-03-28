@@ -45,7 +45,7 @@ public class CompetitionFloydWarshall {
     try {
       initialiseDistanceArray(filename);
     } catch (IOException e) {
-      e.printStackTrace();
+      this.invalidGraph = true;
     }
     this.speedA = sA;
     this.speedB = sB;
