@@ -63,7 +63,7 @@ public class CompetitionFloydWarshall {
 
   /** @return the distance of the two vertices which are the furthest from each other */
   private double getMaxDistance() {
-    if (distances == null) return -1;
+    if (this.invalidGraph || distances == null) return -1;
     double maxDistance = Double.MIN_VALUE;
     for (int i = 0; i < this.numVertices; i++) {
       for (int j = 0; j < this.numVertices; j++) {
@@ -77,6 +77,7 @@ public class CompetitionFloydWarshall {
 
   /** Runs floyd warshall's algorithm on the graph */
   private void generateDistanceArray() {
+    if (this.invalidGraph) return;
     for (int k = 0; k < this.numVertices; k++)
       for (int i = 0; i < this.numVertices; i++)
         for (int j = 0; j < this.numVertices; j++)
@@ -89,8 +90,8 @@ public class CompetitionFloydWarshall {
     BufferedReader br = new BufferedReader(new FileReader(filename));
     this.numVertices = Integer.parseInt(br.readLine());
     this.distances = new double[this.numVertices][this.numVertices];
-    for (int i = 0; i < distances.length; i++) {
-      Arrays.fill(distances[i], Double.POSITIVE_INFINITY);
+    for (double[] distance : distances) {
+      Arrays.fill(distance, Double.POSITIVE_INFINITY);
     }
     int numEdges = Integer.parseInt(br.readLine());
     int i = 0;
