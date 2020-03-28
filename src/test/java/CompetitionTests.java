@@ -1,7 +1,3 @@
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -39,7 +35,7 @@ public class CompetitionTests {
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-I.txt", 55, 60, 75);
     assertEquals(219, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-J.txt", 55, 60, 75);
-    assertEquals(1, competitionDijkstra.timeRequiredforCompetition());
+    assertEquals(-1, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-K.txt", 55, 60, 75);
     assertEquals(291, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-L.txt", 55, 60, 75);
@@ -86,7 +82,7 @@ public class CompetitionTests {
     assertEquals(219, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-J.txt", 55, 60, 75);
-    assertEquals(1, competitionFloydWarshall.timeRequiredforCompetition());
+    assertEquals(-1, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-K.txt", 55, 60, 75);
     assertEquals(291, competitionFloydWarshall.timeRequiredforCompetition());

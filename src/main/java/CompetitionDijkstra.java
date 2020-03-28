@@ -35,6 +35,12 @@ import java.util.Scanner;
  * @version HT 2020
  */
 public class CompetitionDijkstra {
+  public static void main(String[] args) {
+    CompetitionDijkstra competitionDijkstra =
+        new CompetitionDijkstra("input/competition/input-J.txt", 55, 60, 75);
+    System.out.println(competitionDijkstra.timeRequiredforCompetition());
+  }
+
   private static final int KILOMETER_TO_METERS = 1000;
 
   private Graph graph;
@@ -60,8 +66,10 @@ public class CompetitionDijkstra {
   /** @return int: minimum minutes that will pass before the three contestants can meet */
   public int timeRequiredforCompetition() {
     int minSpeed = Math.min(Math.min(speedA, speedB), speedC);
+    int maxSpeed = Math.max(Math.max(speedA, speedB), speedC);
+    if (minSpeed < 50 || maxSpeed > 100) return -1;
     double maxDistanceBetweenAnyTwoNodes = getMaxDistance();
-    if (minSpeed <= 0 || maxDistanceBetweenAnyTwoNodes <= 0) return -1;
+    if (maxDistanceBetweenAnyTwoNodes <= 0) return -1;
     return (int) Math.ceil((maxDistanceBetweenAnyTwoNodes * KILOMETER_TO_METERS) / minSpeed);
   }
 
@@ -70,7 +78,7 @@ public class CompetitionDijkstra {
     double[][] distances = generateAllShortestPaths();
     if (distances == null) return -1;
     int numVertices = graph.numVertices;
-    double maxDistance = Double.MIN_VALUE;
+    double maxDistance = Double.NEGATIVE_INFINITY;
     for (int i = 0; i < numVertices; i++) {
       for (int j = 0; j < numVertices; j++) {
         if (i == j) continue;

@@ -55,16 +55,18 @@ public class CompetitionFloydWarshall {
   /** @return int: minimum minutes that will pass before the three contestants can meet */
   public int timeRequiredforCompetition() {
     int minSpeed = Math.min(Math.min(speedA, speedB), speedC);
+    int maxSpeed = Math.max(Math.max(speedA, speedB), speedC);
+    if (minSpeed < 50 || maxSpeed > 100) return -1;
     generateDistanceArray();
     double maxDistanceBetweenAnyTwoNodes = getMaxDistance();
-    if (minSpeed <= 0 || maxDistanceBetweenAnyTwoNodes <= 0) return -1;
+    if (maxDistanceBetweenAnyTwoNodes <= 0) return -1;
     return (int) Math.ceil((maxDistanceBetweenAnyTwoNodes * KILOMETER_TO_METERS) / minSpeed);
   }
 
   /** @return the distance of the two vertices which are the furthest from each other */
   private double getMaxDistance() {
     if (this.invalidGraph || distances == null) return -1;
-    double maxDistance = Double.MIN_VALUE;
+    double maxDistance = Double.NEGATIVE_INFINITY;
     for (int i = 0; i < this.numVertices; i++) {
       for (int j = 0; j < this.numVertices; j++) {
         if (i == j) continue;
