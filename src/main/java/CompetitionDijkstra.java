@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -66,14 +67,14 @@ public class CompetitionDijkstra {
 
   /** @return the distance of the two vertices which are the furthest from each other */
   private double getMaxDistance() {
-    DijkstraEntry[][] allShortestPaths = generateAllShortestPaths();
-    if (allShortestPaths == null) return -1;
+    double[][] distances = generateAllShortestPaths();
+    if (distances == null) return -1;
     int numVertices = graph.numVertices;
     double maxDistance = Double.MIN_VALUE;
     for (int i = 0; i < numVertices; i++) {
       for (int j = 0; j < numVertices; j++) {
         if (i == j) continue;
-        double IJDistance = allShortestPaths[i][j].shortestDistance;
+        double IJDistance = distances[i][j];
         if (IJDistance != Double.POSITIVE_INFINITY) maxDistance = Math.max(maxDistance, IJDistance);
       }
     }
@@ -81,75 +82,51 @@ public class CompetitionDijkstra {
   }
 
   /** @return an array of shortest path tables for each vertex */
-  private DijkstraEntry[][] generateAllShortestPaths() {
-    if (graph == null || this.graph.invalidGraph) return null;
-    DijkstraEntry[][] shortestPaths = new DijkstraEntry[graph.numVertices][];
+  private double[][] generateAllShortestPaths() {
+    if (graph == null || graph.invalidGraph) return null;
+    double[][] shortestPaths = new double[graph.numVertices][];
     for (int i = 0; i < graph.numVertices; i++) {
-      if (graph.vertices[i] != null) shortestPaths[i] = generateShortestPaths(i);
+      shortestPaths[i] = generateShortestPaths(i);
     }
     return shortestPaths;
   }
 
   /** @return the shortest path table generated using dijkstra's algorithm */
-  private DijkstraEntry[] generateShortestPaths(int startVertex) {
+  private double[] generateShortestPaths(int startVertex) {
+    Map<Integer, List<Edge>> adjacencies = graph.adjacencies;
     boolean[] seen = new boolean[graph.numVertices];
-    Vertex[] vertices = graph.vertices;
-    DijkstraEntry[] shortestPaths = initialiseShortestPathsTable();
-    shortestPaths[startVertex].shortestDistance = 0;
-    Queue<DijkstraEntry> priorityQueue =
-        new PriorityQueue<>(Comparator.comparing(dijkstraEntry -> dijkstraEntry.shortestDistance));
-    priorityQueue.add(shortestPaths[startVertex]);
+    double[] distanceTo = new double[graph.numVertices];
+    Arrays.fill(distanceTo, Double.POSITIVE_INFINITY);
+    distanceTo[startVertex] = 0;
+    Queue<Integer> priorityQueue =
+        new PriorityQueue<>(Comparator.comparing(vertex -> distanceTo[vertex]));
+    priorityQueue.add(startVertex);
     while (!priorityQueue.isEmpty()) {
-      DijkstraEntry currEntry = priorityQueue.poll();
-      Vertex curr = vertices[currEntry.vertexId];
-      seen[curr.label] = true;
-      for (Vertex adjacent : curr.adjacent) {
-        if (!seen[adjacent.label]) {
-          DijkstraEntry toInsert = shortestPaths[adjacent.label];
-          double calculatedDistance = currEntry.shortestDistance + curr.costs.get(adjacent.label);
-          if (calculatedDistance < toInsert.shortestDistance) {
-            toInsert.shortestDistance = calculatedDistance;
-            toInsert.prevId = curr.label;
-          }
-          priorityQueue.remove(toInsert);
-          priorityQueue.add(toInsert);
+      int curr = priorityQueue.poll();
+      seen[curr] = true;
+      for (Edge adjacent : adjacencies.getOrDefault(curr, new ArrayList<>())) {
+        int vertex = adjacent.edgeTo;
+        if (!seen[vertex]) {
+          double newDistance = distanceTo[curr] + adjacent.cost;
+          if (newDistance < distanceTo[vertex]) distanceTo[vertex] = newDistance;
+          priorityQueue.remove(vertex);
+          priorityQueue.add(vertex);
         }
       }
     }
-    return shortestPaths;
-  }
-
-  /** @return the initialised shortest paths table according to dijkstra's algorithm */
-  private DijkstraEntry[] initialiseShortestPathsTable() {
-    DijkstraEntry[] shortestPaths = new DijkstraEntry[graph.numVertices];
-    for (int i = 0; i < shortestPaths.length; i++) {
-      shortestPaths[i] = new DijkstraEntry(-1, Double.POSITIVE_INFINITY, i);
-    }
-    return shortestPaths;
-  }
-
-  private static class DijkstraEntry {
-    private int prevId;
-    private double shortestDistance;
-    private int vertexId;
-
-    private DijkstraEntry(int prevId, double shortestDistance, int vertex) {
-      this.prevId = prevId;
-      this.shortestDistance = shortestDistance;
-      this.vertexId = vertex;
-    }
+    return distanceTo;
   }
 
   private static class Graph {
-    private Vertex[] vertices;
+    private Map<Integer, List<Edge>> adjacencies;
     private int numVertices;
     private boolean invalidGraph;
 
     private Graph(String filename) throws IOException {
       if (filename == null || "".equals(filename)) return;
+      adjacencies = new HashMap<>();
       BufferedReader bf = new BufferedReader(new FileReader(filename));
       this.numVertices = Integer.parseInt(bf.readLine());
-      this.vertices = new Vertex[numVertices];
       int numEdges = Integer.parseInt(bf.readLine());
       int i = 0;
       String line = bf.readLine();
@@ -157,12 +134,10 @@ public class CompetitionDijkstra {
         Scanner scanner = new Scanner(line);
         int vertexFrom = scanner.nextInt();
         int vertexTo = scanner.nextInt();
-        double distance = scanner.nextDouble();
-        if (vertices[vertexFrom] == null)
-          vertices[vertexFrom] = new Vertex(vertexFrom);
-        if (vertices[vertexTo] == null) vertices[vertexTo] = new Vertex(vertexTo);
-        vertices[vertexFrom].adjacent.add(vertices[vertexTo]);
-        vertices[vertexFrom].costs.put(vertexTo, distance);
+        double cost = scanner.nextDouble();
+        List<Edge> adjList = adjacencies.getOrDefault(vertexFrom, new ArrayList<>());
+        adjList.add(new Edge(vertexFrom, vertexTo, cost));
+        adjacencies.put(vertexFrom, adjList);
         scanner.close();
         line = bf.readLine();
         i++;
@@ -171,15 +146,15 @@ public class CompetitionDijkstra {
     }
   }
 
-  private static class Vertex {
-    int label;
-    Map<Integer, Double> costs;
-    List<Vertex> adjacent;
+  private static class Edge {
+    private int edgeFrom;
+    private int edgeTo;
+    double cost;
 
-    private Vertex(int label) {
-      this.label = label;
-      this.costs = new HashMap<>();
-      this.adjacent = new ArrayList<>();
+    private Edge(int edgeFrom, int edgeTo, double cost) {
+      this.edgeFrom = edgeFrom;
+      this.edgeTo = edgeTo;
+      this.cost = cost;
     }
   }
 }
