@@ -57,7 +57,7 @@ public class CompetitionFloydWarshall {
     int minSpeed = Math.min(Math.min(speedA, speedB), speedC);
     generateDistanceArray();
     double maxDistanceBetweenAnyTwoNodes = getMaxDistance();
-    if (minSpeed < 0 || maxDistanceBetweenAnyTwoNodes < 0) return -1;
+    if (minSpeed <= 0 || maxDistanceBetweenAnyTwoNodes <= 0) return -1;
     return (int) Math.ceil((maxDistanceBetweenAnyTwoNodes * KILOMETER_TO_METERS) / minSpeed);
   }
 
@@ -69,7 +69,8 @@ public class CompetitionFloydWarshall {
       for (int j = 0; j < this.numVertices; j++) {
         if (i == j) continue;
         double IJDistance = distances[i][j];
-        if (IJDistance != Double.POSITIVE_INFINITY) maxDistance = Math.max(maxDistance, IJDistance);
+        if (IJDistance == Double.POSITIVE_INFINITY) return -1;
+        maxDistance = Math.max(maxDistance, IJDistance);
       }
     }
     return maxDistance;

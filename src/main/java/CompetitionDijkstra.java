@@ -61,7 +61,7 @@ public class CompetitionDijkstra {
   public int timeRequiredforCompetition() {
     int minSpeed = Math.min(Math.min(speedA, speedB), speedC);
     double maxDistanceBetweenAnyTwoNodes = getMaxDistance();
-    if (minSpeed < 0 || maxDistanceBetweenAnyTwoNodes < 0) return -1;
+    if (minSpeed <= 0 || maxDistanceBetweenAnyTwoNodes <= 0) return -1;
     return (int) Math.ceil((maxDistanceBetweenAnyTwoNodes * KILOMETER_TO_METERS) / minSpeed);
   }
 
@@ -75,7 +75,8 @@ public class CompetitionDijkstra {
       for (int j = 0; j < numVertices; j++) {
         if (i == j) continue;
         double IJDistance = distances[i][j];
-        if (IJDistance != Double.POSITIVE_INFINITY) maxDistance = Math.max(maxDistance, IJDistance);
+        if (IJDistance == Double.POSITIVE_INFINITY) return -1;
+        maxDistance = Math.max(maxDistance, IJDistance);
       }
     }
     return maxDistance;
@@ -83,7 +84,7 @@ public class CompetitionDijkstra {
 
   /** @return an array of shortest path tables for each vertex */
   private double[][] generateAllShortestPaths() {
-    if (graph == null || graph.invalidGraph) return null;
+    if (graph == null || graph.invalid) return null;
     double[][] shortestPaths = new double[graph.numVertices][];
     for (int i = 0; i < graph.numVertices; i++) {
       shortestPaths[i] = generateShortestPaths(i);
@@ -120,7 +121,7 @@ public class CompetitionDijkstra {
   private static class Graph {
     private Map<Integer, List<Edge>> adjacencies;
     private int numVertices;
-    private boolean invalidGraph;
+    private boolean invalid;
 
     private Graph(String filename) throws IOException {
       if (filename == null || "".equals(filename)) return;
@@ -142,7 +143,7 @@ public class CompetitionDijkstra {
         line = bf.readLine();
         i++;
       }
-      if (i != numEdges) this.invalidGraph = true;
+      if (i != numEdges) this.invalid = true;
     }
   }
 

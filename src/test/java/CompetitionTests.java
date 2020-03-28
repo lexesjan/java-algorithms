@@ -1,3 +1,7 @@
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -14,89 +18,89 @@ public class CompetitionTests {
   public void testDijkstraConstructor() {
     CompetitionDijkstra competitionDijkstra =
         new CompetitionDijkstra("input/competition/1000EWD.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 26);
+    assertEquals(26, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-A.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 2728);
+    assertEquals(-1, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-B.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 9091);
+    assertEquals(9091, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-C.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 3637);
+    assertEquals(-1, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-D.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 34);
+    assertEquals(34, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-E.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 26);
+    assertEquals(26, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-F.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 2555);
+    assertEquals(-1, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-G.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 7575);
+    assertEquals(-1, competitionDijkstra.timeRequiredforCompetition());
     //    competitionDijkstra = new CompetitionDijkstra("input/competition/input-H.txt", 55, 60,
     // 75);
-    //    assertEquals(competitionDijkstra.timeRequiredforCompetition(), -1);
+    //    assertEquals( -1, competitionDijkstra.timeRequiredforCompetition())
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-I.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 219);
+    assertEquals(219, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-J.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 1);
+    assertEquals(1, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-K.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 291);
+    assertEquals(291, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-L.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 146);
+    assertEquals(146, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-M.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 273);
+    assertEquals(273, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/input-N.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 146);
+    assertEquals(146, competitionDijkstra.timeRequiredforCompetition());
     competitionDijkstra = new CompetitionDijkstra("input/competition/tinyEWD.txt", 55, 60, 75);
-    assertEquals(competitionDijkstra.timeRequiredforCompetition(), 34);
+    assertEquals(34, competitionDijkstra.timeRequiredforCompetition());
   }
 
   @Test
   public void testFWConstructor() {
     CompetitionFloydWarshall competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/1000EWD.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 26);
+    assertEquals(26, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-A.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 2728);
+    assertEquals(-1, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-B.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 9091);
+    assertEquals(9091, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-C.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 3637);
+    assertEquals(-1, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-D.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 34);
+    assertEquals(34, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-E.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 26);
+    assertEquals(26, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-F.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 2555);
+    assertEquals(-1, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-G.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 7575);
+    assertEquals(-1, competitionFloydWarshall.timeRequiredforCompetition());
     //    competitionFloydWarshall =
     //        new CompetitionFloydWarshall("input/competition/input-H.txt", 55, 60, 75);
-    //    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), -1);
+    //    assertEquals(-1, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-I.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 219);
+    assertEquals(219, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-J.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 1);
+    assertEquals(1, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-K.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 291);
+    assertEquals(291, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-L.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 146);
+    assertEquals(146, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-M.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 273);
+    assertEquals(273, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/input-N.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 146);
+    assertEquals(146, competitionFloydWarshall.timeRequiredforCompetition());
     competitionFloydWarshall =
         new CompetitionFloydWarshall("input/competition/tinyEWD.txt", 55, 60, 75);
-    assertEquals(competitionFloydWarshall.timeRequiredforCompetition(), 34);
+    assertEquals(34, competitionFloydWarshall.timeRequiredforCompetition());
   }
 }
