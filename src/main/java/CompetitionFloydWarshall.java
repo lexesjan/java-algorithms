@@ -15,6 +15,12 @@
  * This class implements the competition using Floyd-Warshall algorithm
  */
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
  * This class contains a solution for the competition using Floyd Warshall's algorithm.
  *
@@ -22,20 +28,84 @@
  * @version HT 2020
  */
 public class CompetitionFloydWarshall {
+  private static final int KILOMETER_TO_METERS = 1000;
+
+  private double[][] distances;
+  private int speedA;
+  private int speedB;
+  private int speedC;
+  private int numVertices;
+  private boolean invalidGraph;
 
   /**
    * @param filename: A filename containing the details of the city road network
    * @param sA, sB, sC: speeds for 3 contestants
    */
   public CompetitionFloydWarshall(String filename, int sA, int sB, int sC) {
-
-    // TODO
+    try {
+      initialiseDistanceArray(filename);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    this.speedA = sA;
+    this.speedB = sB;
+    this.speedC = sC;
   }
 
   /** @return int: minimum minutes that will pass before the three contestants can meet */
   public int timeRequiredforCompetition() {
+    int minSpeed = Math.min(Math.min(speedA, speedB), speedC);
+    generateDistanceArray();
+    double maxDistanceBetweenAnyTwoNodes = getMaxDistance();
+    if (minSpeed < 0 || maxDistanceBetweenAnyTwoNodes < 0) return -1;
+    return (int) Math.ceil((maxDistanceBetweenAnyTwoNodes * KILOMETER_TO_METERS) / minSpeed);
+  }
 
-    // TO DO
-    return -1;
+  /** @return the distance of the two vertices which are the furthest from each other */
+  private double getMaxDistance() {
+    if (distances == null) return -1;
+    double maxDistance = Double.MIN_VALUE;
+    for (int i = 0; i < this.numVertices; i++) {
+      for (int j = 0; j < this.numVertices; j++) {
+        if (i == j) continue;
+        double IJDistance = distances[i][j];
+        if (IJDistance != Double.POSITIVE_INFINITY) maxDistance = Math.max(maxDistance, IJDistance);
+      }
+    }
+    return maxDistance;
+  }
+
+  /** Runs floyd warshall's algorithm on the graph */
+  private void generateDistanceArray() {
+    for (int k = 0; k < this.numVertices; k++)
+      for (int i = 0; i < this.numVertices; i++)
+        for (int j = 0; j < this.numVertices; j++)
+          if (distances[i][k] + distances[k][j] < distances[i][j])
+            distances[i][j] = distances[i][k] + distances[k][j];
+  }
+
+  private void initialiseDistanceArray(String filename) throws IOException {
+    if (filename == null || "".equals(filename)) return;
+    BufferedReader br = new BufferedReader(new FileReader(filename));
+    this.numVertices = Integer.parseInt(br.readLine());
+    this.distances = new double[this.numVertices][this.numVertices];
+    for (int i = 0; i < distances.length; i++) {
+      Arrays.fill(distances[i], Double.POSITIVE_INFINITY);
+    }
+    int numEdges = Integer.parseInt(br.readLine());
+    int i = 0;
+    String line = br.readLine();
+    while (line != null) {
+      Scanner scanner = new Scanner(line);
+      int vertexFrom = scanner.nextInt();
+      int vertexTo = scanner.nextInt();
+      double cost = scanner.nextDouble();
+      distances[vertexFrom][vertexFrom] = 0;
+      distances[vertexFrom][vertexTo] = cost;
+      scanner.close();
+      line = br.readLine();
+      i++;
+    }
+    if (i != numEdges) this.invalidGraph = true;
   }
 }
