@@ -35,12 +35,6 @@ import java.util.Scanner;
  * @version HT 2020
  */
 public class CompetitionDijkstra {
-  public static void main(String[] args) {
-    CompetitionDijkstra competitionDijkstra =
-        new CompetitionDijkstra("input/competition/input-J.txt", 55, 60, 75);
-    System.out.println(competitionDijkstra.timeRequiredforCompetition());
-  }
-
   private static final int KILOMETER_TO_METERS = 1000;
 
   private Graph graph;
