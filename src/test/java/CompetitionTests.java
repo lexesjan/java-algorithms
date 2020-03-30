@@ -27,12 +27,11 @@ import static org.junit.Assert.*;
  * 2. Discuss the difference in performance between Dijkstra and Floyd Warshall
  *    version
  *    --
- *    In the Dijkstra version, the run time complexity is O(V^2 + V * E * log(V)) amortized.
+ *    In the Dijkstra version, the worst run time complexity is O(V^3 * log(V)) amortized.
  *    This is amortized due the use of hash maps. Dijkstra's algorithm worst time
- *    complexity is O(E * log(V)), however since I run Dijkstra's algorithm for every
- *    vertex the run time complexity for repeated Dijkstra's algorithm is O(V * E * log(V))
- *    I use two for loops to find the maximum distance between any two nodes which explains
- *    the final total run time complexity.
+ *    complexity is O(V^2 * log(V)), however since I run Dijkstra's algorithm for every
+ *    vertex the run time complexity for repeated Dijkstra's algorithm is O(V * V^2 * log(V))
+ *    that is O(V^3 * log(V)).
  *
  *    Floyd Warshall's worst run time complexity is O(V^3). You would use the Dijkstra
  *    version if the graph is sparse i.e. it has a small amount of edges. The Floyd
