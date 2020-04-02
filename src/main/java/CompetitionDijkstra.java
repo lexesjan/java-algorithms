@@ -69,29 +69,19 @@ public class CompetitionDijkstra {
 
   /** @return the distance of the two vertices which are the furthest from each other */
   private double getMaxDistance() {
-    double[][] distances = generateAllShortestPaths();
-    if (distances == null) return -1;
+    if (graph == null || graph.invalid) return -1;
     int numVertices = graph.numVertices;
     double maxDistance = Double.NEGATIVE_INFINITY;
     for (int i = 0; i < numVertices; i++) {
+      double[] distances = generateShortestPaths(i);
       for (int j = 0; j < numVertices; j++) {
         if (i == j) continue;
-        double IJDistance = distances[i][j];
+        double IJDistance = distances[j];
         if (IJDistance == Double.POSITIVE_INFINITY) return -1;
         maxDistance = Math.max(maxDistance, IJDistance);
       }
     }
     return maxDistance;
-  }
-
-  /** @return an array of shortest path tables for each vertex */
-  private double[][] generateAllShortestPaths() {
-    if (graph == null || graph.invalid) return null;
-    double[][] shortestPaths = new double[graph.numVertices][];
-    for (int i = 0; i < graph.numVertices; i++) {
-      shortestPaths[i] = generateShortestPaths(i);
-    }
-    return shortestPaths;
   }
 
   /** @return the shortest path table generated using dijkstra's algorithm */
